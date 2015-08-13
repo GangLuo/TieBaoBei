@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.zhixiangzhonggong.tiebaobei.Activity.MainActivity">
+    <item
+        android:id="@+id/action_list"
+        android:title="List"
+        android:icon="@drawable/list_icon"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/search_icon"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_login"
+        android:title="Login"
+        android:icon="@drawable/login_small_people"
+        app:showAsAction="always" />
+</menu>
