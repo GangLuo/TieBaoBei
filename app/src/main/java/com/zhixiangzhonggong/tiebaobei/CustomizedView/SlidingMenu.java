@@ -1,6 +1,7 @@
 package com.zhixiangzhonggong.tiebaobei.CustomizedView;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+
+import com.zhixiangzhonggong.tiebaobei.R;
 
 /**
  * Created by luogang on 15-08-12.
@@ -22,17 +25,49 @@ public class SlidingMenu extends HorizontalScrollView {
     private int mScreenWidth;
     private int mMenuRightPadding=50;
     private boolean once=false;
-    public SlidingMenu(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        //get Screen width
+    private boolean isMenuOpen=false;
+
+    //when you use customized view attributes ,will call this two methods
+    public SlidingMenu(Context context) {
+        this(context, null);
+    }
+
+    public SlidingMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        //get the value of customized view attrs
+        TypedArray a=context.getTheme().obtainStyledAttributes(attrs, R.styleable.SlidingMenu,defStyleAttr,0);
+        int n =a.getIndexCount();
+        for(int i=0;i<n;i++){
+        int attr=a.getIndex(i);
+            switch (attr){
+                case R.styleable.SlidingMenu_rightPadding:
+                    mMenuRightPadding=a.getDimensionPixelSize(attr,(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,context.getResources().getDisplayMetrics()));
+                    break;
+            }
+        }
+        a.recycle();
         WindowManager wm= (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics=new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth=outMetrics.widthPixels;
 
         //convert dp to pix
-       mMenuRightPadding= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,context.getResources().getDisplayMetrics());
+      //  mMenuRightPadding= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,context.getResources().getDisplayMetrics());
 
+    }
+
+
+    public SlidingMenu(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+        //get Screen width
+      /*  WindowManager wm= (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics=new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        mScreenWidth=outMetrics.widthPixels;
+
+        //convert dp to pix
+       mMenuRightPadding= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,context.getResources().getDisplayMetrics());
+*/
     }
 
 
@@ -67,11 +102,39 @@ public class SlidingMenu extends HorizontalScrollView {
                int  scrollX=getScrollX();
                 if(scrollX>=mMenuWidth/2){
                     this.smoothScrollTo(mMenuWidth,0);
+                    isMenuOpen=false;
                 }else {
                     this.smoothScrollTo(0,0);
+                    isMenuOpen=true;
                 }
                 return true;
         }
         return super.onTouchEvent(ev);
     }
+
+
+    public void openMenu(){
+        if(isMenuOpen)
+            return;
+        this.smoothScrollTo(0,0);
+        isMenuOpen=true;
+    }
+
+
+    public void closeMenu(){
+        if (!isMenuOpen)
+            return;
+            this.smoothScrollTo(mMenuWidth,0);
+        isMenuOpen=false;
+    }
+
+    public void toggle(){
+        if(!isMenuOpen){
+           openMenu();
+        }else {
+            closeMenu();
+        }
+    }
 }
+
+

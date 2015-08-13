@@ -17,20 +17,18 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-            <ImageView
-                android:layout_width="25dp"
+            <ImageButton
+                android:id="@+id/setting_btn"
+                android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:src="@drawable/list_icon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="15dp"
+                android:gravity="center|left"
+                android:textSize="10dp"
                 android:text="Setting"/>
             <TextView
                 android:layout_width="wrap_content"

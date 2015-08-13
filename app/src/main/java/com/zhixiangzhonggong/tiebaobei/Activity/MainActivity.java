@@ -6,20 +6,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 
+import com.zhixiangzhonggong.tiebaobei.CustomizedView.SlidingMenu;
 import com.zhixiangzhonggong.tiebaobei.R;
 
 public class MainActivity extends Activity {
-
+    private ImageButton settingButton;
+    private SlidingMenu mSlidingMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        requestWindowFeature(Window.FEATURE_NO_TITLE);
        // supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         //delete actionbar
-
         setContentView(R.layout.activity_main);
+        initView();
+        settingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSlidingMenu.toggle();
+
+            }
+        });
+    }
+
+    private void initView() {
+        mSlidingMenu= (SlidingMenu) findViewById(R.id.slidingMenu);
+        settingButton= (ImageButton) findViewById(R.id.setting_btn);
     }
 
     @Override
