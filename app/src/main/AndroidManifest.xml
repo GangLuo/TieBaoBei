@@ -6,7 +6,6 @@
         android:allowBackup="true"
         android:icon="@drawable/zhixiangimage"
         android:label="智象重工"
-
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Activity.StartLoadingActivity"
@@ -20,6 +19,10 @@
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:label="@string/title_activity_login" >
         </activity>
     </application>
 

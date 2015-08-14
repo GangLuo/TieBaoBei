@@ -43,6 +43,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/search_icon"/>
             <ImageView
+                android:id="@+id/login_small_people_image"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                android:layout_weight="1"
