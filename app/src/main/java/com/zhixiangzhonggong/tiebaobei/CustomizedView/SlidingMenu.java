@@ -2,6 +2,7 @@ package com.zhixiangzhonggong.tiebaobei.CustomizedView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.nineoldandroids.view.ViewHelper;
 import com.zhixiangzhonggong.tiebaobei.R;
 
 /**
@@ -134,6 +136,16 @@ public class SlidingMenu extends HorizontalScrollView {
         }else {
             closeMenu();
         }
+    }
+
+    //when scroll ,call this methods
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        float scale=l*1.0f/mMenuWidth;//1~0
+        //call animation ,set translationX,l is current scrollX value
+        ViewHelper.setTranslationX(mMenu,mMenuWidth*scale);
+
     }
 }
 
