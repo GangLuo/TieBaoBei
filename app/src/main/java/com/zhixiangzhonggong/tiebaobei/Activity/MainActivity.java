@@ -17,9 +17,13 @@ import com.zhixiangzhonggong.tiebaobei.CustomizedView.SlidingMenu;
 import com.zhixiangzhonggong.tiebaobei.R;
 
 public class MainActivity extends Activity {
-    private ImageButton settingButton;
+    private ImageView settingButton;
     private SlidingMenu mSlidingMenu;
     private TextView mLogin;
+    private TextView mSignUp;
+    private TextView mSetting;
+    private TextView mFeedBack;
+    private TextView mAboutUs;
     private ImageView mBySmallPeopleImageLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +33,57 @@ public class MainActivity extends Activity {
         //delete actionbar
         setContentView(R.layout.activity_main);
         initView();
+
         mBySmallPeopleImageLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                 startActivity(intent);
             }
         });
+
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(intent);
+            }
+        });
+
+        mSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        mSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        mFeedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FeedBackActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        mAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), IntroduceUsActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -54,12 +94,19 @@ public class MainActivity extends Activity {
 
             }
         });
+
+
     }
 
     private void initView() {
         mSlidingMenu= (SlidingMenu) findViewById(R.id.slidingMenu);
-        settingButton= (ImageButton) findViewById(R.id.setting_btn);
+        settingButton= (ImageView) findViewById(R.id.setting_btn);
         mLogin= (TextView) findViewById(R.id.login_left_menu_id);
+        mSignUp= (TextView) findViewById(R.id.signUp_left_menu_id);
+        mSetting= (TextView) findViewById(R.id.setting_left_menu_id);
+        mFeedBack=(TextView) findViewById(R.id.feedBack_left_menu_id);
+        mAboutUs=(TextView) findViewById(R.id.aboutUs_left_menu_id);
+
         mBySmallPeopleImageLogin= (ImageView) findViewById(R.id.login_small_people_image);
 
     }

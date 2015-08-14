@@ -13,7 +13,7 @@
         android:gravity="center"
         android:background="#F5740A"
         android:textColor="#FFFFFF"
-        android:text="Setting Center"/>
+        android:text="@string/menu_setting_center"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -31,38 +31,42 @@
         android:textSize="25dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
-        android:text="Login"/>
+        android:text="@string/menu_loging"/>
 
     <TextView
+        android:id="@+id/signUp_left_menu_id"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:textSize="25dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
-        android:text="Sign Up"/>
+        android:text="@string/menu_signUp"/>
 
     <TextView
+        android:id="@+id/setting_left_menu_id"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:textSize="25dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
-        android:text="Setting"/>
+        android:text="@string/menu_setting"/>
 
         <TextView
+        android:id="@+id/feedBack_left_menu_id"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:textSize="25dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:text="FeedBack"/>
+        android:text="@string/menu_feedback"/>
 
         <TextView
+        android:id="@+id/aboutUs_left_menu_id"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:textSize="25dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
-        android:text="About Us"/>
+        android:text="@string/menu_aboutUs"/>
     </LinearLayout>
 </LinearLayout>
