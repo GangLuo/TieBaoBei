@@ -22,27 +22,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textColor="#ffffff"
                 android:gravity="center|left"
                 android:textSize="10dp"
-                android:text="Setting"/>
+                android:text="设置"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="25dp"
                 android:text="智象重工"/>
             <ImageView
-                android:layout_width="20dp"
+                android:layout_width="10dp"
                 android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/search_icon"/>
             <ImageView
                 android:id="@+id/login_small_people_image"
-                android:layout_width="15dp"
+                android:layout_width="8dp"
                 android:layout_height="match_parent"
                android:layout_weight="1"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/login_small_people"/>
         </LinearLayout>
     <LinearLayout
@@ -51,6 +54,8 @@
         android:layout_weight="5"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="2dp"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -62,20 +67,23 @@
             <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="3">
                 <ImageView
                     android:id="@+id/seatch_icon"
                     android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
+                    android:paddingBottom="8dp"
                     android:layout_gravity="left|center_vertical"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:src="@drawable/search_icon"/>
                 <EditText
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="left|center"
                     android:paddingLeft="35dp"
+                    android:paddingTop="2dp"
                     android:layout_marginRight="5dp"
                     android:hint="输入设备型号">
                     <requestFocus />
@@ -84,16 +92,19 @@
             </FrameLayout>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
                 android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="8dp"
                 android:background="#F5740A"
                 android:layout_weight="10"
-                android:text="Search"/>
+                android:text="搜索"/>
         </LinearLayout>
         <TextView
             android:layout_weight="1"
             android:layout_marginBottom="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#57B4D4"
@@ -104,18 +115,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="150"
-            android:orientation="vertical">
+            android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
                 <TextView
+                    android:id="@+id/machine_mixer_model_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
                     android:background="#D47757"
                     android:gravity="center"
                     android:textSize="40dp"
@@ -126,6 +139,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:layout_marginRight="2dp"
                     android:background="#B657D4"
                     android:textSize="40dp"
                     android:layout_weight="1"
@@ -135,15 +149,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginBottom="2dp"
-                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical"
                 >
+                <TextView
+                    android:id="@+id/all_machine_model_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:background="#17B4D4"
+                    android:textSize="40dp"
+                    android:layout_weight="1"
+                    android:text="全部机型"
+                    />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
                     android:gravity="center"
                     android:background="#57B4D4"
                     android:textSize="40dp"
@@ -178,7 +205,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Machine"/>
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:text="我的设备"/>
         </LinearLayout>
     </LinearLayout>
 

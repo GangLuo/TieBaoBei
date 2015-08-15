@@ -9,21 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.R;
 
-public class FeedBackActivity extends Activity {
-    private ImageView mBackImage;
-    private ImageView mLogin;
-    private HideEditorKeyboard mHideEditor;
+public class ChooseMachineModelActivity extends Activity {
+private ImageView mBackImage;
+    private TextView mMixerTruck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed_back);
-        mHideEditor=new HideEditorKeyboard(this);
-        mHideEditor.setupUI(findViewById(R.id.feedbackLayout));
+        setContentView(R.layout.activity_choose_machine_model);
         initView();
 
         mBackImage.setOnClickListener(new View.OnClickListener() {
@@ -33,25 +30,25 @@ public class FeedBackActivity extends Activity {
             }
         });
 
-       mLogin.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        mMixerTruck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ShowProductsActivity.class);
 
-               startActivity(intent);
-           }
-       });
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
-        mBackImage= (ImageView) findViewById(R.id.feed_back_image);
-        mLogin=(ImageView) findViewById(R.id.feedingback_login_small_people_image);
+        mBackImage= (ImageView) findViewById(R.id.machine_back_image);
+        mMixerTruck= (TextView) findViewById(R.id.machine_mixer_truck_id);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_feed_back, menu);
+        getMenuInflater().inflate(R.menu.menu_choose_machine_model, menu);
         return true;
     }
 

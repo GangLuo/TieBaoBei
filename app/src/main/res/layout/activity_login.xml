@@ -23,9 +23,9 @@
 
             <ImageView
                 android:id="@+id/back_image"
-                android:layout_width="0dp"
+                android:layout_width="3dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:src="@drawable/white_arrow"/>
 
             <TextView

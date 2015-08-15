@@ -30,4 +30,17 @@
     <string name="setting_update_version">版本号1.1.1</string>
     <string name="title_activity_feed_back">FeedBackActivity</string>
     <string name="title_activity_introduce_us">IntroduceUsActivity</string>
+    <string name="title_activity_choose_machine_model">ChooseMachineModelActivity</string>
+
+    <string name="machine_big_Excavator">大型挖掘机</string>
+    <string name="machine_small_Excavator">小型挖掘机</string>
+    <string name="machine_mixer_truck">搅拌车</string>
+    <string name="machine_pumb_truck">泵车</string>
+    <string name="machine_mortar_pump">砂浆泵</string>
+    <string name="machine_loader_truck">装载机</string>
+    <string name="machine_bulldozer">推土机</string>
+    <string name="machine_crane">起重机</string>
+    <string name="machine_accessories">配件</string>
+    <string name="machine_other">其他</string>
+    <string name="title_activity_show_products">ShowProductsActivity</string>
 </resources>

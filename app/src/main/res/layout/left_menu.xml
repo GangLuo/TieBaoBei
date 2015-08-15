@@ -8,8 +8,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="30dp"
+        android:layout_height="60dp"
+        android:textSize="25dp"
         android:gravity="center"
         android:background="#F5740A"
         android:textColor="#FFFFFF"
@@ -27,8 +27,8 @@
     <TextView
         android:id="@+id/login_left_menu_id"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="25dp"
+        android:layout_height="60dp"
+        android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="@string/menu_loging"/>
@@ -36,8 +36,8 @@
     <TextView
         android:id="@+id/signUp_left_menu_id"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="25dp"
+        android:layout_height="60dp"
+        android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="@string/menu_signUp"/>
@@ -45,8 +45,8 @@
     <TextView
         android:id="@+id/setting_left_menu_id"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="25dp"
+        android:layout_height="60dp"
+        android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="@string/menu_setting"/>
@@ -54,8 +54,8 @@
         <TextView
         android:id="@+id/feedBack_left_menu_id"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="25dp"
+        android:layout_height="60dp"
+        android:textSize="20dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:text="@string/menu_feedback"/>
@@ -63,8 +63,8 @@
         <TextView
         android:id="@+id/aboutUs_left_menu_id"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textSize="25dp"
+        android:layout_height="60dp"
+        android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="@string/menu_aboutUs"/>

@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     private TextView mSetting;
     private TextView mFeedBack;
     private TextView mAboutUs;
+    private TextView mAllMachineModel;
     private ImageView mBySmallPeopleImageLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +97,14 @@ public class MainActivity extends Activity {
             }
         });
 
+        mAllMachineModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChooseMachineModelActivity.class);
+
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -106,7 +116,7 @@ public class MainActivity extends Activity {
         mSetting= (TextView) findViewById(R.id.setting_left_menu_id);
         mFeedBack=(TextView) findViewById(R.id.feedBack_left_menu_id);
         mAboutUs=(TextView) findViewById(R.id.aboutUs_left_menu_id);
-
+        mAllMachineModel=(TextView) findViewById(R.id.all_machine_model_id);
         mBySmallPeopleImageLogin= (ImageView) findViewById(R.id.login_small_people_image);
 
     }

@@ -44,6 +44,14 @@
             android:name=".Activity.IntroduceUsActivity"
             android:label="@string/title_activity_introduce_us" >
         </activity>
+        <activity
+            android:name=".Activity.ChooseMachineModelActivity"
+            android:label="@string/title_activity_choose_machine_model" >
+        </activity>
+        <activity
+            android:name=".Activity.ShowProductsActivity"
+            android:label="@string/title_activity_show_products" >
+        </activity>
     </application>
 
 </manifest>
