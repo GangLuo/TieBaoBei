@@ -63,11 +63,130 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="1dp"
+               android:layout_marginBottom="3dp"
+
+                android:layout_gravity="right"
+                android:src="@drawable/my_triangle"/>
+            <TextView
+                    android:id="@+id/brand_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:textColor="#395691"
+                    android:textSize="15dp"
+                    android:text="品牌"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="3dp"
+                android:scaleType="centerInside"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/my_triangle"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="#395691"
+                android:text="价格"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="3dp"
+                android:scaleType="centerInside"
+                android:layout_gravity="right"
+                android:src="@drawable/my_triangle"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="#395691"
+                android:text="省市"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="3dp"
+                android:scaleType="centerInside"
+                android:layout_marginRight="1dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/my_triangle"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="#395691"
+                android:text="更多"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="3dp"
+                android:scaleType="centerInside"
+                android:layout_marginRight="1dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/my_triangle"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="#395691"
+                android:text="排序"/>
+
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/show_fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    </LinearLayout>
     <ListView
         android:id="@+id/products_list_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         />
 
     </LinearLayout>

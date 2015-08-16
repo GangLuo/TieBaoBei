@@ -13,10 +13,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.CustomizedView.SlidingMenu;
 import com.zhixiangzhonggong.tiebaobei.R;
 
 public class MainActivity extends Activity {
+    private HideEditorKeyboard mHideEditor;
     private ImageView settingButton;
     private SlidingMenu mSlidingMenu;
     private TextView mLogin;
@@ -34,7 +36,8 @@ public class MainActivity extends Activity {
         //delete actionbar
         setContentView(R.layout.activity_main);
         initView();
-
+        mHideEditor=new HideEditorKeyboard(this);
+        mHideEditor.setupUI(findViewById(R.id.mainActivityId));
         mBySmallPeopleImageLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
