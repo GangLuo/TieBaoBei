@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-/**
- * Created by yaolu on 15-08-15.
- */
+
 public class HideEditorKeyboard {
     private Activity activity;
     public  HideEditorKeyboard(Activity activity) {

@@ -184,9 +184,10 @@
                     android:background="#57B4D4"
                     android:textSize="40dp"
                     android:layout_weight="1"
-                    android:text="配件"
+                    android:text="砂浆泵"
                     />
                 <TextView
+                    android:id="@+id/sell_car_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -195,7 +196,7 @@
                     android:background="#76D457"
                     android:textSize="40dp"
                     android:layout_weight="1"
-                    android:text="砂浆泵"
+                    android:text="我要卖车"
                     />
             </LinearLayout>
 
