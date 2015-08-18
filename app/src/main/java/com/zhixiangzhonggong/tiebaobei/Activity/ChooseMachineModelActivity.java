@@ -1,7 +1,9 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 import com.zhixiangzhonggong.tiebaobei.R;
 
 public class ChooseMachineModelActivity extends Activity {
-private ImageView mBackImage;
+    private ImageView mBackImage;
     private TextView mMixerTruck;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -33,7 +37,18 @@ private ImageView mBackImage;
         mMixerTruck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowProductsActivity.class);
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                editor = pref.edit();
+                int selectedOrder = pref.getInt("selectedOrder", 0);
+                Intent intent= new Intent();
+                if(selectedOrder==3){
+                    intent = new Intent(getApplicationContext(), ShowProductsActivity.class);
+                }
+                else if(selectedOrder==5){
+                    intent = new Intent(getApplicationContext(), SellCarInformationActivity.class);
+                }
+
 
                 startActivity(intent);
             }

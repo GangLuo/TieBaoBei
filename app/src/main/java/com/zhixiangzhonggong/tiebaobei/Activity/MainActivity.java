@@ -1,7 +1,9 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +31,9 @@ public class MainActivity extends Activity {
     private TextView mAllMachineModel;
     private TextView mSellCar;
     private ImageView mBySmallPeopleImageLogin;
+    private int selectedOrder;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -104,6 +109,14 @@ public class MainActivity extends Activity {
         mAllMachineModel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedOrder=3;
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putInt("selectedOrder",selectedOrder);
+
+                editor.commit();
                 Intent intent = new Intent(getApplicationContext(), ChooseMachineModelActivity.class);
 
                 startActivity(intent);
@@ -113,6 +126,14 @@ public class MainActivity extends Activity {
         mSellCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedOrder=5;
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putInt("selectedOrder", selectedOrder);
+
+                editor.commit();
                 Intent intent = new Intent(getApplicationContext(), ChooseMachineModelActivity.class);
 
                 startActivity(intent);

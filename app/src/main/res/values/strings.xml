@@ -43,4 +43,20 @@
     <string name="machine_accessories">配件</string>
     <string name="machine_other">其他</string>
     <string name="title_activity_show_products">ShowProductsActivity</string>
+    <string name="title_activity_sell_car_information">SellCarInformationActivity</string>
+    <string name="title_activity_album">AlbumActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_image_fiele">ImageFiele</string>
+    <string name="title_activity_show_all_photo">ShowAllPhoto</string>
+
+    <!-- 图片浏览 -->
+    <string name="only_choose_num">超出可选图片张数</string>
+    <string name="finish">完成</string>
+    <string name="invalidSD">sdcard无效或没有插入！</string>
+    <string name="photo">选择相册</string>
+    <string name="album">相册</string>
+    <string name="preview">预览</string>
+    <string name="unfinished">完成</string>
+    <string name="camera_cancel">取消</string>
+    <string name="no_photo">相册没有图片</string>
 </resources>

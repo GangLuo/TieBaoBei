@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhixiangzhonggong.tiebaobei" >
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/zhixiangimage"
@@ -28,10 +32,7 @@
             android:name=".Activity.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
-        <activity
-            android:name=".Activity.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
+
         <activity
             android:name=".Activity.SettingActivity"
             android:label="@string/title_activity_setting" >
@@ -51,6 +52,26 @@
         <activity
             android:name=".Activity.ShowProductsActivity"
             android:label="@string/title_activity_show_products" >
+        </activity>
+        <activity
+            android:name=".Activity.SellCarInformationActivity"
+            android:label="@string/title_activity_sell_car_information" >
+        </activity>
+        <activity
+            android:name=".Activity.AlbumActivity"
+            android:label="@string/title_activity_album" >
+        </activity>
+        <activity
+            android:name=".Activity.GalleryActivity"
+            android:label="@string/title_activity_gallery" >
+        </activity>
+        <activity
+            android:name=".Activity.ImageFile"
+            android:label="@string/title_activity_image_fiele" >
+        </activity>
+        <activity
+            android:name=".Activity.ShowAllPhoto"
+            android:label="@string/title_activity_show_all_photo" >
         </activity>
     </application>
 
