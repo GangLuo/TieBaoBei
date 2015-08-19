@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -42,11 +43,15 @@ import com.zhixiangzhonggong.tiebaobei.util.Res;
 
 public class SellCarInformationActivity extends Activity {
     private PopupWindow pop = null;
+    private PopupWindow pop1=null;
     private LinearLayout ll_popup;
+    private LinearLayout mSiteLayout;
     private GridAdapter adapter;
-    private View parentView;
+    private View parentView,view;
+    private ImageView mbackbutton,mLoginImage;
     public static Bitmap bimap ;
     private Gallery mGallery;
+    int width,height;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +63,55 @@ public class SellCarInformationActivity extends Activity {
         PublicWay.activityList.add(this);
         parentView = getLayoutInflater().inflate(R.layout.activity_sell_car_information, null);
         setContentView(parentView);
+        // 获取屏幕的高度和宽度
+        Display display = this.getWindowManager().getDefaultDisplay();
+        width = display.getWidth();
+        height = display.getHeight();
         Init();
-    }
-    public void Init() {
+        InitSitePopUpWindow();
+        //pop up choose site popwindow
+        mSiteLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+               // pop1.showAtLocation(view,0, 0, -200);
+            }
+        });
+    }
+
+
+public void InitSitePopUpWindow(){
+    PopupWindow pop1 = new PopupWindow(SellCarInformationActivity.this);
+
+     view = getLayoutInflater().inflate(R.layout.activity_choose_car_site_popupwindow, null);
+    pop1.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+    pop1.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+    pop1.setBackgroundDrawable(new BitmapDrawable());
+    pop1.setFocusable(true);
+    pop1.setOutsideTouchable(true);
+    pop1.setContentView(view);
+}
+    public void Init() {
+        mbackbutton= (ImageView) findViewById(R.id.car_informatin_back_image);
+        mLoginImage= (ImageView) findViewById(R.id.car_informatin_login_small_people_image);
+        mSiteLayout= (LinearLayout) parentView.findViewById(R.id.choose_site_id);
+        mbackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        mLoginImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        //init PopupWindows
         pop = new PopupWindow(SellCarInformationActivity.this);
 
         View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
@@ -75,7 +125,7 @@ public class SellCarInformationActivity extends Activity {
         pop.setOutsideTouchable(true);
         pop.setContentView(view);
 
-        RelativeLayout parent = (RelativeLayout) view.findViewById(R.id.parent);
+        final RelativeLayout parent = (RelativeLayout) view.findViewById(R.id.parent);
         Button bt1 = (Button) view
                 .findViewById(R.id.item_popupwindows_camera);
         Button bt2 = (Button) view
@@ -114,6 +164,13 @@ public class SellCarInformationActivity extends Activity {
                 ll_popup.clearAnimation();
             }
         });
+
+
+
+
+
+
+
         mGallery= (Gallery) findViewById(R.id.main_gallery);
        // mGallery.setSelector(new ColorDrawable(Color.TRANSPARENT));
         //noScrollgridview = (GridView) findViewById(R.id.noScrollgridview);

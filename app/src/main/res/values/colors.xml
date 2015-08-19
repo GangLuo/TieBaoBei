@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="province_line_border">#C7C7C7</color>
     <color name="backgroudColor">#096EAD</color>
     <color name="white">#ffffff</color><!--白色 -->
     <color name="ivory">#fffff0</color><!--象牙色 -->

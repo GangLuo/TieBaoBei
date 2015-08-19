@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhixiangzhonggong.tiebaobei" >
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/zhixiangimage"
@@ -32,7 +34,6 @@
             android:name=".Activity.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
-
         <activity
             android:name=".Activity.SettingActivity"
             android:label="@string/title_activity_setting" >
@@ -72,6 +73,10 @@
         <activity
             android:name=".Activity.ShowAllPhoto"
             android:label="@string/title_activity_show_all_photo" >
+        </activity>
+        <activity
+            android:name=".Activity.ChooseCarSiteActivity"
+            android:label="@string/title_activity_choose_car_site" >
         </activity>
     </application>
 
