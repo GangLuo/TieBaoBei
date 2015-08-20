@@ -94,8 +94,8 @@ public class AlbumActivity extends AppCompatActivity {
     private class AlbumSendListener implements View.OnClickListener {
         public void onClick(View v) {
             overridePendingTransition(R.anim.activity_translate_in, R.anim.activity_translate_out);
-            intent.setClass(mContext, SellCarInformationActivity.class);
-            startActivity(intent);
+            //intent.setClass(mContext, SellCarInformationActivity.class);
+           // startActivity(intent);
             finish();
         }
 

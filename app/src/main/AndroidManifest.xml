@@ -74,10 +74,6 @@
             android:name=".Activity.ShowAllPhoto"
             android:label="@string/title_activity_show_all_photo" >
         </activity>
-        <activity
-            android:name=".Activity.ChooseCarSiteActivity"
-            android:label="@string/title_activity_choose_car_site" >
-        </activity>
     </application>
 
 </manifest>

@@ -4,6 +4,8 @@ package com.zhixiangzhonggong.tiebaobei.service;
 
 import com.zhixiangzhonggong.tiebaobei.model.CityModel;
 import com.zhixiangzhonggong.tiebaobei.model.DistrictModel;
+import com.zhixiangzhonggong.tiebaobei.model.ExcavatorBrandModel;
+import com.zhixiangzhonggong.tiebaobei.model.ExcavatorModelModel;
 import com.zhixiangzhonggong.tiebaobei.model.ProvinceModel;
 
 import org.xml.sax.Attributes;
@@ -15,13 +17,15 @@ import java.util.List;
 
 public class XmlParserHandler extends DefaultHandler {
 
-	/**
-	 * �洢���еĽ�������
-	 */
+
 	private List<ProvinceModel> provinceList = new ArrayList<ProvinceModel>();
-	 	  
+	private List<ExcavatorBrandModel> excavatorBrandModelList=new ArrayList<>()	 ;
 	public XmlParserHandler() {
 		
+	}
+
+	public List<ExcavatorBrandModel> getExcavatorBrandModelList() {
+		return excavatorBrandModelList;
 	}
 
 	public List<ProvinceModel> getDataList() {
@@ -30,9 +34,10 @@ public class XmlParserHandler extends DefaultHandler {
 
 	@Override
 	public void startDocument() throws SAXException {
-		// ��������һ����ʼ��ǩ��ʱ�򣬻ᴥ���������
-	}
 
+	}
+	ExcavatorBrandModel excavatorBrandModel= new ExcavatorBrandModel();
+	ExcavatorModelModel excavatorModelModel=new ExcavatorModelModel();
 	ProvinceModel provinceModel = new ProvinceModel();
 	CityModel cityModel = new CityModel();
 	DistrictModel districtModel = new DistrictModel();
@@ -40,7 +45,7 @@ public class XmlParserHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		// ��������ʼ��ǵ�ʱ�򣬵����������
+
 		if (qName.equals("province")) {
 			provinceModel = new ProvinceModel();
 			provinceModel.setName(attributes.getValue(0));
@@ -54,12 +59,22 @@ public class XmlParserHandler extends DefaultHandler {
 			districtModel.setName(attributes.getValue(0));
 			districtModel.setZipcode(attributes.getValue(1));
 		}
+		else if (qName.equals("excavatorBrand")){
+			excavatorBrandModel= new ExcavatorBrandModel();
+			excavatorBrandModel.setName(attributes.getValue(0));
+			excavatorBrandModel.setExcavatorModelList(new ArrayList<ExcavatorModelModel>());
+		}
+		else if (qName.equals("excavatorModel")){
+
+			excavatorModelModel=new ExcavatorModelModel();
+			excavatorModelModel.setName(attributes.getValue(0));
+		}
 	}
 
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		// ���������ǵ�ʱ�򣬻�����������
+
 		if (qName.equals("district")) {
 			cityModel.getDistrictList().add(districtModel);
         } else if (qName.equals("city")) {
@@ -67,6 +82,12 @@ public class XmlParserHandler extends DefaultHandler {
         } else if (qName.equals("province")) {
         	provinceList.add(provinceModel);
         }
+		else if (qName.equals("excavatorBrand")){
+			excavatorBrandModelList.add(excavatorBrandModel);
+		}
+		else if (qName.equals("excavatorModel")){
+			excavatorBrandModel.getExcavatorModelList().add(excavatorModelModel);
+		}
 	}
 	
 	@Override

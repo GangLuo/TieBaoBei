@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/sellCarInfromationId"
     tools:context="com.zhixiangzhonggong.tiebaobei.Activity.SellCarInformationActivity">
   <ScrollView
       android:layout_width="match_parent"
@@ -100,6 +101,7 @@
     android:textSize="20dp"
     android:text="发布车辆信息"/>
    <LinearLayout
+       android:id="@+id/car_brand_model_layout_id"
        android:layout_width="match_parent"
        android:layout_height="80dp"
         android:showDividers="middle"
@@ -108,6 +110,7 @@
         android:divider="@drawable/mydivider"
        android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/carBrandId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -130,6 +133,7 @@
             android:gravity="center|left"
             android:text="品牌"/>
         <TextView
+            android:id="@+id/carBrandTextId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -145,6 +149,7 @@
             android:src="@drawable/grey_arrow"/>
     </LinearLayout>
        <LinearLayout
+           android:id="@+id/carModelLayoutId"
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
            android:layout_gravity="center_vertical"
@@ -167,6 +172,7 @@
                android:gravity="center|left"
                android:text="型号"/>
            <TextView
+               android:id="@+id/carModelTextId"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical"
@@ -215,14 +221,14 @@
                    android:layout_gravity="center_vertical"
                    android:gravity="center|left"
                    android:text="小时数"/>
-               <TextView
+               <EditText
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
-                   android:textSize="20dp"
-                   android:gravity="center"
-                   android:layout_weight="1"
-                   android:text="请填写数字"/>
+                   android:textSize="15dp"
+                   android:gravity="center|left"
+                   android:layout_weight="5"
+                   android:hint="请填写数字"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -251,7 +257,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_weight="6"
+                   android:layout_weight="4"
                    android:textSize="20dp"
                    android:layout_gravity="center_vertical"
                    android:gravity="center|left"
@@ -289,7 +295,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_weight="6"
+                   android:layout_weight="5"
                    android:textSize="20dp"
                    android:layout_gravity="center_vertical"
                    android:gravity="center|left"
@@ -337,19 +343,19 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_weight="6"
+                   android:layout_weight="3"
                    android:textSize="20dp"
                    android:layout_gravity="center_vertical"
                    android:gravity="center|left"
                    android:text="价格"/>
-               <TextView
+               <EditText
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
-                   android:textSize="20dp"
-                   android:gravity="center"
-                   android:layout_weight="2"
-                   android:text="请填写数字"/>
+                   android:textSize="15dp"
+                   android:gravity="center|left"
+                   android:layout_weight="5"
+                   android:hint="请填写数字"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -471,14 +477,14 @@
                        android:layout_gravity="center_vertical"
                        android:gravity="center"
                        android:text="描述"/>
-                   <TextView
+                   <EditText
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
                        android:textSize="15dp"
-                       android:gravity="center"
+                       android:gravity="center|left"
                        android:layout_weight="1"
-                       android:text="请填写车辆使用情况或特殊说明信息"/>
+                       android:hint="请填写车辆使用情况或特殊说明信息"/>
 
                </LinearLayout>
            </LinearLayout>
@@ -510,19 +516,19 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_weight="6"
+                       android:layout_weight="2"
                        android:textSize="20dp"
                        android:layout_gravity="center_vertical"
                        android:gravity="center|left"
                        android:text="电话"/>
-                   <TextView
+                   <EditText
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
-                       android:textSize="20dp"
+                       android:textSize="15dp"
                        android:gravity="center|left"
                        android:layout_weight="6"
-                       android:text="请填写联系方式"/>
+                       android:hint="请填写联系方式"/>
 
                </LinearLayout>
                <LinearLayout
@@ -542,19 +548,19 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_weight="6"
+                       android:layout_weight="2"
                        android:textSize="20dp"
                        android:layout_gravity="center_vertical"
                        android:gravity="center|left"
                        android:text="联系人"/>
-                   <TextView
+                   <EditText
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
-                       android:textSize="20dp"
+                       android:textSize="15dp"
                        android:gravity="center|left"
                        android:layout_weight="6"
-                       android:text="请填写联系人姓名"/>
+                       android:hint="请填写联系人姓名"/>
 
                </LinearLayout>
            </LinearLayout>

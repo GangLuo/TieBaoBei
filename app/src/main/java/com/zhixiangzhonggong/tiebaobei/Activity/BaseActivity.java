@@ -6,6 +6,8 @@ import android.content.res.AssetManager;
 
 import com.zhixiangzhonggong.tiebaobei.model.CityModel;
 import com.zhixiangzhonggong.tiebaobei.model.DistrictModel;
+import com.zhixiangzhonggong.tiebaobei.model.ExcavatorBrandModel;
+import com.zhixiangzhonggong.tiebaobei.model.ExcavatorModelModel;
 import com.zhixiangzhonggong.tiebaobei.model.ProvinceModel;
 import com.zhixiangzhonggong.tiebaobei.service.XmlParserHandler;
 
@@ -23,10 +25,13 @@ public class BaseActivity extends Activity {
 	 * ����ʡ
 	 */
 	protected String[] mProvinceDatas;
+	protected String[] mExcavatorDatas;
 	/**
 	 * key - ʡ value - ��
 	 */
 	protected Map<String, String[]> mCitisDatasMap = new HashMap<String, String[]>();
+
+	protected Map<String, String[]> mExcavatorModelDatasMap = new HashMap<String, String[]>();
 	/**
 	 * key - �� values - ��
 	 */
@@ -44,7 +49,10 @@ public class BaseActivity extends Activity {
 	/**
 	 * ��ǰ�е����
 	 */
+	protected String mCurentExcavatorName;
+	protected String mCurrentExcavatorModelName;
 	protected String mCurrentCityName;
+
 	/**
 	 * ��ǰ������
 	 */
@@ -65,16 +73,16 @@ public class BaseActivity extends Activity {
     	AssetManager asset = getAssets();
         try {
             InputStream input = asset.open("province_data.xml");
-            // ����һ������xml�Ĺ�������
+
 			SAXParserFactory spf = SAXParserFactory.newInstance();
-			// ����xml
+
 			SAXParser parser = spf.newSAXParser();
 			XmlParserHandler handler = new XmlParserHandler();
 			parser.parse(input, handler);
 			input.close();
-			// ��ȡ�������������
+
 			provinceList = handler.getDataList();
-			//*/ ��ʼ��Ĭ��ѡ�е�ʡ���С���
+
 			if (provinceList!= null && !provinceList.isEmpty()) {
 				mCurrentProviceName = provinceList.get(0).getName();
 				List<CityModel> cityList = provinceList.get(0).getCityList();
@@ -88,28 +96,28 @@ public class BaseActivity extends Activity {
 			//*/
 			mProvinceDatas = new String[provinceList.size()];
         	for (int i=0; i< provinceList.size(); i++) {
-        		// ��������ʡ�����
+
         		mProvinceDatas[i] = provinceList.get(i).getName();
         		List<CityModel> cityList = provinceList.get(i).getCityList();
         		String[] cityNames = new String[cityList.size()];
         		for (int j=0; j< cityList.size(); j++) {
-        			// ����ʡ����������е����
+
         			cityNames[j] = cityList.get(j).getName();
         			List<DistrictModel> districtList = cityList.get(j).getDistrictList();
         			String[] distrinctNameArray = new String[districtList.size()];
         			DistrictModel[] distrinctArray = new DistrictModel[districtList.size()];
         			for (int k=0; k<districtList.size(); k++) {
-        				// ����������������/�ص����
+
         				DistrictModel districtModel = new DistrictModel(districtList.get(k).getName(), districtList.get(k).getZipcode());
-        				// ��/�ض��ڵ��ʱ࣬���浽mZipcodeDatasMap
+
         				mZipcodeDatasMap.put(districtList.get(k).getName(), districtList.get(k).getZipcode());
         				distrinctArray[k] = districtModel;
         				distrinctNameArray[k] = districtModel.getName();
         			}
-        			// ��-��/�ص���ݣ����浽mDistrictDatasMap
+
         			mDistrictDatasMap.put(cityNames[j], distrinctNameArray);
         		}
-        		// ʡ-�е���ݣ����浽mCitisDatasMap
+
         		mCitisDatasMap.put(provinceList.get(i).getName(), cityNames);
         	}
         } catch (Throwable e) {
@@ -119,4 +127,51 @@ public class BaseActivity extends Activity {
         } 
 	}
 
+	protected void initExcavatorBrandDatas()
+	{
+		List<ExcavatorBrandModel> excavatorBrandModelList = null;
+		AssetManager asset = getAssets();
+		try {
+			InputStream input = asset.open("province_data.xml");
+
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+
+			SAXParser parser = spf.newSAXParser();
+			XmlParserHandler handler = new XmlParserHandler();
+			parser.parse(input, handler);
+			input.close();
+
+			excavatorBrandModelList = handler.getExcavatorBrandModelList();
+
+			if (excavatorBrandModelList!= null && !excavatorBrandModelList.isEmpty()) {
+				mCurentExcavatorName = excavatorBrandModelList.get(0).getName();
+				List<ExcavatorModelModel> excavatorModelList = excavatorBrandModelList.get(0).getExcavatorModelList();
+				if (excavatorModelList!= null && !excavatorModelList.isEmpty()) {
+					mCurrentExcavatorModelName = excavatorModelList.get(0).getName();
+
+				}
+
+			}
+			//*/
+			mExcavatorDatas = new String[excavatorBrandModelList.size()];
+			for (int i=0; i< excavatorBrandModelList.size(); i++) {
+
+				mExcavatorDatas[i] = excavatorBrandModelList.get(i).getName();
+				List<ExcavatorModelModel> excavatorModelList = excavatorBrandModelList.get(i).getExcavatorModelList();
+				String[] modelNames = new String[excavatorModelList.size()];
+				for (int j = 0; j < excavatorModelList.size(); j++) {
+
+					modelNames[j] = excavatorModelList.get(j).getName();
+
+
+				}
+
+				mExcavatorModelDatasMap.put(excavatorBrandModelList.get(i).getName(), modelNames);
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+	}
 }

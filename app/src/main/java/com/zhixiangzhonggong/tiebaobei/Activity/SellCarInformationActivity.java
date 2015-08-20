@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -33,7 +34,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.FileUtils;
@@ -41,17 +45,29 @@ import com.zhixiangzhonggong.tiebaobei.util.ImageItem;
 import com.zhixiangzhonggong.tiebaobei.util.PublicWay;
 import com.zhixiangzhonggong.tiebaobei.util.Res;
 
-public class SellCarInformationActivity extends Activity {
+import kankan.wheel.widget.OnWheelChangedListener;
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.ArrayWheelAdapter;
+
+public class SellCarInformationActivity extends BaseActivity implements  OnWheelChangedListener {
     private PopupWindow pop = null;
     private PopupWindow pop1=null;
     private LinearLayout ll_popup;
-    private LinearLayout mSiteLayout;
+    private LinearLayout mSiteLayout,mCarBrandModelLayout;
     private GridAdapter adapter;
     private View parentView,view;
+    private TextView mSiteText,mBrandText,mModelText;
     private ImageView mbackbutton,mLoginImage;
     public static Bitmap bimap ;
     private Gallery mGallery;
     int width,height;
+    private WheelView mViewProvince;
+    private WheelView mViewCity;
+    private WheelView mViewDistrict;
+    private Button mBtnConfirm;
+    private HideEditorKeyboard mHideEditor;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,53 +79,134 @@ public class SellCarInformationActivity extends Activity {
         PublicWay.activityList.add(this);
         parentView = getLayoutInflater().inflate(R.layout.activity_sell_car_information, null);
         setContentView(parentView);
-        // 获取屏幕的高度和宽度
-        Display display = this.getWindowManager().getDefaultDisplay();
-        width = display.getWidth();
-        height = display.getHeight();
+        //hide editext key board when click other place
+        mHideEditor=new HideEditorKeyboard(this);
+        mHideEditor.setupUI(findViewById(R.id.sellCarInfromationId));
+
         Init();
-        InitSitePopUpWindow();
+
+
         //pop up choose site popwindow
         mSiteLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
 
-               // pop1.showAtLocation(view,0, 0, -200);
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putString("mySelected", "site");
+                editor.commit();
+                InitSitePopUpWindow();
+                pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+
+            }
+        });
+
+        //pop up the car model and  brand popupwindow
+        mCarBrandModelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putString("mySelected", "brand");
+                editor.commit();
+                InitBrandPopUpWindow();
+                pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
             }
         });
     }
 
+    //init brand model pop up windows
+    public void InitBrandPopUpWindow(){
+        InitPopUpWindow();
+        setExcavatorData();
 
-public void InitSitePopUpWindow(){
-    PopupWindow pop1 = new PopupWindow(SellCarInformationActivity.this);
-
-     view = getLayoutInflater().inflate(R.layout.activity_choose_car_site_popupwindow, null);
-    pop1.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-    pop1.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-    pop1.setBackgroundDrawable(new BitmapDrawable());
-    pop1.setFocusable(true);
-    pop1.setOutsideTouchable(true);
-    pop1.setContentView(view);
-}
-    public void Init() {
-        mbackbutton= (ImageView) findViewById(R.id.car_informatin_back_image);
-        mLoginImage= (ImageView) findViewById(R.id.car_informatin_login_small_people_image);
-        mSiteLayout= (LinearLayout) parentView.findViewById(R.id.choose_site_id);
-        mbackbutton.setOnClickListener(new View.OnClickListener() {
+        mBtnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                mBrandText.setText(mCurentExcavatorName);
+                mModelText.setText(mCurrentExcavatorModelName);
+                mModelText.setTextSize(10);
+                mModelText.setTextColor(Color.BLUE);
+                mBrandText.setTextSize(10);
+                mBrandText.setTextColor(Color.BLUE);
+                pop1.dismiss();
             }
-        });
+        }) ;
+    }
 
-        mLoginImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
 
-                startActivity(intent);
-            }
-        });
+
+
+    //init site pop up window
+        public void InitSitePopUpWindow(){
+            InitPopUpWindow();
+            setUpData();
+            mBtnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSiteText.setText(mCurrentProviceName + "," + mCurrentCityName + ","
+                            + mCurrentDistrictName);
+                    mSiteText.setTextSize(10);
+                    mSiteText.setTextColor(Color.BLUE);
+                    showSelectedResult();
+                    pop1.dismiss();
+                }
+            }) ;
+        }
+
+
+
+    //init all popup window
+    private void InitPopUpWindow() {
+        pop1 = new PopupWindow(SellCarInformationActivity.this);
+        view = getLayoutInflater().inflate(R.layout.activity_choose_car_site_popupwindow, null);
+        pop1.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        pop1.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop1.setBackgroundDrawable(new BitmapDrawable());
+        pop1.setFocusable(true);
+        pop1.setOutsideTouchable(true);
+        pop1.setContentView(view);
+
+        mViewProvince = (WheelView) view.findViewById(R.id.id_province);
+        mViewCity = (WheelView) view.findViewById(R.id.id_city);
+        mViewDistrict = (WheelView) view.findViewById(R.id.id_district);
+        mBtnConfirm = (Button) view.findViewById(R.id.btn_confirm);
+
+        mViewProvince.addChangingListener(this);
+
+        mViewCity.addChangingListener( this);
+
+        mViewDistrict.addChangingListener(this);
+    }
+
+        //init camera window
+        public void Init() {
+            mbackbutton= (ImageView) findViewById(R.id.car_informatin_back_image);
+            mLoginImage= (ImageView) findViewById(R.id.car_informatin_login_small_people_image);
+            mSiteText= (TextView) findViewById(R.id.car_site_text);
+            mBrandText= (TextView) findViewById(R.id.carBrandTextId);
+            mSiteLayout= (LinearLayout) parentView.findViewById(R.id.choose_site_id);
+            mCarBrandModelLayout= (LinearLayout) parentView.findViewById(R.id.car_brand_model_layout_id);
+            mModelText= (TextView) parentView.findViewById(R.id.carModelTextId);
+
+            mbackbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            mLoginImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                    startActivity(intent);
+                }
+            });
 
         //init PopupWindows
         pop = new PopupWindow(SellCarInformationActivity.this);
@@ -148,6 +245,7 @@ public void InitSitePopUpWindow(){
                 ll_popup.clearAnimation();
             }
         });
+
         bt2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(SellCarInformationActivity.this,
@@ -356,6 +454,109 @@ public void InitSitePopUpWindow(){
         }
         return true;
     }
+
+    //wheel choose
+
+    private void setUpData() {
+        initProvinceDatas();
+        mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SellCarInformationActivity.this, mProvinceDatas));
+
+        mViewProvince.setVisibleItems(7);
+        mViewCity.setVisibleItems(7);
+        mViewDistrict.setVisibleItems(7);
+        updateCities();
+        updateAreas();
+    }
+
+    private void setExcavatorData(){
+        initExcavatorBrandDatas();
+        mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SellCarInformationActivity.this, mExcavatorDatas));
+        mViewProvince.setVisibleItems(7);
+        mViewCity.setVisibleItems(7);
+        updateExcavatorBrand();
+        updateExcavatorModel();
+
+    }
+
+
+
+
+    @Override
+    public void onChanged(WheelView wheel, int oldValue, int newValue) {
+        // TODO Auto-generated method stub
+        pref = this.getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+        editor = pref.edit();
+        String mySelected = pref.getString("mySelected",null);
+        if(mySelected.equals("site")){
+            if (wheel == mViewProvince) {
+
+                updateCities();
+            } else if (wheel == mViewCity) {
+                updateAreas();
+            } else if (wheel == mViewDistrict) {
+                mCurrentDistrictName = mDistrictDatasMap.get(mCurrentCityName)[newValue];
+                mCurrentZipCode = mZipcodeDatasMap.get(mCurrentDistrictName);
+            }
+        }
+        else if (mySelected.equals("brand")){
+            if (wheel == mViewProvince) {
+                updateExcavatorBrand();
+                //updateExcavatorModel();
+            }else if (wheel == mViewCity){
+                updateExcavatorModel();
+            }
+        }
+
+    }
+
+    private void updateExcavatorModel() {
+        int pCurrent = mViewCity.getCurrentItem();
+        mCurrentExcavatorModelName = mExcavatorModelDatasMap.get(mCurentExcavatorName)[pCurrent];
+
+    }
+
+    private void updateAreas() {
+        int pCurrent = mViewCity.getCurrentItem();
+        mCurrentCityName = mCitisDatasMap.get(mCurrentProviceName)[pCurrent];
+        String[] areas = mDistrictDatasMap.get(mCurrentCityName);
+
+        if (areas == null) {
+            areas = new String[] { "" };
+        }
+        mViewDistrict.setViewAdapter(new ArrayWheelAdapter<String>(this, areas));
+        mViewDistrict.setCurrentItem(0);
+    }
+
+
+    private void updateCities() {
+        int pCurrent = mViewProvince.getCurrentItem();
+        mCurrentProviceName = mProvinceDatas[pCurrent];
+        String[] cities = mCitisDatasMap.get(mCurrentProviceName);
+        if (cities == null) {
+            cities = new String[] { "" };
+        }
+        mViewCity.setViewAdapter(new ArrayWheelAdapter<String>(this, cities));
+        mViewCity.setCurrentItem(0);
+        updateAreas();
+    }
+
+    private  void updateExcavatorBrand(){
+        int pCurrent = mViewProvince.getCurrentItem();
+        mCurentExcavatorName = mExcavatorDatas[pCurrent];
+        String[] models = mExcavatorModelDatasMap.get(mCurentExcavatorName);
+        if (models == null) {
+            models = new String[] { "" };
+        }
+        mViewCity.setViewAdapter(new ArrayWheelAdapter<String>(this, models));
+        mViewCity.setCurrentItem(0);
+        updateExcavatorModel();
+    }
+    private void showSelectedResult() {
+        Toast.makeText(SellCarInformationActivity.this, "地址:" + mCurrentProviceName + "," + mCurrentCityName + ","
+                + mCurrentDistrictName + "," + mCurrentZipCode, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -3930,4 +3930,309 @@
       <district name="其他" zipcode="404100" />
     </city>
   </province>
+  <excavatorBrand name="阿特拉斯">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="斗牛">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="福田雷沃">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="加藤">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="久保田">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="卡特彼勒">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="凯斯">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="利勃海尔">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="临工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="柳工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="彭浦">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="玉柴">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="日立">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="三一重工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="现代">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="山河智能">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="神钢">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="特雷克斯">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="沃尔沃">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="夏工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="小松">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="徐工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="中联重科">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="住友">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="沃得重工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="熔胜机械">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="合肥振宇">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="山重建机">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="力士德">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="徐挖">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="詹阳动力">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="卡特重工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="晋工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="杰西博">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="约翰迪尔">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="永工">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="威克特">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+  <excavatorBrand name="沃尔华">
+      <excavatorModel name="2006LC"></excavatorModel>
+      <excavatorModel name="2306LC"></excavatorModel>
+      <excavatorModel name="2606LC"></excavatorModel>
+      <excavatorModel name="3306LC"></excavatorModel>
+      <excavatorModel name="2007LC"></excavatorModel>
+      <excavatorModel name="3607LC"></excavatorModel>
+  </excavatorBrand>
+
 </root>
