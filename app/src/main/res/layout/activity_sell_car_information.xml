@@ -279,6 +279,7 @@
                    android:src="@drawable/grey_arrow"/>
            </LinearLayout>
            <LinearLayout
+               android:id="@+id/car_produce_date"
                android:layout_width="fill_parent"
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical"
@@ -301,6 +302,7 @@
                    android:gravity="center|left"
                    android:text="生产年份"/>
                <TextView
+                   android:id="@+id/car_produce_date_text"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -386,6 +388,7 @@
                    android:layout_weight="1"
                    android:orientation="horizontal">
                <LinearLayout
+                   android:id="@+id/car_state_layout_id"
                    android:layout_width="fill_parent"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -408,6 +411,7 @@
                        android:gravity="center"
                        android:text="车况"/>
                    <TextView
+                       android:id="@+id/car_state_text"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
@@ -423,6 +427,7 @@
                        android:src="@drawable/grey_arrow"/>
                </LinearLayout>
                <LinearLayout
+                   android:id="@+id/car_using_purpose_layout_id"
                    android:layout_width="fill_parent"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -445,6 +450,7 @@
                        android:gravity="center|left"
                        android:text="用途"/>
                    <TextView
+                       android:id="@+id/car_using_prupose_text_id"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"

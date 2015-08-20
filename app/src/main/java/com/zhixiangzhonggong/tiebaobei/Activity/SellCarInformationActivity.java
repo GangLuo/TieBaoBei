@@ -53,10 +53,10 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private PopupWindow pop = null;
     private PopupWindow pop1=null;
     private LinearLayout ll_popup;
-    private LinearLayout mSiteLayout,mCarBrandModelLayout;
+    private LinearLayout mSiteLayout,mCarBrandModelLayout,mCarProduceDateLayout,mCarStateLayout,mCarUsingPurposeLayout;
     private GridAdapter adapter;
     private View parentView,view;
-    private TextView mSiteText,mBrandText,mModelText;
+    private TextView mSiteText,mBrandText,mModelText,mCarProduceDateText,mCarStateText,mCarUsingPurposeText;
     private ImageView mbackbutton,mLoginImage;
     public static Bitmap bimap ;
     private Gallery mGallery;
@@ -116,7 +116,103 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
             }
         });
+        //pop up the car produce date popupwindow
+        mCarProduceDateLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putString("mySelected", "date");
+                editor.commit();
+                InitProduceDatePopUpWindow();
+                pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+            }
+        });
+
+        //pop up the car state popwindow
+        mCarStateLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putString("mySelected", "state");
+                editor.commit();
+                InitCarStatePopUpWindow();
+                pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+            }
+        });
+        //pop up the car using Purposer popwindow
+        mCarUsingPurposeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+
+                pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
+                editor = pref.edit();
+                editor.putString("mySelected", "purpose");
+                editor.commit();
+                InitCarUsingPurposePopUpWindow();
+                pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+            }
+        });
     }
+
+    private void InitCarUsingPurposePopUpWindow() {
+        InitPopUpWindow();
+        setCarUsingPurposeData();
+
+        mBtnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCarUsingPurposeText.setText(mCurrentCarUsingPurposeName);
+                mCarUsingPurposeText.setTextSize(10);
+                mCarUsingPurposeText.setTextColor(Color.BLUE);
+                pop1.dismiss();
+            }
+        }) ;
+    }
+
+
+
+    private void InitCarStatePopUpWindow() {
+        InitPopUpWindow();
+        setCarStateData();
+
+        mBtnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCarStateText.setText(mCurrentCarStateName);
+                mCarStateText.setTextSize(10);
+                mCarStateText.setTextColor(Color.BLUE);
+                pop1.dismiss();
+            }
+        }) ;
+    }
+
+
+
+    //init produce date pop up window
+    private void InitProduceDatePopUpWindow() {
+
+        InitPopUpWindow();
+        setYearData();
+
+        mBtnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCarProduceDateText.setText(mCurrentYearName + "-" + mCurrentMonthName);
+                mCarProduceDateText.setTextSize(10);
+                mCarProduceDateText.setTextColor(Color.BLUE);
+                pop1.dismiss();
+            }
+        }) ;
+    }
+
+
 
     //init brand model pop up windows
     public void InitBrandPopUpWindow(){
@@ -182,7 +278,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         mViewDistrict.addChangingListener(this);
     }
 
-        //init camera window
+        //init view and camera window
         public void Init() {
             mbackbutton= (ImageView) findViewById(R.id.car_informatin_back_image);
             mLoginImage= (ImageView) findViewById(R.id.car_informatin_login_small_people_image);
@@ -191,6 +287,12 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             mSiteLayout= (LinearLayout) parentView.findViewById(R.id.choose_site_id);
             mCarBrandModelLayout= (LinearLayout) parentView.findViewById(R.id.car_brand_model_layout_id);
             mModelText= (TextView) parentView.findViewById(R.id.carModelTextId);
+            mCarProduceDateLayout= (LinearLayout) parentView.findViewById(R.id.car_produce_date);
+            mCarProduceDateText= (TextView) parentView.findViewById(R.id.car_produce_date_text);
+            mCarStateLayout= (LinearLayout) parentView.findViewById(R.id.car_state_layout_id);
+            mCarStateText= (TextView) parentView.findViewById(R.id.car_state_text);
+            mCarUsingPurposeLayout= (LinearLayout) parentView.findViewById(R.id.car_using_purpose_layout_id);
+            mCarUsingPurposeText= (TextView) parentView.findViewById(R.id.car_using_prupose_text_id);
 
             mbackbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -478,6 +580,31 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
 
     }
 
+    private void setYearData() {
+        initYearDatas();
+        mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SellCarInformationActivity.this, mYearDatas));
+        mViewProvince.setVisibleItems(7);
+        mViewCity.setVisibleItems(7);
+        updateYears();
+        upDateMonths();
+    }
+
+    private void setCarStateData() {
+        initCarStateDatas();
+        mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SellCarInformationActivity.this, mCarStateDatas));
+        mViewProvince.setVisibleItems(7);
+
+        updateCarState();
+
+    }
+    private void setCarUsingPurposeData() {
+        initCarUsingPurposeDatas();
+        mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SellCarInformationActivity.this, mCarUsingPurposeDatas));
+        mViewProvince.setVisibleItems(7);
+
+        updateCarUsingPurpose();
+    }
+
 
 
 
@@ -507,8 +634,50 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 updateExcavatorModel();
             }
         }
+        else if (mySelected.equals("date")){
+            if (wheel == mViewProvince) {
+                updateYears();
+                //updateExcavatorModel();
+            }else if (wheel == mViewCity){
+                upDateMonths();
+            }
+        }
+        else if (mySelected.equals("state")){
+            updateCarState();
+        }
+        else if (mySelected.equals("purpose")){
+            updateCarUsingPurpose();
+        }
 
     }
+    private void updateCarUsingPurpose() {
+        int pCurrent = mViewProvince.getCurrentItem();
+        mCurrentCarUsingPurposeName = mCarUsingPurposeDatas[pCurrent];
+    }
+
+    private void updateCarState() {
+        int pCurrent = mViewProvince.getCurrentItem();
+        mCurrentCarStateName = mCarStateDatas[pCurrent];
+
+    }
+    private void upDateMonths() {
+        int pCurrent = mViewCity.getCurrentItem();
+        mCurrentMonthName = mYearDatasMAP.get(mCurrentYearName)[pCurrent];
+    }
+
+    private void updateYears() {
+
+        int pCurrent = mViewProvince.getCurrentItem();
+        mCurrentYearName = mYearDatas[pCurrent];
+        String[] models = mYearDatasMAP.get(mCurrentYearName);
+        if (models == null) {
+            models = new String[] { "" };
+        }
+        mViewCity.setViewAdapter(new ArrayWheelAdapter<String>(this, models));
+        mViewCity.setCurrentItem(0);
+        upDateMonths();
+    }
+
 
     private void updateExcavatorModel() {
         int pCurrent = mViewCity.getCurrentItem();
