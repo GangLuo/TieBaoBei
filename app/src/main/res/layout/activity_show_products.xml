@@ -103,6 +103,7 @@
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/my_triangle"/>
             <TextView
+                android:id="@+id/price_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -124,6 +125,7 @@
                 android:layout_gravity="right"
                 android:src="@drawable/my_triangle"/>
             <TextView
+                android:id="@+id/province_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -145,6 +147,7 @@
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/my_triangle"/>
             <TextView
+                android:id="@+id/more_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -166,6 +169,7 @@
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/my_triangle"/>
             <TextView
+                android:id="@+id/order_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"

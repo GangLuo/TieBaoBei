@@ -19,23 +19,41 @@ import com.zhixiangzhonggong.tiebaobei.adapter.ProductBrandsListAdapter;
 public class ProductBrandFragment extends ListFragment {
     private ProductBrandsListAdapter productBrandsListAdapter;
     private String[] values;
+    private ArrayAdapter<String> adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View view =inflater.inflate(R.layout.product_brand_fragment, container, false);
         //ListView lv = (ListView)view.findViewById(android.R.id.list);
-       values = new String[] { "不限", "三一重工", "卡特彼勒",
-                "小松", "日立", "斗山", "现代", "神钢",
-                "住友", "柳工","临工", "加藤", "凯斯", "阿特拉斯", "福田雷沃",
-               "玉柴", "中联重科","徐工", "沃得重工", "山东犀牛", "夏工", "合肥振宇"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, values);
-        productBrandsListAdapter=new ProductBrandsListAdapter(getActivity(),values);
-        //lv.setAdapter(productBrandsListAdapter);
-      // setListAdapter(productBrandsListAdapter);
-        setListAdapter(adapter);
+
         return view;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
+    }
+
+    public void setAdapterValue(String[] values){
+       this.values=values;
+
+      // productBrandsListAdapter=new ProductBrandsListAdapter(getActivity(),values);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
