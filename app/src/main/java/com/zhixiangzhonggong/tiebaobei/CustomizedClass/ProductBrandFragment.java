@@ -32,13 +32,28 @@ public class ProductBrandFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
 
         adapter.notifyDataSetChanged();
     }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //do when hidden
+            adapter.notifyDataSetChanged();
+            adapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_list_item_1, values);
+            setListAdapter(adapter);
 
+            adapter.notifyDataSetChanged();
+        } else {
+            //do when show
+        }
+    }
     public void setAdapterValue(String[] values){
        this.values=values;
 

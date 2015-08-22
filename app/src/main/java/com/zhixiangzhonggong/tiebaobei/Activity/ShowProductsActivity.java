@@ -98,6 +98,7 @@ public class ShowProductsActivity extends Activity {
         mOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String[]  values = new String[] { "默认", "价格", "小时数",
                         "完整度", "发布时间"};
                 productBrandFragment.setAdapterValue(values);
