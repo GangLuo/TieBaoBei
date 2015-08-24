@@ -3,8 +3,6 @@ package com.zhixiangzhonggong.tiebaobei.Activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -17,14 +15,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.ProductBrandFragment;
-import com.zhixiangzhonggong.tiebaobei.CustomizedClass.ShowProductsContentsFragment;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.adapter.ShowProductsContentsAdapter;
-import com.zhixiangzhonggong.tiebaobei.model.ProductsList;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformationList;
 import com.zhixiangzhonggong.tiebaobei.webrequest.SendMixerTruckRequest;
 
 public class ShowProductsActivity extends Activity {
-    private ProductsList productsList;
+    private CarInformationList carInformationList;
     private SendMixerTruckRequest sendMixerTruckRequest;
     private ListView productsListView;
     private ImageView mBackImage;
@@ -47,7 +44,7 @@ public class ShowProductsActivity extends Activity {
 
 
 
-        showProductsContentsAdapter=new ShowProductsContentsAdapter(ShowProductsActivity.this,productsList);
+        showProductsContentsAdapter=new ShowProductsContentsAdapter(ShowProductsActivity.this, carInformationList);
         productsListView.setAdapter(showProductsContentsAdapter);
 
         mBackImage.setOnClickListener(new View.OnClickListener() {

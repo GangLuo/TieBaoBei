@@ -83,7 +83,7 @@ public class Constants {
     public static final String KEY_IS_SUBTITLE_CHANGED = "subtitleIsChanged";
 
     // database constants
-    public static final String DB_NAME = "StoreInfomation.db";
+    public static final String DB_NAME = "CarInfomation.db";
     public static final int    DB_VERSION = 1;
 
     // storetype table constants

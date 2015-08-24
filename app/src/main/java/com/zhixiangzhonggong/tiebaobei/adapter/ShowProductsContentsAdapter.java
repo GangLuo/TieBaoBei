@@ -6,15 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.zhixiangzhonggong.tiebaobei.Activity.ShowProductsActivity;
 import com.zhixiangzhonggong.tiebaobei.R;
-import com.zhixiangzhonggong.tiebaobei.model.ProductsList;
-import com.zhixiangzhonggong.tiebaobei.webrequest.AppController;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformationList;
 
 /**
  * Created by luogang on 15-08-15.
@@ -22,13 +18,13 @@ import com.zhixiangzhonggong.tiebaobei.webrequest.AppController;
 public class ShowProductsContentsAdapter extends BaseAdapter{
     private LayoutInflater inflater;
     private Activity activity;
-    private ProductsList productsList;
+    private CarInformationList carInformationList;
    // private ImageLoader imageLoader= AppController.getInstance().getImageLoader();
     private NetworkImageView mMachinePicture;
     private TextView mMchineName,mMachinePrice,mMchineUsedTime,mMachinePublishDate,mMchineSite;
-    public ShowProductsContentsAdapter(Activity activity, ProductsList productsList) {
+    public ShowProductsContentsAdapter(Activity activity, CarInformationList carInformationList) {
         this.activity = activity;
-        this.productsList = productsList;
+        this.carInformationList = carInformationList;
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by yaolu on 15-08-15.
  */
-public class ProductsList {
+public class CarInformationList {
     private int id;
     private boolean deleted;
     private Date updatedTs;
