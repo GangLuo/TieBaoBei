@@ -15,11 +15,14 @@ import android.widget.ListView;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.adapter.ProductBrandsListAdapter;
 
+import java.util.ArrayList;
+
 
 public class ProductBrandFragment extends ListFragment {
     private ProductBrandsListAdapter productBrandsListAdapter;
     private String[] values;
     private ArrayAdapter<String> adapter;
+    private ArrayList<String>  mArrayList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class ProductBrandFragment extends ListFragment {
 
         adapter.notifyDataSetChanged();
     }
-    @Override
+/*    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
@@ -53,22 +56,51 @@ public class ProductBrandFragment extends ListFragment {
         } else {
             //do when show
         }
+    }*/
+
+    public String[] getValues() {
+        return values;
     }
+
     public void setAdapterValue(String[] values){
        this.values=values;
 
       // productBrandsListAdapter=new ProductBrandsListAdapter(getActivity(),values);
-
     }
+public void updateValues(){
+try{
+   Context c= getActivity();
+    adapter = new ArrayAdapter<String>(getActivity(),
+            android.R.layout.simple_list_item_1, values);
 
+    setListAdapter(adapter);
+
+    adapter.notifyDataSetChanged();
+}catch (Exception e){
+    e.toString();
+}
+
+}
     @Override
     public void onResume() {
         super.onResume();
+        adapter.notifyDataSetChanged();
+        adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
 
+        adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
 
-
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
