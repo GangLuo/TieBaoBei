@@ -130,8 +130,6 @@ public class ShowProductsActivity extends Activity {
                     productBrandFragment.setAdapterValue(values);
                     productBrandFragment.updateValues();
 
-
-
             }
         });
     }
