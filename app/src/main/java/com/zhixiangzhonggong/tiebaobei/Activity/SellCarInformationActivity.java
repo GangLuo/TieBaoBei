@@ -28,6 +28,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.R;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.FileUtils;
 import com.zhixiangzhonggong.tiebaobei.util.ImageItem;
@@ -56,7 +58,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private LinearLayout mSiteLayout,mCarBrandModelLayout,mCarProduceDateLayout,mCarStateLayout,mCarUsingPurposeLayout;
     private GridAdapter adapter;
     private View parentView,view;
-    private TextView mSiteText,mBrandText,mModelText,mCarProduceDateText,mCarStateText,mCarUsingPurposeText;
+    private TextView mSiteText,mBrandText,mModelText,mCarProduceDateText,mCarStateText,
+            mCarUsingPurposeText;
+    private EditText mCarUsedHours,mCarPrice,mCarDescriber,mCarUserPhone,mCarUserName;
     private ImageView mbackbutton,mLoginImage;
     public static Bitmap bimap ;
     private Gallery mGallery;
@@ -64,8 +68,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private WheelView mViewProvince;
     private WheelView mViewCity;
     private WheelView mViewDistrict;
-    private Button mBtnConfirm;
+    private Button mBtnConfirm,mCarPublishBtn;
     private HideEditorKeyboard mHideEditor;
+    private CarInformation mCarInformation;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     @Override
@@ -157,6 +162,14 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 editor.commit();
                 InitCarUsingPurposePopUpWindow();
                 pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+            }
+        });
+
+        //publish car information
+        mCarPublishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
     }
@@ -293,13 +306,19 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             mCarStateText= (TextView) parentView.findViewById(R.id.car_state_text);
             mCarUsingPurposeLayout= (LinearLayout) parentView.findViewById(R.id.car_using_purpose_layout_id);
             mCarUsingPurposeText= (TextView) parentView.findViewById(R.id.car_using_prupose_text_id);
+            mCarUsedHours= (EditText) parentView.findViewById(R.id.car_used_hours_text_id);
+            mCarPrice=(EditText) parentView.findViewById(R.id.car_price_text_id);
+            mCarUserName=(EditText) parentView.findViewById(R.id.car_user_name_id);
+            mCarUserPhone=(EditText) parentView.findViewById(R.id.car_user_telephone_id);
+            mCarDescriber=(EditText) parentView.findViewById(R.id.car_describer_id);
+            mCarPublishBtn= (Button) parentView.findViewById(R.id.publishButton);
 
-            mbackbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+                    mbackbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
 
             mLoginImage.setOnClickListener(new View.OnClickListener() {
                 @Override

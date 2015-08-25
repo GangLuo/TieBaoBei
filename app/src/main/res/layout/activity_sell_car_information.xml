@@ -222,6 +222,7 @@
                    android:gravity="center|left"
                    android:text="小时数"/>
                <EditText
+                   android:id="@+id/car_used_hours_text_id"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -353,6 +354,7 @@
                    android:gravity="center|left"
                    android:text="价格"/>
                <EditText
+                   android:id="@+id/car_price_text_id"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -488,6 +490,7 @@
                        android:gravity="center"
                        android:text="描述"/>
                    <EditText
+                       android:id="@+id/car_describer_id"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
@@ -524,6 +527,7 @@
                        android:layout_gravity="center|right"
                        android:src="@drawable/eight_pointed_black_star"/>
                    <TextView
+
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_weight="2"
@@ -532,6 +536,7 @@
                        android:gravity="center|left"
                        android:text="电话"/>
                    <EditText
+                       android:id="@+id/car_user_telephone_id"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
@@ -565,6 +570,7 @@
                        android:gravity="center|left"
                        android:text="联系人"/>
                    <EditText
+                       android:id="@+id/car_user_name_id"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center_vertical"
