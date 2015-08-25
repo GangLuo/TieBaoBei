@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.Constants;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
+import com.zhixiangzhonggong.tiebaobei.util.LYDateString;
 
 import java.util.ArrayList;
 
@@ -39,152 +40,91 @@ public class CarInformationDB {
     }
 
     // public methods
-    public ArrayList<CarInformation> getStoreDishes() {
-        String where =  Constants.DISH_DELETED + "= ?";
-        String[] whereArgs = {"0"};
+    public ArrayList<CarInformation> getAllInformatons() {
 
         this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE, null,
+        Cursor cursor = db.query(Constants.CAR_INFORMATION_TABLE, null,
                 null, null,
                 null, null, null);
-        ArrayList<CarInformation> storeDishes = new ArrayList<CarInformation>();
+        ArrayList<CarInformation> carInformations = new ArrayList<CarInformation>();
 
         while (cursor.moveToNext()) {
-            storeDishes.add(getStoreDishFromCursor(cursor));
+            carInformations.add(getCarInformationFromCursor(cursor));
         }
         if (cursor != null)
             cursor.close();
         this.closeDB();
-        return storeDishes;
+        return carInformations;
     }
 
-    public ArrayList<CarInformation> getDishesByStoreTypeId(long typeId) {
-        String where = Constants.DISH_STORE_TYPE_ID + "= ?" + " AND " + Constants.DISH_DELETED + "= ?";
-        String[] whereArgs = { Long.toString(typeId), "0"};
+    public ArrayList<CarInformation> getCarInformationByCarType(String  carType) {
+        String where = Constants.CAR_TYPE + "= ?" + " AND " + Constants.IS_APPROVED + "= ?";
+        String[] whereArgs = { carType, "1"};
         size=0;
         this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE, null,
+        Cursor cursor = db.query(Constants.CAR_INFORMATION_TABLE, null,
                 where, whereArgs,
                 null, null, null);
 
         size=cursor.getCount();
 
-        ArrayList<StoreDish> StoreDishes = new ArrayList<StoreDish>();
+        ArrayList<CarInformation> carInformations = new ArrayList<CarInformation>();
 
         itemFinished=0;
         while (cursor.moveToNext()) {
-            StoreDishes.add(getStoreDishFromCursor(cursor));
+            carInformations.add(getCarInformationFromCursor(cursor));
             itemFinished++;
         }
         if (cursor != null)
             cursor.close();
         this.closeDB();
-        return StoreDishes;
+        return carInformations;
     }
 
-    public ArrayList<StoreDish> getNewDishesFromDB(long isNew) {
-        String where = Constants.DISH_IS_NEW + "= ?" + " AND " + Constants.DISH_DELETED + "= ?";
-        String[] whereArgs = { Long.toString(isNew), "0"};
-        this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE, null,
-                where, whereArgs,
-                null, null, null);
 
-        ArrayList<StoreDish> StoreNewDishes = new ArrayList<StoreDish>();
 
-        while (cursor.moveToNext()) {
-            StoreNewDishes.add(getStoreDishFromCursor(cursor));
-        }
-        if (cursor != null)
-            cursor.close();
-        this.closeDB();
-        return StoreNewDishes;
-    }
-
-    public ArrayList<StoreDish> getSpecialDishesFromDB(long isSpecial) {
-        String where = Constants.DISH_IS_SPECIALTY + "= ?" + " AND " + Constants.DISH_DELETED + "= ?";
-        String[] whereArgs = { Long.toString(isSpecial) , "0"};
-        this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE, null,
-                where, whereArgs,
-                null, null, null);
-
-        ArrayList<StoreDish> StoreSpecialDishes = new ArrayList<StoreDish>();
-
-        while (cursor.moveToNext()) {
-            StoreSpecialDishes.add(getStoreDishFromCursor(cursor));
-        }
-        if (cursor != null)
-            cursor.close();
-        this.closeDB();
-        return StoreSpecialDishes;
-    }
-
-    public ArrayList<StoreDish> getOnSaleDishesFromDB(long isDeal) {
-        String where = Constants.DISH_IS_DEAL + "= ?" + " AND " + Constants.DISH_DELETED + "= ?";
-        String[] whereArgs = { Long.toString(isDeal), "0"};
-        this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE, null,
-                where, whereArgs,
-                null, null, null);
-
-        ArrayList<StoreDish> StoreOnSaleDishes = new ArrayList<StoreDish>();
-
-        while (cursor.moveToNext()) {
-            StoreOnSaleDishes.add(getStoreDishFromCursor(cursor));
-        }
-        if (cursor != null)
-            cursor.close();
-        this.closeDB();
-        return StoreOnSaleDishes;
-    }
-
-    public StoreDish getStoreDishById(long id) {
-        String where = Constants.DISH_ID + "= ?";
+    public CarInformation getCarInformationByCarId(long id) {
+        String where = Constants.CAR_ID + "= ?";
         String[] whereArgs = { Long.toString(id) };
 
         // handle exceptions?
         this.openReadableDB();
-        Cursor cursor = db.query(Constants.DISH_TABLE,
+        Cursor cursor = db.query(Constants.CAR_INFORMATION_TABLE,
                 null, where, whereArgs, null, null, null);
         cursor.moveToFirst();
-        StoreDish storeDish = getStoreDishFromCursor(cursor);
+        CarInformation carInformation = getCarInformationFromCursor(cursor);
         if (cursor != null)
             cursor.close();
         this.closeDB();
 
-        return storeDish;
+        return carInformation;
     }
 
-    private static StoreDish getStoreDishFromCursor(Cursor cursor) {
+    private static CarInformation getCarInformationFromCursor(Cursor cursor) {
         if (cursor == null || cursor.getCount() == 0){
             return null;
         }
         else {
             try {
-                StoreDish storeDish = new StoreDish(
+                CarInformation storeDish = new CarInformation(
 
-                        cursor.getInt(Constants.DISH_ID_COL),
-                        cursor.getInt(Constants.DISH_DELETED_COL)==1?true:false,
-                        LYDateString.stringToDate(cursor.getString(Constants.DISH_UPDATED_TS_COL), 3),
-                        LYDateString.stringToDate(cursor.getString(Constants.DISH_CREATED_TS_COL), 3),
-                        cursor.getString(Constants.DISH_NAME_COL),
-                        cursor.getInt(Constants.DISH_STORE_ID_COL),
-                        cursor.getInt(Constants.DISH_STORE_TYPE_ID_COL),
-                        cursor.getString(Constants.DISH_LOCAL_ID_COL),
-                        cursor.getInt(Constants.DISH_SEQUENCE_COL),
-                        cursor.getInt(Constants.DISH_TYPE_COL),
-                        cursor.getInt(Constants.DISH_IS_SPECIALTY_COL)==1?true:false,
-                        cursor.getInt(Constants.DISH_IS_DEAL_COL)==1?true:false,
-                        cursor.getInt(Constants.DISH_IS_NEW_COL)==1?true:false,
-                        cursor.getDouble(Constants.DISH_PRICE_COL),
-                        cursor.getDouble(Constants.DISH_SALE_PERCENT_COL),
-                        LYDateString.stringToDate(cursor.getString(Constants.DISH_SALE_EXPIRE_COL), 3),
-                        cursor.getString(Constants.DISH_MATERIALS_COL),
-                        cursor.getString(Constants.DISH_MEDIA_URL_COL),
-                        cursor.getString(Constants.DISH_NUTRITION_COL),
-                        cursor.getString(Constants.DISH_INFO_COL),
-                        cursor.getString(Constants.DISH_LOCAL_URL_COL)
+                        cursor.getInt(Constants.CAR_ID_COL),
+                        cursor.getString(Constants.CAR_TYPE_COL),
+                        cursor.getString(Constants.CAR_PICTURE_LOCAL_URL_COL),
+                        cursor.getString(Constants.CAR_PICTURE_LOCAL_NAME_COL),
+                        LYDateString.stringToDate(cursor.getString(Constants.CAR_PUBLISH_DATE_COL), 3),
+                        cursor.getString(Constants.CAR_BRAND_COL),
+                        cursor.getString(Constants.CAR_MODEL_COL),
+                        cursor.getInt(Constants.CAR_USED_HOURS_COL),
+                        cursor.getString(Constants.CAR_SITE_COL),
+                        cursor.getString(Constants.CAR_PRODUCED_YEAR_COL),
+                        cursor.getDouble(Constants.CAR_PRICE_COL),
+                        cursor.getString(Constants.CAR_USED_STATE_COL),
+                        cursor.getString(Constants.CAR_USED_PURPOSE_COL),
+                        cursor.getString(Constants.CAR_USER_DESCRIER_COL),
+                        cursor.getString(Constants.CAR_USER_NAME_COL),
+                        cursor.getString(Constants.CAR_USER_PHONE_COL),
+                        cursor.getInt(Constants.IS_APPROVED_COL)==1?true:false
 
                 );
                 return storeDish;
@@ -196,68 +136,61 @@ public class CarInformationDB {
     }
 
 
-    public long insertStoreDish(StoreDish storeDish) {
+    public long insertCarInformation(CarInformation carInformation) {
         ContentValues cv = new ContentValues();
-        cv.put(Constants.DISH_ID, storeDish.getId());
-        cv.put(Constants.DISH_DELETED, storeDish.isDeleted());
-        cv.put(Constants.DISH_UPDATED_TS,String.valueOf(storeDish.getUpdatedTs()));
-        cv.put(Constants.DISH_CREATED_TS,String.valueOf(storeDish.getCreatedTs()) );
-        cv.put(Constants.DISH_NAME, storeDish.getName());
-        cv.put(Constants.DISH_STORE_ID, storeDish.getStoreId());
-        cv.put(Constants.DISH_STORE_TYPE_ID, storeDish.getStoreTypeId());
-        cv.put(Constants.DISH_LOCAL_ID, storeDish.getLocalId());
-        cv.put(Constants.DISH_SEQUENCE, storeDish.getSequence());
-        cv.put(Constants.DISH_TYPE, storeDish.getType());
-        cv.put(Constants.DISH_IS_SPECIALTY, storeDish.isSpecialty());
-        cv.put(Constants.DISH_IS_DEAL, storeDish.isDeal());
-        cv.put(Constants.DISH_IS_NEW, storeDish.isNew());
-        cv.put(Constants.DISH_PRICE, storeDish.getPrice());
-        cv.put(Constants.DISH_SALE_PERCENT, storeDish.getSalePercent());
-        cv.put(Constants.DISH_SALE_EXPIRE, String.valueOf(storeDish.getSaleExpire()));
-        cv.put(Constants.DISH_MATERIALS, storeDish.getMaterials());
-        cv.put(Constants.DISH_MEDIA_URL, storeDish.getMediaUrl());
-        cv.put(Constants.DISH_NUTRITION, storeDish.getNutrition());
-        cv.put(Constants.DISH_INFO, storeDish.getInfo());
-        cv.put(Constants.DISH_LOCAL_URL, storeDish.getMediaLocalUrl());
+        cv.put(Constants.CAR_ID, carInformation.getCarId());
+        cv.put(Constants.CAR_TYPE, carInformation.getCarType());
+        cv.put(Constants.CAR_PICTURE_LOCAL_URL,carInformation.getCarPictureLocalUrl());
+        cv.put(Constants.CAR_PICTURE_LOCAL_NAME, carInformation.getCarPictureLocalName());
+        cv.put(Constants.CAR_PUBLISH_DATE,String.valueOf(carInformation.getCarPublishDate()) );
+        cv.put(Constants.CAR_BRAND, carInformation.getCarBrand());
+        cv.put(Constants.CAR_MODEL, carInformation.getCarModel());
+        cv.put(Constants.CAR_USED_HOURS, carInformation.getCarUsedHours());
+        cv.put(Constants.CAR_SITE, carInformation.getCarSite());
+        cv.put(Constants.CAR_PRODUCED_YEAR, carInformation.getCarProducedYear());
+        cv.put(Constants.CAR_PRICE, carInformation.getCarPrice());
+        cv.put(Constants.CAR_USED_STATE, carInformation.getCarUsedState());
+        cv.put(Constants.CAR_USED_PURPOSE, carInformation.getCarUsedPurpose());
+        cv.put(Constants.CAR_USER_DESCRIER, carInformation.getCarUserDescriber());
+        cv.put(Constants.CAR_USER_NAME, carInformation.getCarUserName());
+        cv.put(Constants.CAR_USER_PHONE, carInformation.getCarUserPhone());
+        cv.put(Constants.IS_APPROVED, carInformation.isApproved());
         this.openWritableDB();
-        long rowID = db.insert(Constants.DISH_TABLE, null, cv);
+        long rowID = db.insert(Constants.CAR_INFORMATION_TABLE, null, cv);
         this.closeDB();
 
         return rowID;
     }
 
-    public int updateStoreDish(StoreDish storeDish) {
+    public int updateCarInformation(CarInformation carInformation) {
         ContentValues cv = new ContentValues();
-        cv.put(Constants.DISH_ID, storeDish.getId());
-        cv.put(Constants.DISH_DELETED, storeDish.isDeleted());
-        cv.put(Constants.DISH_UPDATED_TS,String.valueOf(storeDish.getUpdatedTs()));
-        cv.put(Constants.DISH_CREATED_TS,String.valueOf(storeDish.getCreatedTs()) );
-        cv.put(Constants.DISH_NAME, storeDish.getName());
-        cv.put(Constants.DISH_STORE_ID, storeDish.getStoreId());
-        cv.put(Constants.DISH_STORE_TYPE_ID, storeDish.getStoreTypeId());
-        cv.put(Constants.DISH_LOCAL_ID, storeDish.getLocalId());
-        cv.put(Constants.DISH_SEQUENCE, storeDish.getSequence());
-        cv.put(Constants.DISH_TYPE, storeDish.getType());
-        cv.put(Constants.DISH_IS_SPECIALTY, storeDish.isSpecialty());
-        cv.put(Constants.DISH_IS_DEAL, storeDish.isDeal());
-        cv.put(Constants.DISH_IS_NEW, storeDish.isNew());
-        cv.put(Constants.DISH_PRICE, storeDish.getPrice());
-        cv.put(Constants.DISH_SALE_PERCENT, storeDish.getSalePercent());
-        cv.put(Constants.DISH_SALE_EXPIRE, String.valueOf(storeDish.getSaleExpire()));
-        cv.put(Constants.DISH_MATERIALS, storeDish.getMaterials());
-        cv.put(Constants.DISH_MEDIA_URL, storeDish.getMediaUrl());
-        cv.put(Constants.DISH_NUTRITION, storeDish.getNutrition());
-        cv.put(Constants.DISH_INFO, storeDish.getInfo());
-        String where = Constants.DISH_ID + "= ?";
-        String[] whereArgs = { String.valueOf(storeDish.getId()) };
+        cv.put(Constants.CAR_ID, carInformation.getCarId());
+        cv.put(Constants.CAR_TYPE, carInformation.getCarType());
+        cv.put(Constants.CAR_PICTURE_LOCAL_URL,carInformation.getCarPictureLocalUrl());
+        cv.put(Constants.CAR_PICTURE_LOCAL_NAME, carInformation.getCarPictureLocalName());
+        cv.put(Constants.CAR_PUBLISH_DATE,String.valueOf(carInformation.getCarPublishDate()) );
+        cv.put(Constants.CAR_BRAND, carInformation.getCarBrand());
+        cv.put(Constants.CAR_MODEL, carInformation.getCarModel());
+        cv.put(Constants.CAR_USED_HOURS, carInformation.getCarUsedHours());
+        cv.put(Constants.CAR_SITE, carInformation.getCarSite());
+        cv.put(Constants.CAR_PRODUCED_YEAR, carInformation.getCarProducedYear());
+        cv.put(Constants.CAR_PRICE, carInformation.getCarPrice());
+        cv.put(Constants.CAR_USED_STATE, carInformation.getCarUsedState());
+        cv.put(Constants.CAR_USED_PURPOSE, carInformation.getCarUsedPurpose());
+        cv.put(Constants.CAR_USER_DESCRIER, carInformation.getCarUserDescriber());
+        cv.put(Constants.CAR_USER_NAME, carInformation.getCarUserName());
+        cv.put(Constants.CAR_USER_PHONE, carInformation.getCarUserPhone());
+        cv.put(Constants.IS_APPROVED, carInformation.isApproved());
+        String where = Constants.CAR_ID + "= ?";
+        String[] whereArgs = { String.valueOf(carInformation.getCarId()) };
 
-        StoreDish storedishFromOriginalDB = getStoreDishById(storeDish.getId());
+        CarInformation carInformationFromOriginalDB = getCarInformationByCarId(carInformation.getCarId());
         int rowCount = 0;
-        if(storedishFromOriginalDB == null){
-            insertStoreDish(storeDish);
+        if(carInformationFromOriginalDB == null){
+            insertCarInformation(carInformation);
         }else{
             this.openWritableDB();
-            rowCount = db.update(Constants.DISH_TABLE, cv, where, whereArgs);
+            rowCount = db.update(Constants.CAR_INFORMATION_TABLE, cv, where, whereArgs);
             this.closeDB();
         }
 
@@ -265,11 +198,11 @@ public class CarInformationDB {
     }
 
     public int deleteStoreDish(long id) {
-        String where = Constants.DISH_ID + "= ?";
+        String where = Constants.CAR_ID + "= ?";
         String[] whereArgs = { String.valueOf(id) };
 
         this.openWritableDB();
-        int rowCount = db.delete(Constants.DISH_TABLE, where, whereArgs);
+        int rowCount = db.delete(Constants.CAR_INFORMATION_TABLE, where, whereArgs);
         this.closeDB();
 
         return rowCount;

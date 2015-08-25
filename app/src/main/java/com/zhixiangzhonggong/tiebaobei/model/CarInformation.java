@@ -22,7 +22,11 @@ public class CarInformation {
     private String carUserPhone;
     private boolean isApproved;
 
-    public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, int carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDescriber, String carUserName, String carUserPhone, boolean isApproved) {
+    public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName,
+                          Date carPublishDate, String carBrand, String carModel, int carUsedHours,
+                          String carSite, String carProducedYear, double carPrice, String carUsedState,
+                          String carUsedPurpose, String carUserDescriber, String carUserName,
+                          String carUserPhone, boolean isApproved) {
         this.carId = carId;
         this.carType = carType;
         this.carPictureLocalUrl = carPictureLocalUrl;
