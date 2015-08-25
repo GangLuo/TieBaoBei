@@ -4,29 +4,50 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CarInformation {
-    private int id;
+    private int carId;
     private String carType;
     private String carPictureLocalUrl;
     private String carPictureLocalName;
-    private Date publishDate;
+    private Date carPublishDate;
     private String carBrand;
     private String carModel;
     private String carUsedHours;
     private String carSite;
     private String carProducedYear;
-    private String carPrice;
+    private double carPrice;
     private String carUsedState;
     private String carUsedPurpose;
     private String carUserDeclare;
     private String carUserName;
     private String carUserPhone;
+    private boolean isApproved;
 
-    public int getId() {
-        return id;
+    public CarInformation(boolean isApproved, int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, String carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDeclare, String carUserName, String carUserPhone) {
+        this.isApproved = isApproved;
+        this.carId = carId;
+        this.carType = carType;
+        this.carPictureLocalUrl = carPictureLocalUrl;
+        this.carPictureLocalName = carPictureLocalName;
+        this.carPublishDate = carPublishDate;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.carUsedHours = carUsedHours;
+        this.carSite = carSite;
+        this.carProducedYear = carProducedYear;
+        this.carPrice = carPrice;
+        this.carUsedState = carUsedState;
+        this.carUsedPurpose = carUsedPurpose;
+        this.carUserDeclare = carUserDeclare;
+        this.carUserName = carUserName;
+        this.carUserPhone = carUserPhone;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     public String getCarType() {
@@ -53,12 +74,12 @@ public class CarInformation {
         this.carPictureLocalName = carPictureLocalName;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public Date getCarPublishDate() {
+        return carPublishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setCarPublishDate(Date carPublishDate) {
+        this.carPublishDate = carPublishDate;
     }
 
     public String getCarBrand() {
@@ -101,11 +122,11 @@ public class CarInformation {
         this.carProducedYear = carProducedYear;
     }
 
-    public String getCarPrice() {
+    public double getCarPrice() {
         return carPrice;
     }
 
-    public void setCarPrice(String carPrice) {
+    public void setCarPrice(double carPrice) {
         this.carPrice = carPrice;
     }
 
@@ -147,5 +168,13 @@ public class CarInformation {
 
     public void setCarUserPhone(String carUserPhone) {
         this.carUserPhone = carUserPhone;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
 }
