@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.Constants;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class CarInformationDB {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
     private int size;
-    private
+    private int itemFinished;
     public CarInformationDB(Context context) {
         dbHelper=DBHelper.getInstance(context, Constants.DB_NAME, null, Constants.DB_VERSION);
     }
