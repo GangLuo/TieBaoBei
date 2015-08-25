@@ -22,6 +22,10 @@ public class CarInformation {
     private String carUserPhone;
     private boolean isApproved;
 
+    public CarInformation() {
+
+    }
+
     public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName,
                           Date carPublishDate, String carBrand, String carModel, int carUsedHours,
                           String carSite, String carProducedYear, double carPrice, String carUsedState,

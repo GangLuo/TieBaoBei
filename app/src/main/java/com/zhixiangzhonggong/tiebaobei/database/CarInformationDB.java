@@ -138,7 +138,7 @@ public class CarInformationDB {
 
     public long insertCarInformation(CarInformation carInformation) {
         ContentValues cv = new ContentValues();
-        cv.put(Constants.CAR_ID, carInformation.getCarId());
+       // cv.put(Constants.CAR_ID, carInformation.getCarId());
         cv.put(Constants.CAR_TYPE, carInformation.getCarType());
         cv.put(Constants.CAR_PICTURE_LOCAL_URL,carInformation.getCarPictureLocalUrl());
         cv.put(Constants.CAR_PICTURE_LOCAL_NAME, carInformation.getCarPictureLocalName());
@@ -164,7 +164,7 @@ public class CarInformationDB {
 
     public int updateCarInformation(CarInformation carInformation) {
         ContentValues cv = new ContentValues();
-        cv.put(Constants.CAR_ID, carInformation.getCarId());
+        //cv.put(Constants.CAR_ID, carInformation.getCarId());
         cv.put(Constants.CAR_TYPE, carInformation.getCarType());
         cv.put(Constants.CAR_PICTURE_LOCAL_URL,carInformation.getCarPictureLocalUrl());
         cv.put(Constants.CAR_PICTURE_LOCAL_NAME, carInformation.getCarPictureLocalName());

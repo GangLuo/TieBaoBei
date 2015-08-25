@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.R;
+import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.FileUtils;
@@ -71,6 +72,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private Button mBtnConfirm,mCarPublishBtn;
     private HideEditorKeyboard mHideEditor;
     private CarInformation mCarInformation;
+    private CarInformationDB carInformationDB;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     @Override
@@ -87,7 +89,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         //hide editext key board when click other place
         mHideEditor=new HideEditorKeyboard(this);
         mHideEditor.setupUI(findViewById(R.id.sellCarInfromationId));
-
+        carInformationDB=new CarInformationDB(this);
         Init();
 
 
@@ -169,7 +171,28 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         mCarPublishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                mCarInformation=new CarInformation();
+                mCarInformation.setCarBrand(mBrandText.getText().toString());
+                mCarInformation.setCarModel(mModelText.getText().toString());
+                mCarInformation.setCarUsedHours(Integer.parseInt(mCarUsedHours.getText().toString()));
+                mCarInformation.setCarSite(mSiteText.getText().toString());
+                mCarInformation.setCarProducedYear(mCarProduceDateText.getText().toString());
+                mCarInformation.setCarPrice(Double.parseDouble(mCarPrice.getText().toString()));
+                mCarInformation.setCarUsedState(mCarStateText.getText().toString());
+                mCarInformation.setCarUsedPurpose(mCarUsingPurposeText.getText().toString());
+                mCarInformation.setCarUserDescriber(mCarDescriber.getText().toString());
+                mCarInformation.setCarUserName(mCarUserName.getText().toString());
+                mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
+
+                Long carID=carInformationDB.insertCarInformation(mCarInformation);
+                Toast.makeText(SellCarInformationActivity.this,
+                        "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
+                                carInformationDB.getCarInformationByCarId(carID).getCarModel()
+                        , Toast.LENGTH_SHORT).show();
+
+
+
+
             }
         });
     }

@@ -69,7 +69,7 @@ public class Constants {
     // CREATE and DROP TABLE statements
     public static final String CREATE_CAR_INFORMATION_TABLE =
             "CREATE TABLE " + CAR_INFORMATION_TABLE + " (" +
-                    CAR_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    CAR_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     CAR_TYPE      + " TEXT, " +
                     CAR_PICTURE_LOCAL_URL  + " TEXT, " +
                     CAR_PICTURE_LOCAL_NAME  + " TEXT, " +
