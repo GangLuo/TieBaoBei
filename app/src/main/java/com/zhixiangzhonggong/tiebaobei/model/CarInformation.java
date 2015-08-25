@@ -17,13 +17,12 @@ public class CarInformation {
     private double carPrice;
     private String carUsedState;
     private String carUsedPurpose;
-    private String carUserDeclare;
+    private String carUserDescriber;
     private String carUserName;
     private String carUserPhone;
     private boolean isApproved;
 
-    public CarInformation(boolean isApproved, int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, String carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDeclare, String carUserName, String carUserPhone) {
-        this.isApproved = isApproved;
+    public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, String carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDescriber, String carUserName, String carUserPhone, boolean isApproved) {
         this.carId = carId;
         this.carType = carType;
         this.carPictureLocalUrl = carPictureLocalUrl;
@@ -37,9 +36,10 @@ public class CarInformation {
         this.carPrice = carPrice;
         this.carUsedState = carUsedState;
         this.carUsedPurpose = carUsedPurpose;
-        this.carUserDeclare = carUserDeclare;
+        this.carUserDescriber = carUserDescriber;
         this.carUserName = carUserName;
         this.carUserPhone = carUserPhone;
+        this.isApproved = isApproved;
     }
 
     public int getCarId() {
@@ -146,12 +146,12 @@ public class CarInformation {
         this.carUsedPurpose = carUsedPurpose;
     }
 
-    public String getCarUserDeclare() {
-        return carUserDeclare;
+    public String getCarUserDescriber() {
+        return carUserDescriber;
     }
 
-    public void setCarUserDeclare(String carUserDeclare) {
-        this.carUserDeclare = carUserDeclare;
+    public void setCarUserDescriber(String carUserDescriber) {
+        this.carUserDescriber = carUserDescriber;
     }
 
     public String getCarUserName() {

@@ -33,27 +33,18 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         // create tables
-        db.execSQL(Constants.CREATE_STORE_TYPE_NAME_TABLE);
-        db.execSQL(Constants.CREATE_DISH_TABLE);
-        db.execSQL(Constants.CREATE_MEDIA_TABLE);
-        db.execSQL(Constants.CREATE_STORE_OFFICE_TABLE);
-        db.execSQL(Constants.CREATE_SUBTITLE_TABLE);
-        db.execSQL(Constants.CREATE_BRANCH_TABLE);
+
+        db.execSQL(Constants.CREATE_CAR_INFORMATION_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db,
                           int oldVersion, int newVersion) {
 
-        Log.d("StoreTypeName list", "Upgrading db from version "
-                + oldVersion + " to " + newVersion);
-        Log.d("StoreTypeName", "Deleting all data!");
-        db.execSQL(Constants.DROP_STORE_TYPE_NAME_TABLE);
-        db.execSQL(Constants.DROP_DISH_TABLE);
-        db.execSQL(Constants.DROP_MEDIA_TABLE);
-        db.execSQL(Constants.DROP_STORE_OFFICE_TABLE);
-        db.execSQL(Constants.DROP_SUBTITLE_TABLE);
-        db.execSQL(Constants.DROP_BRANCH_TABLE);
+
+        db.execSQL(Constants.DROP_CAR_INFORMATION_TABLE);
+
         onCreate(db);
     }
 }
