@@ -11,7 +11,7 @@ public class CarInformation {
     private Date carPublishDate;
     private String carBrand;
     private String carModel;
-    private String carUsedHours;
+    private int carUsedHours;
     private String carSite;
     private String carProducedYear;
     private double carPrice;
@@ -22,7 +22,7 @@ public class CarInformation {
     private String carUserPhone;
     private boolean isApproved;
 
-    public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, String carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDescriber, String carUserName, String carUserPhone, boolean isApproved) {
+    public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName, Date carPublishDate, String carBrand, String carModel, int carUsedHours, String carSite, String carProducedYear, double carPrice, String carUsedState, String carUsedPurpose, String carUserDescriber, String carUserName, String carUserPhone, boolean isApproved) {
         this.carId = carId;
         this.carType = carType;
         this.carPictureLocalUrl = carPictureLocalUrl;
@@ -98,11 +98,11 @@ public class CarInformation {
         this.carModel = carModel;
     }
 
-    public String getCarUsedHours() {
+    public int getCarUsedHours() {
         return carUsedHours;
     }
 
-    public void setCarUsedHours(String carUsedHours) {
+    public void setCarUsedHours(int carUsedHours) {
         this.carUsedHours = carUsedHours;
     }
 

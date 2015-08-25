@@ -68,30 +68,26 @@ public class Constants {
 
     // CREATE and DROP TABLE statements
     public static final String CREATE_CAR_INFORMATION_TABLE =
-            "CREATE TABLE " + DISH_TABLE + " (" +
-                    DISH_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    DISH_DELETED    + " INTEGER NOT NULL, " +
-                    DISH_UPDATED_TS      + " TEXT, " +
-                    DISH_CREATED_TS  + " TEXT, " +
-                    DISH_NAME  + " TEXT, " +
-                    DISH_STORE_ID  + " INTEGER, " +
-                    DISH_STORE_TYPE_ID  + " INTEGER, " +
-                    DISH_LOCAL_ID  + " TEXT, " +
-                    DISH_SEQUENCE  + " INTEGER, " +
-                    DISH_TYPE  + " INTEGER, " +
-                    DISH_IS_SPECIALTY  + " INTEGER NOT NULL, " +
-                    DISH_IS_DEAL  + " INTEGER NOT NULL, " +
-                    DISH_IS_NEW  + " INTEGER NOT NULL, " +
-                    DISH_PRICE     + " REAL, " +
-                    DISH_SALE_PERCENT     + " REAL, " +
-                    DISH_SALE_EXPIRE  + " TEXT, " +
-                    DISH_MATERIALS  + " TEXT, " +
-                    DISH_MEDIA_URL  + " TEXT, " +
-                    DISH_NUTRITION  + " TEXT, " +
-                    DISH_INFO  + " TEXT, " +
-                    DISH_LOCAL_URL     + " TEXT);";
+            "CREATE TABLE " + CAR_INFORMATION_TABLE + " (" +
+                    CAR_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    CAR_TYPE      + " TEXT, " +
+                    CAR_PICTURE_LOCAL_URL  + " TEXT, " +
+                    CAR_PICTURE_LOCAL_NAME  + " TEXT, " +
+                    CAR_PUBLISH_DATE  + " TEXT, " +
+                    CAR_BRAND  + " TEXT, " +
+                    CAR_MODEL  + " TEXT, " +
+                    CAR_USED_HOURS  + " INTEGER, " +
+                    CAR_SITE  + " TEXT, " +
+                    CAR_PRODUCED_YEAR  + " TEXT, " +
+                    CAR_PRICE     + " REAL, " +
+                    CAR_USED_STATE  + " TEXT, " +
+                    CAR_USED_PURPOSE  + " TEXT, " +
+                    CAR_USER_DESCRIER  + " TEXT, " +
+                    CAR_USER_NAME  + " TEXT, " +
+                    CAR_USER_PHONE  + " TEXT, " +
+                    IS_APPROVED  + " INTEGER NOT NULL);";
 
     public static final String DROP_CAR_INFORMATION_TABLE =
-            "DROP TABLE IF EXISTS " + DISH_TABLE;
+            "DROP TABLE IF EXISTS " + CAR_INFORMATION_TABLE;
 
 }
