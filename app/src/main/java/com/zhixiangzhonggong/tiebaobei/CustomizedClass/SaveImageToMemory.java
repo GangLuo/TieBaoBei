@@ -29,13 +29,14 @@ public class SaveImageToMemory extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         imagePath = saveImageInternalMemory(image, imageName);
-        carInformation.setCarPictureLocalUrl(imagePath);
+
         return null;
     }
 
     @Override
     protected void onPostExecute(Void result) {
         Log.d("News reader", "Feed downloaded");
+        carInformation.setCarPictureLocalUrl(imagePath);
        // saveToDatabase(carInformation, imagePath);
     }
 

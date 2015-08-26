@@ -17,9 +17,7 @@ import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
-/**
- * Created by yaolu on 15-08-18.
- */
+
 public class BitmapCache extends Activity{
     public Handler h = new Handler();
     public final String TAG = getClass().getSimpleName();

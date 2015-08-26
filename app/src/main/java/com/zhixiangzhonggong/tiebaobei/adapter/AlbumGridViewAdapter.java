@@ -20,9 +20,7 @@ import com.zhixiangzhonggong.tiebaobei.util.Res;
 
 import java.util.ArrayList;
 
-/**
- * Created by yaolu on 15-08-18.
- */
+
 public class AlbumGridViewAdapter extends BaseAdapter {
     final String TAG = getClass().getSimpleName();
     private Context mContext;

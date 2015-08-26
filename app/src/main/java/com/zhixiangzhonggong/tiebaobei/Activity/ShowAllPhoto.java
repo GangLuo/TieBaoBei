@@ -31,9 +31,6 @@ import java.util.ArrayList;
 /**
  * 这个是显示一个文件夹里面的所有图片时的界面
  *
- * @author king
- * @QQ:595163260
- * @version 2014年10月18日  下午11:49:10
  */
 public class ShowAllPhoto extends Activity {
     private GridView gridView;

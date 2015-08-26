@@ -8,9 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by yaolu on 15-08-18.
- */
+
 public class FileUtils {
     public static String SDPATH = Environment.getExternalStorageDirectory()
             + "/Photo_LJ/";

@@ -5,9 +5,7 @@ import android.graphics.Bitmap;
 import java.io.IOException;
 import java.io.Serializable;
 
-/**
- * Created by yaolu on 15-08-18.
- */
+
 public class ImageItem implements Serializable {
     public String imageId;
     public String thumbnailPath;
