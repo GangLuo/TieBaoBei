@@ -45,17 +45,21 @@ import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
 import com.zhixiangzhonggong.tiebaobei.database.CarPictureUrlDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.model.UserLoadPictureUrl;
+import com.zhixiangzhonggong.tiebaobei.myInterface.saveImageAsyncTaskListener;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.FileUtils;
 import com.zhixiangzhonggong.tiebaobei.util.ImageItem;
 import com.zhixiangzhonggong.tiebaobei.util.PublicWay;
 import com.zhixiangzhonggong.tiebaobei.util.Res;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 
-public class SellCarInformationActivity extends BaseActivity implements  OnWheelChangedListener {
+public class SellCarInformationActivity extends BaseActivity implements  OnWheelChangedListener,saveImageAsyncTaskListener {
     private PopupWindow pop = null;
     private PopupWindow pop1=null;
     private LinearLayout ll_popup;
@@ -76,10 +80,12 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private HideEditorKeyboard mHideEditor;
     private CarInformation mCarInformation;
     private CarInformationDB carInformationDB;
+    private ArrayList<String> imagePaths=new ArrayList<>();
     private UserLoadPictureUrl userLoadPictureUrl;
     private CarPictureUrlDB carPictureUrlDB;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
+    private saveImageAsyncTaskListener eventListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +101,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         mHideEditor=new HideEditorKeyboard(this);
         mHideEditor.setupUI(findViewById(R.id.sellCarInfromationId));
         carInformationDB=new CarInformationDB(this);
+        carPictureUrlDB=new CarPictureUrlDB(this);
         Init();
-
+        eventListener=this;
 
         //pop up choose site popwindow
         mSiteLayout.setOnClickListener(new View.OnClickListener() {
@@ -189,20 +196,35 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 mCarInformation.setCarUserName(mCarUserName.getText().toString());
                 mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
 
-                long carID=carInformationDB.insertCarInformation(mCarInformation);
-                mCarInformation.setCarId((int)carID);
 
+
+                //ArrayList<Bitmap> selectedPictures;
+                HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
+                String pictureName;
+                long j=0;
                 for(int i=0;i<Bimp.tempSelectBitmap.size();i++){
+                    nameAndPictures.clear();
                    Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
-                    long j=System.currentTimeMillis();
+                    //selectedPictures=new ArrayList<Bitmap>();
+                    //selectedPictures.add(selectedPicture);
+                    j=System.currentTimeMillis();
                     j++;
-                    final String pictureName=mModelText.getText().toString()+j;
-                   // mCarInformation.setCarPictureLocalName(pictureName);
-                    SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
-                    saveImageToMemory.execute();
+
+                    pictureName=mModelText.getText().toString()+j;
+                    nameAndPictures.put(pictureName,selectedPicture);
+                    mCarInformation.setCarPictureLocalName(pictureName);
                 }
 
+                long carID=carInformationDB.insertCarInformation(mCarInformation);
 
+                mCarInformation.setCarId((int) carID);
+
+               // SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
+                SaveImageToMemory saveImageToMemory=new SaveImageToMemory(nameAndPictures,mCarInformation);
+                saveImageToMemory.setEventListener(eventListener);
+                saveImageToMemory.execute();
+
+                storeImagePathstoDB(carID);
                 Toast.makeText(SellCarInformationActivity.this,
                         "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
                                 carInformationDB.getCarInformationByCarId(carID).getCarModel()
@@ -210,6 +232,28 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
 
             }
         });
+    }
+
+    public void storeImagePathstoDB(long caID) {
+        long carID =caID ;
+        userLoadPictureUrl=new UserLoadPictureUrl();
+        userLoadPictureUrl.setCarId((int) carID);
+        userLoadPictureUrl.setPictureUrl1(imagePaths.get(0));
+        userLoadPictureUrl.setPictureUrl2(imagePaths.get(1));
+        userLoadPictureUrl.setPictureUrl3(imagePaths.get(2));
+        userLoadPictureUrl.setPictureUrl4(imagePaths.get(3));
+        userLoadPictureUrl.setPictureUrl5(imagePaths.get(4));
+        userLoadPictureUrl.setPictureUrl6(imagePaths.get(5));
+        userLoadPictureUrl.setPictureUrl7(imagePaths.get(6));
+        userLoadPictureUrl.setPictureUrl8(imagePaths.get(7));
+        userLoadPictureUrl.setPictureUrl9(imagePaths.get(8));
+        carPictureUrlDB.insertUserLoadPictureUrl(userLoadPictureUrl);
+        carPictureUrlDB.getUserLoadPictureUrlByCarId(carID);
+    }
+
+    @Override
+    public void onImagePathsReady(ArrayList<String> paths) {
+    this.imagePaths=paths;
     }
 
     private void InitCarUsingPurposePopUpWindow() {
@@ -455,6 +499,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         });
 
     }
+
+
 
     @SuppressLint("HandlerLeak")
     public class GridAdapter extends BaseAdapter {

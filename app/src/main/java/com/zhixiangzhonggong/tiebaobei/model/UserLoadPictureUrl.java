@@ -32,6 +32,9 @@ public class UserLoadPictureUrl {
         this.carId=carId;
     }
 
+    public UserLoadPictureUrl() {
+    }
+
     public int getCarId() {
         return carId;
     }

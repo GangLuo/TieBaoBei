@@ -7,39 +7,54 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
+import com.zhixiangzhonggong.tiebaobei.myInterface.saveImageAsyncTaskListener;
 import com.zhixiangzhonggong.tiebaobei.webrequest.AppController;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class SaveImageToMemory extends AsyncTask< Void, Void, ArrayList<String> > {
-    Bitmap image;
+public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, ArrayList<String> > {
+   Bitmap image;
     String imageName;
     String imagePath;
     CarInformation carInformation;
+    HashMap<String,Bitmap> nameAndPicture;
     private Context context = null;
     private ArrayList<String> storePictureUrl;
-
-    public SaveImageToMemory(Bitmap image, String imageName, CarInformation carInformation) {
+    private saveImageAsyncTaskListener eventListener;
+    private ArrayList<String> imagePaths;
+    public SaveImageToMemory(HashMap<String,Bitmap> nameAndPicture, CarInformation carInformation) {
         super();
-        this.image = image;
-        this.imageName = imageName;
+       // this.image = image;
+       // this.imageName = imageName;
         this.carInformation = carInformation;
+        this.nameAndPicture=nameAndPicture;
     }
 
     @Override
-    protected ArrayList<String> doInBackground(Void... params) {
+    protected ArrayList<String> doInBackground(HashMap<String,Bitmap>... params) {
+        HashMap<String,Bitmap> nameAndPicture=params[0];
+        imagePaths = new ArrayList<String>();
         storePictureUrl= new ArrayList<>();
-        imagePath = saveImageInternalMemory(image, imageName);
+        for(Map.Entry<String,Bitmap> entry :nameAndPicture.entrySet()){
+             imageName=entry.getKey();
+             image=entry.getValue();
+            imagePath = saveImageInternalMemory(image, imageName);
+            imagePaths.add(imagePath+ "/" +imageName);
+        }
 
-        return null;
+
+        return imagePaths;
     }
 
     @Override
     protected void onPostExecute(ArrayList<String> result) {
         Log.d("News reader", "Feed downloaded");
+        eventListener.onImagePathsReady(imagePaths);
        // carInformation.setCarPictureLocalUrl(imagePath);
        // saveToDatabase(carInformation, imagePath);
     }
@@ -65,6 +80,9 @@ public class SaveImageToMemory extends AsyncTask< Void, Void, ArrayList<String> 
         return directory.getAbsolutePath();
     }
 
+    public void setEventListener(saveImageAsyncTaskListener listener){
+        this.eventListener=listener;
+    }
 
 }
 

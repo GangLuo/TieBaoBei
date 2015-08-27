@@ -17,9 +17,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
+import com.zhixiangzhonggong.tiebaobei.database.CarPictureUrlDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformationList;
 import com.zhixiangzhonggong.tiebaobei.webrequest.AppController;
+
+import java.util.ArrayList;
 
 
 public class ShowProductsContentsAdapter extends BaseAdapter{
@@ -87,6 +90,7 @@ public class ShowProductsContentsAdapter extends BaseAdapter{
         mMchineUsedTime.setText(String.valueOf(carInformation.getCarUsedHours()));
         mMachinePublishDate.setText((CharSequence) carInformation.getCarPublishDate());
         mMchineSite.setText(carInformation.getCarSite());
+
 
         //pictureLocalUrl "/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"
        String filePath = new String("file:///" + "/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir" + "/" + carInformation.getCarPictureLocalName());
