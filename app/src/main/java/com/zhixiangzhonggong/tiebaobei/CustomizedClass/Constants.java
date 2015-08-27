@@ -90,4 +90,61 @@ public class Constants {
     public static final String DROP_CAR_INFORMATION_TABLE =
             "DROP TABLE IF EXISTS " + CAR_INFORMATION_TABLE;
 
+
+    // user upload picture local url
+    public static final String CAR_PICTURE_URL_TABLE = "car_information";
+
+    public static final String PICTURE_URL_ID = "car_id";
+    public static final int    PICTURE_URL_ID_COL = 0;
+
+    public static final String PICTURE_URL_1 = "picture_url_1";
+    public static final int    PICTURE_URL_1_COL = 1;
+
+    public static final String PICTURE_URL_2 = "picture_url_2";
+    public static final int    PICTURE_URL_2_COL = 2;
+
+    public static final String PICTURE_URL_3 = "picture_url_3";
+    public static final int    PICTURE_URL_3_COL = 3;
+
+    public static final String PICTURE_URL_4 = "picture_url_4";
+    public static final int    PICTURE_URL_4_COL = 4;
+
+    public static final String PICTURE_URL_5 = "picture_url_5";
+    public static final int    PICTURE_URL_5_COL = 5;
+
+    public static final String PICTURE_URL_6 = "picture_url_6";
+    public static final int    PICTURE_URL_6_COL = 6;
+
+    public static final String PICTURE_URL_7 = "picture_url_7";
+    public static final int    PICTURE_URL_7_COL = 7;
+
+    public static final String PICTURE_URL_8 = "picture_url_8";
+    public static final int    PICTURE_URL_8_COL = 8;
+
+    public static final String PICTURE_URL_9 = "picture_url_9";
+    public static final int    PICTURE_URL_9_COL = 9;
+
+    public static final String CAR_ID_1 = "car_id";
+    public static final int    CAR_ID_1_COL = 10;
+
+
+
+    // CREATE and DROP TABLE statements
+    public static final String CREATE_PICTURE_URL_TABLE =
+            "CREATE TABLE " + CAR_PICTURE_URL_TABLE + " (" +
+                    PICTURE_URL_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    PICTURE_URL_1      + " TEXT, " +
+                    PICTURE_URL_2  + " TEXT, " +
+                    PICTURE_URL_3  + " TEXT, " +
+                    PICTURE_URL_4  + " TEXT, " +
+                    PICTURE_URL_5  + " TEXT, " +
+                    PICTURE_URL_6  + " TEXT, " +
+                    PICTURE_URL_7  + " TEXT, " +
+                    PICTURE_URL_8  + " TEXT, " +
+                    PICTURE_URL_9  + " TEXT, " +
+                    CAR_ID_1  + " INTEGER);";
+
+    public static final String DROP_PICTURE_URL_TABLE =
+            "DROP TABLE IF EXISTS " + CAR_PICTURE_URL_TABLE;
+
 }

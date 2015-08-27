@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.ProductBrandFragment;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.adapter.ShowProductsContentsAdapter;
+import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformationList;
 import com.zhixiangzhonggong.tiebaobei.webrequest.SendMixerTruckRequest;
 
@@ -30,6 +31,7 @@ public class ShowProductsActivity extends Activity {
     private int buttonNumber;
     private ProductBrandFragment productBrandFragment;
     private ShowProductsContentsAdapter showProductsContentsAdapter;
+    private CarInformationDB carInformationDB=new CarInformationDB(this);
     FragmentManager fm ;
     FragmentTransaction tx ;
     private boolean i=false;
@@ -42,8 +44,8 @@ public class ShowProductsActivity extends Activity {
 
         productBrandFragment =new ProductBrandFragment();
 
-
-
+        carInformationList=new CarInformationList();
+        carInformationList.setCarInformationArrayList(carInformationDB.getAllInformatons());
         showProductsContentsAdapter=new ShowProductsContentsAdapter(ShowProductsActivity.this, carInformationList);
         productsListView.setAdapter(showProductsContentsAdapter);
 

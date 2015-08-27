@@ -7,17 +7,20 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
+import com.zhixiangzhonggong.tiebaobei.webrequest.AppController;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 
-public class SaveImageToMemory extends AsyncTask<Void, Void, Void> {
+public class SaveImageToMemory extends AsyncTask< Void, Void, ArrayList<String> > {
     Bitmap image;
     String imageName;
     String imagePath;
     CarInformation carInformation;
     private Context context = null;
+    private ArrayList<String> storePictureUrl;
 
     public SaveImageToMemory(Bitmap image, String imageName, CarInformation carInformation) {
         super();
@@ -27,21 +30,22 @@ public class SaveImageToMemory extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected ArrayList<String> doInBackground(Void... params) {
+        storePictureUrl= new ArrayList<>();
         imagePath = saveImageInternalMemory(image, imageName);
 
         return null;
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(ArrayList<String> result) {
         Log.d("News reader", "Feed downloaded");
-        carInformation.setCarPictureLocalUrl(imagePath);
+       // carInformation.setCarPictureLocalUrl(imagePath);
        // saveToDatabase(carInformation, imagePath);
     }
 
     public String saveImageInternalMemory (Bitmap bitmapImage, String imageName){
-        ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
+        ContextWrapper cw = new ContextWrapper(AppController.getInstance().getApplicationContext());
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         // Create imageDir
@@ -61,46 +65,6 @@ public class SaveImageToMemory extends AsyncTask<Void, Void, Void> {
         return directory.getAbsolutePath();
     }
 
- /*   public void saveToDatabase(CarInformation carInformation, String mediaPath)
-    {
-        carInformation.setCarPictureLocalUrl(mediaPath);
-
-        if(isUpdate){
-            mediaDB.updateMedia(media);
-
-            String logString = new String(currentMedia + " pictures have been updated." +
-                    mediaList.getMediaArray().get(currentMedia).getMediaUrl());
-            Log.d(TAG, logString);
-
-            if(currentMedia < totalMedias - 1 ){
-                getTheNextMediaImgOrVid(currentMedia);
-                currentMedia++;
-            }
-            else{
-                currentMedia = 0;
-
-                int currentActivity = sharedPref.getInt(Constants.KEY_CURRENT_ACTIVITY, Constants.CURRENT_NO_NEED_TO_UPDATE);
-                if(currentActivity == Constants.CURRENT_MEDIA_SHOW_ACTIVITY){
-                    AppController.getInstance().generalActivity.refreshActivityContent();
-                    Log.d(TAG, "content updated");
-                }
-            }
-        }else{
-            mediaDB.insertMedia(media);
-
-            String logString = new String(currentMedia+" pictures have been saved." +
-                    mediaList.getMediaArray().get(currentMedia).getMediaUrl());
-            Log.d(TAG, logString);
-
-            if(currentMedia < totalMedias - 1){
-                getTheNextMediaImgOrVid(currentMedia);
-                currentMedia++;
-            }
-            else{
-                currentMedia = 0;
-            }
-        }
-    }*/
 
 }
 

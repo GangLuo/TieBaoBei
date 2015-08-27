@@ -39,9 +39,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
+import com.zhixiangzhonggong.tiebaobei.CustomizedClass.SaveImageToMemory;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
+import com.zhixiangzhonggong.tiebaobei.database.CarPictureUrlDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
+import com.zhixiangzhonggong.tiebaobei.model.UserLoadPictureUrl;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.FileUtils;
 import com.zhixiangzhonggong.tiebaobei.util.ImageItem;
@@ -73,6 +76,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private HideEditorKeyboard mHideEditor;
     private CarInformation mCarInformation;
     private CarInformationDB carInformationDB;
+    private UserLoadPictureUrl userLoadPictureUrl;
+    private CarPictureUrlDB carPictureUrlDB;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     @Override
@@ -184,14 +189,24 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 mCarInformation.setCarUserName(mCarUserName.getText().toString());
                 mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
 
-                Long carID=carInformationDB.insertCarInformation(mCarInformation);
+                long carID=carInformationDB.insertCarInformation(mCarInformation);
+                mCarInformation.setCarId((int)carID);
+
+                for(int i=0;i<Bimp.tempSelectBitmap.size();i++){
+                   Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
+                    long j=System.currentTimeMillis();
+                    j++;
+                    final String pictureName=mModelText.getText().toString()+j;
+                   // mCarInformation.setCarPictureLocalName(pictureName);
+                    SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
+                    saveImageToMemory.execute();
+                }
+
+
                 Toast.makeText(SellCarInformationActivity.this,
                         "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
                                 carInformationDB.getCarInformationByCarId(carID).getCarModel()
                         , Toast.LENGTH_SHORT).show();
-
-
-
 
             }
         });

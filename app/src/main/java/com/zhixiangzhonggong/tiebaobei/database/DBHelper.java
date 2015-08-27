@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper{
         // create tables
 
         db.execSQL(Constants.CREATE_CAR_INFORMATION_TABLE);
+        db.execSQL(Constants.CREATE_PICTURE_URL_TABLE);
 
     }
 
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
         db.execSQL(Constants.DROP_CAR_INFORMATION_TABLE);
-
+        db.execSQL(Constants.CREATE_PICTURE_URL_TABLE);
         onCreate(db);
     }
 }
