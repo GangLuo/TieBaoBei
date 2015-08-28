@@ -52,7 +52,9 @@ import com.zhixiangzhonggong.tiebaobei.util.ImageItem;
 import com.zhixiangzhonggong.tiebaobei.util.PublicWay;
 import com.zhixiangzhonggong.tiebaobei.util.Res;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import kankan.wheel.widget.OnWheelChangedListener;
@@ -200,6 +202,11 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         mCarPublishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+               // String formattedDate = df.format(c.getTime());
+
                 mCarInformation=new CarInformation();
                 mCarInformation.setCarBrand(mBrandText.getText().toString());
                 mCarInformation.setCarModel(mModelText.getText().toString());
@@ -212,7 +219,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 mCarInformation.setCarUserDescriber(mCarDescriber.getText().toString());
                 mCarInformation.setCarUserName(mCarUserName.getText().toString());
                 mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
-
+                mCarInformation.setCarPublishDate(df.format(c.getTime()));
                 //ArrayList<Bitmap> selectedPictures;
                 HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
                 String pictureName;

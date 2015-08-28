@@ -12,9 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by yaolu on 15-08-18.
- */
+
 public class AlbumHelper {
     final String TAG = getClass().getSimpleName();
     Context context;

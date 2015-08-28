@@ -3,12 +3,14 @@ package com.zhixiangzhonggong.tiebaobei.Activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -129,6 +131,16 @@ public class ShowProductsActivity extends Activity {
                     productBrandFragment.setAdapterValue(values);
                     productBrandFragment.updateValues();
 
+            }
+        });
+
+
+        productsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(ShowProductsActivity.this,ShowSellCarDetailInformationActivity.class);
+                intent.putExtra("carId",position);
+                startActivity(intent);
             }
         });
     }

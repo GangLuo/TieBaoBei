@@ -8,7 +8,7 @@ public class CarInformation {
     private String carType;
     private String carPictureLocalUrl;
     private String carPictureLocalName;
-    private Date carPublishDate;
+    private String carPublishDate;
     private String carBrand;
     private String carModel;
     private int carUsedHours;
@@ -27,7 +27,7 @@ public class CarInformation {
     }
 
     public CarInformation(int carId, String carType, String carPictureLocalUrl, String carPictureLocalName,
-                          Date carPublishDate, String carBrand, String carModel, int carUsedHours,
+                          String carPublishDate, String carBrand, String carModel, int carUsedHours,
                           String carSite, String carProducedYear, double carPrice, String carUsedState,
                           String carUsedPurpose, String carUserDescriber, String carUserName,
                           String carUserPhone, boolean isApproved) {
@@ -82,11 +82,11 @@ public class CarInformation {
         this.carPictureLocalName = carPictureLocalName;
     }
 
-    public Date getCarPublishDate() {
+    public String getCarPublishDate() {
         return carPublishDate;
     }
 
-    public void setCarPublishDate(Date carPublishDate) {
+    public void setCarPublishDate(String carPublishDate) {
         this.carPublishDate = carPublishDate;
     }
 

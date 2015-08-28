@@ -10,6 +10,7 @@ import com.zhixiangzhonggong.tiebaobei.CustomizedClass.Constants;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.util.LYDateString;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class CarInformationDB {
@@ -101,6 +102,7 @@ public class CarInformationDB {
     }
 
     private static CarInformation getCarInformationFromCursor(Cursor cursor) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         if (cursor == null || cursor.getCount() == 0){
             return null;
         }
@@ -112,7 +114,8 @@ public class CarInformationDB {
                         cursor.getString(Constants.CAR_TYPE_COL),
                         cursor.getString(Constants.CAR_PICTURE_LOCAL_URL_COL),
                         cursor.getString(Constants.CAR_PICTURE_LOCAL_NAME_COL),
-                        LYDateString.stringToDate(cursor.getString(Constants.CAR_PUBLISH_DATE_COL), 3),
+                        cursor.getString(Constants.CAR_PUBLISH_DATE_COL),
+                       // LYDateString.stringToDate(cursor.getString(Constants.CAR_PUBLISH_DATE_COL), 3),
                         cursor.getString(Constants.CAR_BRAND_COL),
                         cursor.getString(Constants.CAR_MODEL_COL),
                         cursor.getInt(Constants.CAR_USED_HOURS_COL),
