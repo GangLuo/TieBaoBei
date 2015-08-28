@@ -92,7 +92,7 @@ public class Constants {
 
 
     // user upload picture local url
-    public static final String CAR_PICTURE_URL_TABLE = "car_information";
+    public static final String CAR_PICTURE_URL_TABLE = "car_picture_url";
 
     public static final String PICTURE_URL_ID = "car_id";
     public static final int    PICTURE_URL_ID_COL = 0;

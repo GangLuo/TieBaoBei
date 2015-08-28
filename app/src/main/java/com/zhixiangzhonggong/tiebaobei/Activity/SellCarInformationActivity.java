@@ -296,7 +296,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             }
         }
         carPictureUrlDB.insertUserLoadPictureUrl(userLoadPictureUrl);
-        carPictureUrlDB.getUserLoadPictureUrlByCarId(carID);
+       // carPictureUrlDB.getUserLoadPictureUrlByCarId(carID);
     }
 
 

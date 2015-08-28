@@ -108,7 +108,8 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
         } else {
             holder.image.setImageBitmap(Bimp.tempSelectBitmap.get(position).getBitmap());
         }*/
-        String filePath = new String("file:///"+"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"+mImageUrlList.get(position));
+        //+"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"
+        String filePath = new String("file:///"+mImageUrlList.get(position));
         imageLoader.displayImage(filePath, holder.image, imgDisplayOptions);
         return convertView;
     }
