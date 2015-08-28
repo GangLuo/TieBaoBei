@@ -50,13 +50,13 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         carPictureUrlDB=new CarPictureUrlDB(this);
         userLoadPictureUrl=new UserLoadPictureUrl();
 
-        getImagesUrlFromDB();
-        sellCarPictureGalleryAdapter=new SellCarPictureGalleryAdapter(this,mUrlList);
 
         Intent intent = getIntent();
         carId=intent.getIntExtra("carId", 0);
       //  carId=intent.getLongExtra("carId",0L);
-
+        getImagesUrlFromDB();
+        sellCarPictureGalleryAdapter=new SellCarPictureGalleryAdapter(this,mUrlList);
+        mGallery.setAdapter(sellCarPictureGalleryAdapter);
         setAllTextValues();
 
 
