@@ -60,4 +60,7 @@
     <string name="camera_cancel">取消</string>
     <string name="no_photo">相册没有图片</string>
     <string name="title_activity_choose_car_site">ChooseCarSiteActivity</string>
+    <string name="title_activity_show_sell_car_detail_information">
+        ShowSellCarDetailInformationActivity
+    </string>
 </resources>

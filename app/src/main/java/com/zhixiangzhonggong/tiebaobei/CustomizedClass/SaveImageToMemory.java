@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, ArrayList<String> > {
-   Bitmap image;
+    Bitmap image;
     String imageName;
     String imagePath;
     CarInformation carInformation;
@@ -27,6 +27,8 @@ public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, 
     private ArrayList<String> storePictureUrl;
     private saveImageAsyncTaskListener eventListener;
     private ArrayList<String> imagePaths;
+
+
     public SaveImageToMemory(HashMap<String,Bitmap> nameAndPicture, CarInformation carInformation) {
         super();
        // this.image = image;
@@ -34,6 +36,8 @@ public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, 
         this.carInformation = carInformation;
         this.nameAndPicture=nameAndPicture;
     }
+
+
 
     @Override
     protected ArrayList<String> doInBackground(HashMap<String,Bitmap>... params) {
@@ -51,13 +55,17 @@ public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, 
         return imagePaths;
     }
 
+
+
     @Override
     protected void onPostExecute(ArrayList<String> result) {
         Log.d("News reader", "Feed downloaded");
-        eventListener.onImagePathsReady(imagePaths);
+        eventListener.onImagePathsReady(result);
        // carInformation.setCarPictureLocalUrl(imagePath);
        // saveToDatabase(carInformation, imagePath);
     }
+
+
 
     public String saveImageInternalMemory (Bitmap bitmapImage, String imageName){
         ContextWrapper cw = new ContextWrapper(AppController.getInstance().getApplicationContext());
@@ -79,6 +87,8 @@ public class SaveImageToMemory extends AsyncTask< HashMap<String,Bitmap>, Void, 
         }
         return directory.getAbsolutePath();
     }
+
+
 
     public void setEventListener(saveImageAsyncTaskListener listener){
         this.eventListener=listener;

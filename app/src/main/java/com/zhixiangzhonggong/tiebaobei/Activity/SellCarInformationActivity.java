@@ -86,6 +86,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     private saveImageAsyncTaskListener eventListener;
+    private long carID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +108,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         Init();
         eventListener=this;
 
+
+
         //pop up choose site popwindow
         mSiteLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +126,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             }
         });
 
+
+
         //pop up the car model and  brand popupwindow
         mCarBrandModelLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +142,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
             }
         });
+
+
+
         //pop up the car produce date popupwindow
         mCarProduceDateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +160,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             }
         });
 
+
+
         //pop up the car state popwindow
         mCarStateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +176,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
             }
         });
+
+
+
         //pop up the car using Purposer popwindow
         mCarUsingPurposeText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +193,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 pop1.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
             }
         });
+
+
 
         //publish car information
         mCarPublishBtn.setOnClickListener(new View.OnClickListener() {
@@ -196,15 +213,13 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 mCarInformation.setCarUserName(mCarUserName.getText().toString());
                 mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
 
-
-
                 //ArrayList<Bitmap> selectedPictures;
                 HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
                 String pictureName;
                 long j=0;
+                nameAndPictures.clear();
                 for(int i=0;i<Bimp.tempSelectBitmap.size();i++){
-                    nameAndPictures.clear();
-                   Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
+                    Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
                     //selectedPictures=new ArrayList<Bitmap>();
                     //selectedPictures.add(selectedPicture);
                     j=System.currentTimeMillis();
@@ -215,16 +230,16 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                     mCarInformation.setCarPictureLocalName(pictureName);
                 }
 
-                long carID=carInformationDB.insertCarInformation(mCarInformation);
+                carID=carInformationDB.insertCarInformation(mCarInformation);
 
                 mCarInformation.setCarId((int) carID);
 
                // SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
                 SaveImageToMemory saveImageToMemory=new SaveImageToMemory(nameAndPictures,mCarInformation);
                 saveImageToMemory.setEventListener(eventListener);
-                saveImageToMemory.execute();
+                saveImageToMemory.execute(nameAndPictures);
 
-                storeImagePathstoDB(carID);
+
                 Toast.makeText(SellCarInformationActivity.this,
                         "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
                                 carInformationDB.getCarInformationByCarId(carID).getCarModel()
@@ -234,27 +249,58 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         });
     }
 
+
+
     public void storeImagePathstoDB(long caID) {
         long carID =caID ;
         userLoadPictureUrl=new UserLoadPictureUrl();
         userLoadPictureUrl.setCarId((int) carID);
-        userLoadPictureUrl.setPictureUrl1(imagePaths.get(0));
-        userLoadPictureUrl.setPictureUrl2(imagePaths.get(1));
-        userLoadPictureUrl.setPictureUrl3(imagePaths.get(2));
-        userLoadPictureUrl.setPictureUrl4(imagePaths.get(3));
-        userLoadPictureUrl.setPictureUrl5(imagePaths.get(4));
-        userLoadPictureUrl.setPictureUrl6(imagePaths.get(5));
-        userLoadPictureUrl.setPictureUrl7(imagePaths.get(6));
-        userLoadPictureUrl.setPictureUrl8(imagePaths.get(7));
-        userLoadPictureUrl.setPictureUrl9(imagePaths.get(8));
+        for (int i =0;i<imagePaths.size();i++){
+            switch (i){
+                case 0:
+                    userLoadPictureUrl.setPictureUrl1(imagePaths.get(0));
+                    break;
+                case 1:
+                    userLoadPictureUrl.setPictureUrl2(imagePaths.get(1));
+                    break;
+                case 2:
+                    userLoadPictureUrl.setPictureUrl3(imagePaths.get(2));
+                    break;
+                case 3:
+                    userLoadPictureUrl.setPictureUrl4(imagePaths.get(3));
+                    break;
+                case 4:
+                    userLoadPictureUrl.setPictureUrl5(imagePaths.get(4));
+                    break;
+                case 5:
+                    userLoadPictureUrl.setPictureUrl6(imagePaths.get(5));
+                    break;
+                case 6:
+                    userLoadPictureUrl.setPictureUrl7(imagePaths.get(6));
+                    break;
+                case 7:
+                    userLoadPictureUrl.setPictureUrl8(imagePaths.get(7));
+                    break;
+                case 8:
+                    userLoadPictureUrl.setPictureUrl9(imagePaths.get(8));
+                    break;
+                case 9:
+                    break;
+            }
+        }
         carPictureUrlDB.insertUserLoadPictureUrl(userLoadPictureUrl);
         carPictureUrlDB.getUserLoadPictureUrlByCarId(carID);
     }
 
+
+
     @Override
     public void onImagePathsReady(ArrayList<String> paths) {
     this.imagePaths=paths;
+    storeImagePathstoDB(carID);
     }
+
+
 
     private void InitCarUsingPurposePopUpWindow() {
         InitPopUpWindow();

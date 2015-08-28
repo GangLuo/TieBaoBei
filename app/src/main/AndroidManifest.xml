@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".webrequest.AppController"
         android:allowBackup="true"
@@ -76,6 +77,10 @@
         <activity
             android:name=".Activity.ShowAllPhoto"
             android:label="@string/title_activity_show_all_photo" >
+        </activity>
+        <activity
+            android:name=".Activity.ShowSellCarDetailInformationActivity"
+            android:label="@string/title_activity_show_sell_car_detail_information" >
         </activity>
     </application>
 
