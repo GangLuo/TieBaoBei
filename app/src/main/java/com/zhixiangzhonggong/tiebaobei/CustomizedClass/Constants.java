@@ -1,8 +1,6 @@
 package com.zhixiangzhonggong.tiebaobei.CustomizedClass;
 
-/**
- * Created by Shaohua Mao on 2015-07-09.
- */
+
 public class Constants {
 
 
@@ -94,7 +92,7 @@ public class Constants {
     // user upload picture local url
     public static final String CAR_PICTURE_URL_TABLE = "car_picture_url";
 
-    public static final String PICTURE_URL_ID = "car_id";
+    public static final String PICTURE_URL_ID = "picture_id";
     public static final int    PICTURE_URL_ID_COL = 0;
 
     public static final String PICTURE_URL_1 = "picture_url_1";

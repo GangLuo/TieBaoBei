@@ -136,7 +136,7 @@ public class CarPictureUrlDB {
         cv.put(Constants.PICTURE_URL_1, userLoadPictureUrl.getPictureUrl1());
         cv.put(Constants.PICTURE_URL_2,userLoadPictureUrl.getPictureUrl2());
         cv.put(Constants.PICTURE_URL_3, userLoadPictureUrl.getPictureUrl3());
-        cv.put(Constants.PICTURE_URL_4,String.valueOf(userLoadPictureUrl.getPictureUrl4()) );
+        cv.put(Constants.PICTURE_URL_4,userLoadPictureUrl.getPictureUrl4() );
         cv.put(Constants.PICTURE_URL_5, userLoadPictureUrl.getPictureUrl5());
         cv.put(Constants.PICTURE_URL_6, userLoadPictureUrl.getPictureUrl6());
         cv.put(Constants.PICTURE_URL_7, userLoadPictureUrl.getPictureUrl7());

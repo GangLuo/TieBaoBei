@@ -62,20 +62,18 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
   /*  public void update() {
         loading();
     }*/
-
+  @Override
     public int getCount() {
-        if(Bimp.tempSelectBitmap.size() == 9){
-            return 9;
-        }
-        return (Bimp.tempSelectBitmap.size() + 1);
-    }
 
+        return mImageUrlList.size();
+    }
+    @Override
     public Object getItem(int arg0) {
-        return null;
+        return mImageUrlList.get(arg0);
     }
-
-    public long getItemId(int arg0) {
-        return 0;
+    @Override
+    public long getItemId(int postion) {
+        return postion;
     }
 
     public void setSelectedPosition(int position) {
@@ -149,3 +147,6 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
         }).start();*/
    // }
 }
+
+
+

@@ -73,6 +73,7 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         mUrlList=new ArrayList<>();
 
         userLoadPictureUrl=carPictureUrlDB.getUserLoadPictureUrlByCarId(carId);
+
         String url1=userLoadPictureUrl.getPictureUrl1();
         String url2=userLoadPictureUrl.getPictureUrl2();
         String url3=userLoadPictureUrl.getPictureUrl3();
@@ -85,28 +86,28 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         if(url1!=null){
             mUrlList.add(url1);
         }
-       else if (url2!=null){
+        if (url2!=null){
             mUrlList.add(url2);
         }
-        else if (url3!=null){
+         if (url3!=null){
             mUrlList.add(url3);
         }
-        else if (url4!=null){
+         if (url4!=null){
             mUrlList.add(url4);
         }
-        else if (url5!=null){
+         if (url5!=null){
             mUrlList.add(url5);
         }
-        else if (url6!=null){
+        if (url6!=null){
             mUrlList.add(url6);
         }
-        else if (url7!=null){
+         if (url7!=null){
             mUrlList.add(url7);
         }
-        else if (url8!=null){
+         if (url8!=null){
             mUrlList.add(url8);
         }
-        else if (url9!=null){
+         if (url9!=null){
             mUrlList.add(url9);
         }
 
