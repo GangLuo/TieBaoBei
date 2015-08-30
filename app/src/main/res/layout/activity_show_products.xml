@@ -7,8 +7,9 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
         android:background="#395691"
+
         android:layout_width="fill_parent"
         android:layout_gravity="center"
         android:layout_height="wrap_content">

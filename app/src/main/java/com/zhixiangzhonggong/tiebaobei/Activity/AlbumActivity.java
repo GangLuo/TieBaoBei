@@ -1,5 +1,6 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ import com.zhixiangzhonggong.tiebaobei.util.Res;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumActivity extends AppCompatActivity {
+public class AlbumActivity extends Activity {
     //显示手机里的所有图片的列表控件
     private GridView gridView;
     //当手机里没有图片时，提示用户没有图片的控件
