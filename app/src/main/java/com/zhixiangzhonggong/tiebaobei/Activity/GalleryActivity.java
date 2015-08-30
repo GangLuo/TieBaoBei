@@ -60,12 +60,16 @@ public class GalleryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(Res.getLayoutID("activity_gallery"));// 切屏到主界面
+        //setContentView(Res.getLayoutID("activity_gallery"));// 切屏到主界面
+        setContentView(R.layout.activity_gallery);
         PublicWay.activityList.add(this);
         mContext = this;
-        back_bt = (Button) findViewById(Res.getWidgetID("gallery_back"));
-        send_bt = (Button) findViewById(Res.getWidgetID("send_button"));
-        del_bt = (Button)findViewById(Res.getWidgetID("gallery_del"));
+        back_bt = (Button) findViewById(R.id.gallery_back);
+        //back_bt = (Button) findViewById(Res.getWidgetID("gallery_back"));
+        //send_bt = (Button) findViewById(Res.getWidgetID("send_button"));
+        send_bt = (Button) findViewById(R.id.send_button);
+        //del_bt = (Button)findViewById(Res.getWidgetID("gallery_del"));
+        del_bt = (Button)findViewById(R.id.gallery_del);
         back_bt.setOnClickListener(new BackListener());
         send_bt.setOnClickListener(new GallerySendListener());
         del_bt.setOnClickListener(new DelListener());
@@ -74,7 +78,8 @@ public class GalleryActivity extends Activity {
         position = Integer.parseInt(intent.getStringExtra("position"));
         isShowOkBt();
         // 为发送按钮设置文字
-        pager = (ViewPagerFixed) findViewById(Res.getWidgetID("gallery01"));
+        //pager = (ViewPagerFixed) findViewById(Res.getWidgetID("gallery01"));
+        pager = (ViewPagerFixed) findViewById(R.id.gallery01);
         pager.setOnPageChangeListener(pageChangeListener);
         for (int i = 0; i < Bimp.tempSelectBitmap.size(); i++) {
             initListViews( Bimp.tempSelectBitmap.get(i).getBitmap() );
@@ -82,7 +87,8 @@ public class GalleryActivity extends Activity {
 
         adapter = new MyPageAdapter(listViews);
         pager.setAdapter(adapter);
-        pager.setPageMargin((int)getResources().getDimensionPixelOffset(Res.getDimenID("ui_10_dip")));
+        //pager.setPageMargin((int) getResources().getDimensionPixelOffset(Res.getDimenID("ui_10_dip")));
+        pager.setPageMargin((int)getResources().getDimensionPixelOffset(R.dimen.ui_10_dip));
         int id = intent.getIntExtra("ID", 0);
         pager.setCurrentItem(id);
     }
@@ -129,7 +135,8 @@ public class GalleryActivity extends Activity {
             if (listViews.size() == 1) {
                 Bimp.tempSelectBitmap.clear();
                 Bimp.max = 0;
-                send_bt.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+               // send_bt.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+                send_bt.setText(getResources().getString(R.string.finish)+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
                 Intent intent = new Intent("data.broadcast.action");
                 sendBroadcast(intent);
                 finish();
@@ -139,7 +146,8 @@ public class GalleryActivity extends Activity {
                 pager.removeAllViews();
                 listViews.remove(location);
                 adapter.setListViews(listViews);
-                send_bt.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+                //send_bt.setText(Res.getString("finish") + "(" + Bimp.tempSelectBitmap.size() + "/" + PublicWay.num + ")");
+                send_bt.setText(getResources().getString(R.string.finish)+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
                 adapter.notifyDataSetChanged();
             }
         }
@@ -157,7 +165,8 @@ public class GalleryActivity extends Activity {
 
     public void isShowOkBt() {
         if (Bimp.tempSelectBitmap.size() > 0) {
-            send_bt.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            //send_bt.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            send_bt.setText(getResources().getString(R.string.finish)+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
             send_bt.setPressed(true);
             send_bt.setClickable(true);
             send_bt.setTextColor(Color.WHITE);

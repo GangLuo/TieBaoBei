@@ -3,10 +3,14 @@ package com.zhixiangzhonggong.tiebaobei.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
@@ -19,6 +23,8 @@ import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
 import com.zhixiangzhonggong.tiebaobei.database.CarPictureUrlDB;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.model.UserLoadPictureUrl;
+import com.zhixiangzhonggong.tiebaobei.util.Bimp;
+import com.zhixiangzhonggong.tiebaobei.util.PublicWay;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +51,7 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_sell_car_detail_information);
-
+        PublicWay.activityList.add(this);
         initView();
         carPictureUrlDB=new CarPictureUrlDB(this);
         userLoadPictureUrl=new UserLoadPictureUrl();
@@ -55,8 +61,27 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         carId=intent.getIntExtra("carId", 0);
       //  carId=intent.getLongExtra("carId",0L);
         getImagesUrlFromDB();
+
         sellCarPictureGalleryAdapter=new SellCarPictureGalleryAdapter(this,mUrlList);
         mGallery.setAdapter(sellCarPictureGalleryAdapter);
+        mGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                if (arg2 == Bimp.tempSelectBitmap.size()) {
+                    Log.i("ddddddd", "----------");
+                   // ll_popup.startAnimation(AnimationUtils.loadAnimation(ShowSellCarDetailInformationActivity.this, R.anim.activity_translate_in));
+                    //pop.showAtLocation(this, Gravity.BOTTOM, 0, 0);
+                } else {
+                    Intent intent = new Intent(ShowSellCarDetailInformationActivity.this,
+                            GalleryActivity.class);
+                    intent.putExtra("position", "1");
+                    intent.putExtra("ID", arg2);
+                    startActivity(intent);
+                }
+            }
+        });
+
         setAllTextValues();
 
 

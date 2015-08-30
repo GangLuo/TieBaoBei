@@ -494,6 +494,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 ll_popup.clearAnimation();
             }
         });
+
+
         bt1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 photo();
@@ -501,6 +503,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 ll_popup.clearAnimation();
             }
         });
+
+
 
         bt2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -512,6 +516,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 ll_popup.clearAnimation();
             }
         });
+
+
+
         bt3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pop.dismiss();
