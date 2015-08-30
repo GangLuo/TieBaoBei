@@ -148,7 +148,7 @@ public class AlbumActivity extends Activity {
         tv = (TextView) findViewById(Res.getWidgetID("myText"));
         gridView.setEmptyView(tv);
         okButton = (Button) findViewById(Res.getWidgetID("ok_button"));
-        okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size()
+        okButton.setText(Res.getString("finish1")+"(" + Bimp.tempSelectBitmap.size()
                 + "/"+ PublicWay.num+")");
     }
 
@@ -172,12 +172,12 @@ public class AlbumActivity extends Activity {
                         if (isChecked) {
                             chooseBt.setVisibility(View.VISIBLE);
                             Bimp.tempSelectBitmap.add(dataList.get(position));
-                            okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size()
+                            okButton.setText(Res.getString("finish1")+"(" + Bimp.tempSelectBitmap.size()
                                     + "/"+PublicWay.num+")");
                         } else {
                             Bimp.tempSelectBitmap.remove(dataList.get(position));
                             chooseBt.setVisibility(View.GONE);
-                            okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+                            okButton.setText(Res.getString("finish1")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
                         }
                         isShowOkBt();
                     }
@@ -190,7 +190,7 @@ public class AlbumActivity extends Activity {
     private boolean removeOneData(ImageItem imageItem) {
         if (Bimp.tempSelectBitmap.contains(imageItem)) {
             Bimp.tempSelectBitmap.remove(imageItem);
-            okButton.setText(Res.getString("finish")+"(" +Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            okButton.setText(Res.getString("finish1")+"(" +Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
             return true;
         }
         return false;
@@ -198,7 +198,7 @@ public class AlbumActivity extends Activity {
 
     public void isShowOkBt() {
         if (Bimp.tempSelectBitmap.size() > 0) {
-            okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            okButton.setText(Res.getString("finish1")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
             preview.setPressed(true);
             okButton.setPressed(true);
             preview.setClickable(true);
@@ -206,7 +206,7 @@ public class AlbumActivity extends Activity {
             okButton.setTextColor(Color.WHITE);
             preview.setTextColor(Color.WHITE);
         } else {
-            okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            okButton.setText(Res.getString("finish1")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
             preview.setPressed(false);
             preview.setClickable(false);
             okButton.setPressed(false);

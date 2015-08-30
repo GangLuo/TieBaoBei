@@ -30,7 +30,8 @@ public class ChooseMachineModelActivity extends Activity {
         mBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent= new Intent(ChooseMachineModelActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

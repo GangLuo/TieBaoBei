@@ -101,7 +101,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         bimap = BitmapFactory.decodeResource(
                 getResources(),
                 R.drawable.icon_addpic_unfocused);
-        PublicWay.activityList.add(this);
+        //PublicWay.activityList.add(this);
         parentView = getLayoutInflater().inflate(R.layout.activity_sell_car_information, null);
         setContentView(parentView);
         //hide editext key board when click other place
@@ -206,7 +206,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             public void onClick(View v) {
 
                 Calendar c = Calendar.getInstance();
-               
+
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                // String formattedDate = df.format(c.getTime());
 
@@ -454,7 +454,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                     mbackbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            finish();
+                           Intent intent=new Intent(SellCarInformationActivity.this,ChooseMachineModelActivity.class);
+                            startActivity(intent);
                         }
                     });
 
@@ -711,14 +712,18 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         }
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+   public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            for(int i=0;i<PublicWay.activityList.size();i++){
+
+            Intent intent=new Intent(SellCarInformationActivity.this,ChooseMachineModelActivity.class);
+            startActivity(intent);
+         /* for(int i=0;i<PublicWay.activityList.size();i++){
                 if (null != PublicWay.activityList.get(i)) {
                     PublicWay.activityList.get(i).finish();
                 }
-            }
-            System.exit(0);
+            }*/
+
+           // System.exit(0);
         }
         return true;
     }
