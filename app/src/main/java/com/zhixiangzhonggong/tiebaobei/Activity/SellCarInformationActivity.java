@@ -206,6 +206,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             public void onClick(View v) {
 
                 Calendar c = Calendar.getInstance();
+               
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                // String formattedDate = df.format(c.getTime());
 

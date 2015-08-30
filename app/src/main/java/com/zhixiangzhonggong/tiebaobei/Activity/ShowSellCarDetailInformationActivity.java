@@ -121,6 +121,7 @@ public class ShowSellCarDetailInformationActivity extends Activity {
         });
 
         ShareSDK.initSDK(this);
+        context=this;
         mShareLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,8 +149,8 @@ public class ShowSellCarDetailInformationActivity extends Activity {
                 // siteUrl是分享此内容的网站地址，仅在QQ空间使用
                 oks.setSiteUrl("http://sharesdk.cn");
 
-// 启动分享GUI
-                oks.show(getApplicationContext());
+                // 启动分享GUI
+                oks.show(context);
             }
         });
     }
@@ -207,7 +208,8 @@ public class ShowSellCarDetailInformationActivity extends Activity {
         carInformation=carInformationDB.getCarInformationByCarId(carId);
         mCarBrandAndModelName.setText(carInformation.getCarBrand()+carInformation.getCarModel());
         mCarId.setText(String.valueOf(carId));
-        mCarSellPrice.setText(String.valueOf(carInformation.getCarPrice()));
+        mCarSellPrice.setText(this.getString(R.string.yun_character)+String.valueOf(carInformation.getCarPrice())+"万");
+
         mCarSellerName.setText(carInformation.getCarUserName());
         mCarUsedHours.setText(String.valueOf(carInformation.getCarUsedHours()));
         mCarPublishDate.setText(carInformation.getCarPublishDate());
