@@ -45,7 +45,8 @@ public class GalleryActivity extends Activity {
     private int position;
     //当前的位置
     private int location = 0;
-
+    //is come from ShowSellCarDetailInfromation activity
+    private boolean isFromShowSellCarDetalActivity;
     private ArrayList<View> listViews = null;
     private ViewPagerFixed pager;
     private MyPageAdapter adapter;
@@ -64,18 +65,29 @@ public class GalleryActivity extends Activity {
         setContentView(R.layout.activity_gallery);
         PublicWay.activityList.add(this);
         mContext = this;
+
+        intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        position = Integer.parseInt(intent.getStringExtra("position"));
+        isFromShowSellCarDetalActivity=getIntent().getExtras().getBoolean("isFromShowSellCarDetalActivity");
+
         back_bt = (Button) findViewById(R.id.gallery_back);
         //back_bt = (Button) findViewById(Res.getWidgetID("gallery_back"));
         //send_bt = (Button) findViewById(Res.getWidgetID("send_button"));
         send_bt = (Button) findViewById(R.id.send_button);
         //del_bt = (Button)findViewById(Res.getWidgetID("gallery_del"));
         del_bt = (Button)findViewById(R.id.gallery_del);
+        if(isFromShowSellCarDetalActivity){
+            back_bt.setText("返回");
+            del_bt.setVisibility(View.GONE);
+            send_bt.setVisibility(View.GONE);
+        }
         back_bt.setOnClickListener(new BackListener());
         send_bt.setOnClickListener(new GallerySendListener());
         del_bt.setOnClickListener(new DelListener());
-        intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        position = Integer.parseInt(intent.getStringExtra("position"));
+
+
+
         isShowOkBt();
         // 为发送按钮设置文字
         //pager = (ViewPagerFixed) findViewById(Res.getWidgetID("gallery01"));
@@ -123,8 +135,17 @@ public class GalleryActivity extends Activity {
     private class BackListener implements View.OnClickListener {
 
         public void onClick(View v) {
-            intent.setClass(GalleryActivity.this, ImageFile.class);
-            startActivity(intent);
+            if(isFromShowSellCarDetalActivity){
+                back_bt.setText("返回");
+                finish();
+                //intent.setClass(GalleryActivity.this, ShowSellCarDetailInformationActivity.class);
+                //startActivity(intent);
+            }
+            else {
+                intent.setClass(GalleryActivity.this, ImageFile.class);
+                startActivity(intent);
+            }
+
         }
     }
 
@@ -192,6 +213,8 @@ public class GalleryActivity extends Activity {
                 this.finish();
                 intent.setClass(GalleryActivity.this, ShowAllPhoto.class);
                 startActivity(intent);
+            }else if (position==3){
+                this.finish();
             }
         }
         return true;

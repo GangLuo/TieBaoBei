@@ -86,8 +86,8 @@ public class ShowProductsContentsAdapter extends BaseAdapter{
         carInformation=carInformationList.getCarInformationArrayList().get(position);
 
         mMchineName.setText(carInformation.getCarBrand()+carInformation.getCarModel());
-        mMachinePrice.setText(String.valueOf(carInformation.getCarPrice()));
-        mMchineUsedTime.setText(String.valueOf(carInformation.getCarUsedHours()));
+        mMachinePrice.setText(activity.getString(R.string.yun_character)+String.valueOf(carInformation.getCarPrice())+"万");
+        mMchineUsedTime.setText("小时数:"+String.valueOf(carInformation.getCarUsedHours())+"小时");
         mMachinePublishDate.setText((CharSequence) carInformation.getCarPublishDate());
         mMchineSite.setText(carInformation.getCarSite());
 

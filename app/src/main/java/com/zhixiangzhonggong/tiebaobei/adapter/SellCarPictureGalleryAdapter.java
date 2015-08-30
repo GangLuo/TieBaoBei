@@ -130,7 +130,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
                 bimp=new Bimp();
                 imageItem=new ImageItem();
                 imageItem.setBitmap(bitmap);
-                bimp.tempSelectBitmap.clear();
+               // bimp.tempSelectBitmap.clear();
                 bimp.tempSelectBitmap.add(imageItem);
             }
 

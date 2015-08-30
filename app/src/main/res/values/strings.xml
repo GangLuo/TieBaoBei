@@ -63,4 +63,7 @@
     <string name="title_activity_show_sell_car_detail_information">
         ShowSellCarDetailInformationActivity
     </string>
+
+
+    <string name="yun_character">&#65509;</string>
 </resources>

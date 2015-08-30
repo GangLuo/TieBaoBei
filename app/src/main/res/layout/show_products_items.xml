@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,22 +10,30 @@
     android:layout_weight="1"
     android:layout_width="100dp"
     android:layout_height="100dp" />
+
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical">
         <TextView
+            android:layout_weight="1"
+            android:gravity="center|left"
             android:id="@+id/machine_name_id"
             android:text="No data"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView
+            android:layout_weight="1"
             android:id="@+id/machine_price_id"
             android:text="No data"
+            android:gravity="center|left"
+            android:textColor="#e99338"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView
+            android:gravity="center|left"
+            android:layout_weight="1"
             android:id="@+id/machine_used_time_id"
             android:text="No data"
             android:layout_width="match_parent"
@@ -35,15 +44,23 @@
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
         <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_weight="1"
+            android:gravity="center|left"
             android:id="@+id/machine_publish_date_id"
             android:text="No data"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView
+            android:layout_weight="1"
+            android:gravity="center|left"
             android:id="@+id/machine_site_id"
             android:text="No data"
             android:layout_width="match_parent"

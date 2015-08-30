@@ -1,8 +1,13 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -30,7 +35,7 @@ import com.zhixiangzhonggong.tiebaobei.util.Res;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
+public class ShowSellCarDetailInformationActivity extends Activity {
     private TextView mCarBrandAndModelName,mCarId,mCarSellPrice,mCarSellerName,mCarAdminName,
         mCarUsedHours,mCarPublishDate,mCarCurrentSite,mCarOriginalPurpose,mCarProducedSite,
         mCarVerifyPaper,mCarIfAlteration,mCarProducedDate,mCarBoughtDate,mCarCurrentState,
@@ -48,10 +53,11 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
     private ArrayList<String> mUrlList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Res.init(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        Res.init(this);
+
+
         setContentView(R.layout.activity_show_sell_car_detail_information);
         PublicWay.activityList.add(this);
         initView();
@@ -72,13 +78,14 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
                                     long arg3) {
                 if (arg2 == Bimp.tempSelectBitmap.size()) {
                     Log.i("ddddddd", "----------");
-                   // ll_popup.startAnimation(AnimationUtils.loadAnimation(ShowSellCarDetailInformationActivity.this, R.anim.activity_translate_in));
+                    // ll_popup.startAnimation(AnimationUtils.loadAnimation(ShowSellCarDetailInformationActivity.this, R.anim.activity_translate_in));
                     //pop.showAtLocation(this, Gravity.BOTTOM, 0, 0);
                 } else {
                     Intent intent = new Intent(ShowSellCarDetailInformationActivity.this,
                             GalleryActivity.class);
-                    intent.putExtra("position", "1");
+                    intent.putExtra("position", "3");
                     intent.putExtra("ID", arg2);
+                    intent.putExtra("isFromShowSellCarDetalActivity", true);
                     startActivity(intent);
                 }
             }
@@ -87,11 +94,25 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         setAllTextValues();
 
 
-
+        // add PhoneStateListener
+        PhoneCallListener phoneListener = new PhoneCallListener();
+        TelephonyManager telephonyManager = (TelephonyManager) this
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
         mBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        callSellerPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber="tel:"+mCarUserPhone.getText().toString();
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(phoneNumber));
+                startActivity(callIntent);
             }
         });
     }
@@ -216,6 +237,51 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //monitor phone call activities
+    private class PhoneCallListener extends PhoneStateListener {
+
+        private boolean isPhoneCalling = false;
+
+        String LOG_TAG = "LOGGING 123";
+
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+
+            if (TelephonyManager.CALL_STATE_RINGING == state) {
+                // phone ringing
+                Log.i(LOG_TAG, "RINGING, number: " + incomingNumber);
+            }
+
+            if (TelephonyManager.CALL_STATE_OFFHOOK == state) {
+                // active
+                Log.i(LOG_TAG, "OFFHOOK");
+
+                isPhoneCalling = true;
+            }
+
+            if (TelephonyManager.CALL_STATE_IDLE == state) {
+                // run when class initial and phone call ended,
+                // need detect flag from CALL_STATE_OFFHOOK
+                Log.i(LOG_TAG, "IDLE");
+
+                if (isPhoneCalling) {
+
+                    Log.i(LOG_TAG, "restart app");
+
+                    // restart app
+                    Intent i = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage(
+                                    getBaseContext().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+
+                    isPhoneCalling = false;
+                }
+
+            }
+        }
     }
 
 
