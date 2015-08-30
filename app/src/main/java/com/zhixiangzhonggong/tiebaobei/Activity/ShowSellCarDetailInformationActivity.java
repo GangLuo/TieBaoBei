@@ -25,6 +25,7 @@ import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.model.UserLoadPictureUrl;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 import com.zhixiangzhonggong.tiebaobei.util.PublicWay;
+import com.zhixiangzhonggong.tiebaobei.util.Res;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class ShowSellCarDetailInformationActivity extends AppCompatActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        Res.init(this);
         setContentView(R.layout.activity_show_sell_car_detail_information);
         PublicWay.activityList.add(this);
         initView();
