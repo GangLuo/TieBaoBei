@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-
+        android:id="@+id/login_edite_field"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:background="@drawable/rounded">
@@ -176,9 +176,9 @@
             android:id="@+id/rememberPasswordText"
            />
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-
+            android:layout_marginLeft="100dp"
             android:layout_marginRight="1dp"
             android:textColor="#F5740A"
             android:gravity="center|right"

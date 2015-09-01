@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.database.UserAccountInFormationDB;
 import com.zhixiangzhonggong.tiebaobei.model.UserAccountInformationModel;
@@ -25,6 +26,7 @@ import com.zhixiangzhonggong.tiebaobei.model.UserAccountInformationModel;
 import java.util.ArrayList;
 
 public class LoginActivity extends Activity {
+    private HideEditorKeyboard mHideEditor;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     private TextView forgetPassWorldText;
@@ -42,6 +44,8 @@ public class LoginActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mHideEditor=new HideEditorKeyboard(this);
+        mHideEditor.setupUI(findViewById(R.id.login_edite_field));
         initView();
         userAccountInFormationDB=new UserAccountInFormationDB(this);
 
