@@ -1,6 +1,7 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +31,38 @@ public class SignUpActivity extends Activity {
                 finish();
             }
         });
+
+
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userName=mUserName.getText().toString();
+                String email=mEmail.getText().toString();
+                String password=mPassword.getText().toString();
+                String confirmPassword=mConfirmPassword.getText().toString();
+                if (userName.isEmpty()||email.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()
+                        ||!password.equals(confirmPassword)){
+                    if (userName.isEmpty()){
+                        showAlertDialog("用户名");
+                    }
+                    else if (email.isEmpty()){
+                        showAlertDialog("邮箱");
+                    }
+                    else if (password.isEmpty()){
+                        showAlertDialog("密码");
+                    }
+                    else if (confirmPassword.isEmpty()){
+                        showAlertDialog("确认密码");
+                    }
+                    else if (!password.equals(confirmPassword)){
+                        showAlertDialog("确认密码");
+                    }
+                }
+                else {
+
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -39,6 +72,15 @@ public class SignUpActivity extends Activity {
         mPassword=(EditText) findViewById(R.id.passwordField);
         mConfirmPassword=(EditText) findViewById(R.id.confirmPwText);
         mSignUpButton= (Button) findViewById(R.id.signupButton);
+    }
+
+
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+        builder.setMessage("请输入"+message+"信息")
+                .setPositiveButton(android.R.string.ok, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

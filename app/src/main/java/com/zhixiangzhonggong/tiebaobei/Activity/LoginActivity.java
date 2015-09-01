@@ -1,6 +1,7 @@
 package com.zhixiangzhonggong.tiebaobei.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
@@ -74,13 +75,25 @@ public class LoginActivity extends Activity {
 
     private void initView() {
         forgetPassWorldText= (TextView) findViewById(R.id.forgotPasswordText);
-        forgetPassWorldText .getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
+        forgetPassWorldText .getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         checkButton=(ImageButton)findViewById(R.id.checkImageButton);
         checkButton.setImageResource(R.drawable.uncheck);
         backIamge= (ImageView) findViewById(R.id.back_image);
         mLoginText= (TextView) findViewById(R.id.sign_up_text);
         mLoginButton= (Button) findViewById(R.id.loginButton);
     }
+
+
+
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setMessage("请输入"+message+"信息")
+                .setPositiveButton(android.R.string.ok, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
