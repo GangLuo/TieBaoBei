@@ -80,59 +80,121 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:id="@+id/sign_up_input_field_id"
         android:gravity="center">
-        <EditText
-            android:id="@+id/usernameField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:ems="10"
-            android:hint="@string/signUp_userName"
-            >
-            <requestFocus />
-        </EditText>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="用户名:"/>
+            <EditText
+                android:id="@+id/usernameField"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:hint="@string/signUp_userName"
+                >
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
 
-        <EditText
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="邮箱:"/>
+            <EditText
+                android:id="@+id/emailField"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:layout_below="@+id/emailField"
+                android:layout_alignLeft="@id/emailField"
+                android:hint="@string/signUp_email"
+                />
+        </LinearLayout>
 
-            android:id="@+id/emailField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:layout_below="@+id/emailField"
-            android:layout_alignLeft="@id/emailField"
-            android:hint="@string/signUp_email"
-            />
-        <EditText
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="邮箱:"/>
+            <EditText
 
-            android:id="@+id/passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:layout_below="@+id/emailField"
-            android:layout_alignLeft="@id/passwordText"
-            android:hint="@string/signUp_password"
-            />
-        <EditText
-            android:id="@+id/confirmPwText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:layout_below="@+id/passwordText"
-            android:layout_alignLeft="@id/confirmPwText"
-            android:hint="@string/signUp_comfirm_password"
-            />
+                android:id="@+id/passwordText"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/emailField"
+                android:layout_alignLeft="@id/passwordText"
+                android:hint="@string/signUp_password"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="邮箱:"/>
+            <EditText
+                android:id="@+id/confirmPwText"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/passwordText"
+                android:layout_alignLeft="@id/confirmPwText"
+                android:hint="@string/signUp_comfirm_password"
+                />
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/signupButton"
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F5740A"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded2"
             android:text="@string/signUp_sign_up"
             android:layout_below="@+id/confirmPwText"
             android:layout_alignLeft="@id/emailField"/>
