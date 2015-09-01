@@ -10,6 +10,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,6 +107,7 @@ public class ShowSellCarDetailInformationActivity extends Activity {
         mBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bimp.tempSelectBitmap.clear();
                 finish();
             }
         });
@@ -254,7 +256,15 @@ public class ShowSellCarDetailInformationActivity extends Activity {
         mGallery= (Gallery) findViewById(R.id.sell_car_picture_gallery);
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
+            Bimp.tempSelectBitmap.clear();
+            finish();
+
+        }
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zhixiangzhonggong.tiebaobei.R;
+import com.zhixiangzhonggong.tiebaobei.util.Bimp;
 
 public class ChooseMachineModelActivity extends Activity {
     private ImageView mBackImage;
@@ -60,6 +62,18 @@ public class ChooseMachineModelActivity extends Activity {
         mBackImage= (ImageView) findViewById(R.id.machine_back_image);
         mMixerTruck= (TextView) findViewById(R.id.machine_mixer_truck_id);
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+
+           Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

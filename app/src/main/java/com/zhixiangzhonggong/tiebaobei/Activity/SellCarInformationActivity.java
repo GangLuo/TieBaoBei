@@ -2,6 +2,7 @@ package com.zhixiangzhonggong.tiebaobei.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -208,57 +209,105 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                 Calendar c = Calendar.getInstance();
 
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                String brand=mBrandText.getText().toString();
+                String model=mModelText.getText().toString();
+                String usedHours=mCarUsedHours.getText().toString();
+                String site=mSiteText.getText().toString();
+                String produceDate=mCarProduceDateText.getText().toString();
+                String carPrice=mCarPrice.getText().toString();
+                String carState=mCarStateText.getText().toString();
+                String carUsingPurpose=mCarUsingPurposeText.getText().toString();
+                String carDescriber =mCarDescriber.getText().toString();
+                String carUserName=mCarUserName.getText().toString();
+                String carUserPhone=mCarUserPhone.getText().toString();
+
                // String formattedDate = df.format(c.getTime());
+                if (brand.equals("请选择") || model.equals("请选择")|| usedHours.isEmpty() ||site.equals("请选择")
+                       ||produceDate.equals("请选择")||carPrice.isEmpty()||carUserName.isEmpty()||
+                        carUserPhone.isEmpty()) {
 
-                mCarInformation=new CarInformation();
-                mCarInformation.setCarBrand(mBrandText.getText().toString());
-                mCarInformation.setCarModel(mModelText.getText().toString());
-                mCarInformation.setCarUsedHours(Integer.parseInt(mCarUsedHours.getText().toString()));
-                mCarInformation.setCarSite(mSiteText.getText().toString());
-                mCarInformation.setCarProducedYear(mCarProduceDateText.getText().toString());
-                mCarInformation.setCarPrice(Double.parseDouble(mCarPrice.getText().toString()));
-                mCarInformation.setCarUsedState(mCarStateText.getText().toString());
-                mCarInformation.setCarUsedPurpose(mCarUsingPurposeText.getText().toString());
-                mCarInformation.setCarUserDescriber(mCarDescriber.getText().toString());
-                mCarInformation.setCarUserName(mCarUserName.getText().toString());
-                mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
-                mCarInformation.setCarPublishDate(df.format(c.getTime()));
-                //ArrayList<Bitmap> selectedPictures;
-                HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
-                String pictureName;
-                long j=0;
-                nameAndPictures.clear();
-                for(int i=0;i<Bimp.tempSelectBitmap.size();i++){
-                    Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
-                    //selectedPictures=new ArrayList<Bitmap>();
-                    //selectedPictures.add(selectedPicture);
-                    j=System.currentTimeMillis();
-                    j++;
+                    if(brand.equals("请选择")||model.equals("请选择")){
+                        showAlertDialog("品牌和型号");
 
-                    pictureName=mModelText.getText().toString()+j;
-                    nameAndPictures.put(pictureName,selectedPicture);
-                    mCarInformation.setCarPictureLocalName(pictureName);
+                    }
+                    else if(usedHours.isEmpty()){
+                        showAlertDialog("小时数");
+                    }
+                    else if(site.equals("请选择")){
+                        showAlertDialog("所在地");
+                    }
+                    else if(produceDate.equals("请选择")){
+                        showAlertDialog("生产年份");
+                    }
+                    else if(carPrice.isEmpty()){
+                        showAlertDialog("价格");
+                    }
+                    else if(carUserName.isEmpty()){
+                        showAlertDialog("联系人");
+                    }
+                    else if(carUserPhone.isEmpty()){
+                        showAlertDialog("电话");
+                    }
                 }
+                else {
 
-                carID=carInformationDB.insertCarInformation(mCarInformation);
+                    mCarInformation=new CarInformation();
+                    mCarInformation.setCarBrand(mBrandText.getText().toString());
+                    mCarInformation.setCarModel(mModelText.getText().toString());
+                    mCarInformation.setCarUsedHours(Integer.parseInt(mCarUsedHours.getText().toString()));
+                    mCarInformation.setCarSite(mSiteText.getText().toString());
+                    mCarInformation.setCarProducedYear(mCarProduceDateText.getText().toString());
+                    mCarInformation.setCarPrice(Double.parseDouble(mCarPrice.getText().toString()));
+                    mCarInformation.setCarUsedState(mCarStateText.getText().toString());
+                    mCarInformation.setCarUsedPurpose(mCarUsingPurposeText.getText().toString());
+                    mCarInformation.setCarUserDescriber(mCarDescriber.getText().toString());
+                    mCarInformation.setCarUserName(mCarUserName.getText().toString());
+                    mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
+                    mCarInformation.setCarPublishDate(df.format(c.getTime()));
+                    //ArrayList<Bitmap> selectedPictures;
+                    HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
+                    String pictureName;
+                    long j=0;
+                    nameAndPictures.clear();
+                    for(int i=0;i<Bimp.tempSelectBitmap.size();i++){
+                        Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
+                        //selectedPictures=new ArrayList<Bitmap>();
+                        //selectedPictures.add(selectedPicture);
+                        j=System.currentTimeMillis();
+                        j++;
 
-                mCarInformation.setCarId((int) carID);
+                        pictureName=mModelText.getText().toString()+j;
+                        nameAndPictures.put(pictureName,selectedPicture);
+                        mCarInformation.setCarPictureLocalName(pictureName);
+                    }
 
-               // SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
-                SaveImageToMemory saveImageToMemory=new SaveImageToMemory(nameAndPictures,mCarInformation);
-                saveImageToMemory.setEventListener(eventListener);
-                saveImageToMemory.execute(nameAndPictures);
+                    carID=carInformationDB.insertCarInformation(mCarInformation);
+
+                    mCarInformation.setCarId((int) carID);
+
+                    // SaveImageToMemory saveImageToMemory=new SaveImageToMemory(selectedPicture,pictureName,mCarInformation);
+                    SaveImageToMemory saveImageToMemory=new SaveImageToMemory(nameAndPictures,mCarInformation);
+                    saveImageToMemory.setEventListener(eventListener);
+                    saveImageToMemory.execute(nameAndPictures);
 
 
-                Toast.makeText(SellCarInformationActivity.this,
-                        "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
-                                carInformationDB.getCarInformationByCarId(carID).getCarModel()
-                        , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SellCarInformationActivity.this,
+                            "发布成功"+carInformationDB.getCarInformationByCarId(carID).getCarBrand()+
+                                    carInformationDB.getCarInformationByCarId(carID).getCarModel()
+                            , Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
     }
 
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SellCarInformationActivity.this);
+        builder.setMessage("请输入"+message+"信息")
+                .setPositiveButton(android.R.string.ok, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 
     public void storeImagePathstoDB(long caID) {
@@ -398,7 +447,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                             + mCurrentDistrictName);
                     mSiteText.setTextSize(10);
                     mSiteText.setTextColor(Color.BLUE);
-                    showSelectedResult();
+                   // showSelectedResult();
                     pop1.dismiss();
                 }
             }) ;
@@ -892,6 +941,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         mViewCity.setCurrentItem(0);
         updateExcavatorModel();
     }
+
+
     private void showSelectedResult() {
         Toast.makeText(SellCarInformationActivity.this, "地址:" + mCurrentProviceName + "," + mCurrentCityName + ","
                 + mCurrentDistrictName + "," + mCurrentZipCode, Toast.LENGTH_SHORT).show();

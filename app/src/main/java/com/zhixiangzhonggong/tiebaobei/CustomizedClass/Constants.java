@@ -145,4 +145,38 @@ public class Constants {
     public static final String DROP_PICTURE_URL_TABLE =
             "DROP TABLE IF EXISTS " + CAR_PICTURE_URL_TABLE;
 
+
+    //user account information
+    public static final String USER_ACCOUNT_INFORMATION_TABLE = "user_account_information";
+
+    public static final String USER_ACCOUNT_INFORMATION_ID = "user_account_information_id";
+    public static final int    USER_ACCOUNT_INFORMATION_ID_COL = 0;
+
+    public static final String USER_ACCOUNT_TELEPHONE = "user_account_telephone";
+    public static final int    USER_ACCOUNT_TELEPHONE_COL = 1;
+
+    public static final String USER_ACCOUNT_ALIAS_NAME = "user_account_alias_name";
+    public static final int    USER_ACCOUNT_ALIAS_NAME_COL = 2;
+
+    public static final String USER_ACCOUNT_EMAIL = "user_account_email";
+    public static final int    USER_ACCOUNT_EMAIL_COL = 3;
+
+    public static final String USER_ACCOUNT_PASSWORD = "user_account_password";
+    public static final int    USER_ACCOUNT_PASSWORD_COL = 4;
+
+
+
+
+    // CREATE and DROP TABLE statements
+    public static final String CREATE_USER_ACCOUNT_INFORMATION_TABLE =
+            "CREATE TABLE " + USER_ACCOUNT_INFORMATION_TABLE + " (" +
+                    USER_ACCOUNT_INFORMATION_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    USER_ACCOUNT_TELEPHONE      + " TEXT, " +
+                    USER_ACCOUNT_ALIAS_NAME  + " TEXT, " +
+                    USER_ACCOUNT_EMAIL  + " TEXT, " +
+                    USER_ACCOUNT_PASSWORD  + " TEXT);";
+
+    public static final String DROP_USER_ACCOUNT_INFORMATION_TABLE =
+            "DROP TABLE IF EXISTS " + USER_ACCOUNT_INFORMATION_TABLE;
+
 }
