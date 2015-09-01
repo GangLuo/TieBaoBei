@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,8 +20,10 @@ import com.zhixiangzhonggong.tiebaobei.R;
 public class LoginActivity extends Activity {
     private TextView forgetPassWorldText;
     private ImageButton checkButton;
+    private Button mLoginButton;
     private ImageView backIamge;
-    private TextView mLogin;
+    private TextView mLoginText;
+    private EditText mEmail,mPassword;
     private boolean colorChanged=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +54,20 @@ public class LoginActivity extends Activity {
             }
         });
 
-        mLogin.setOnClickListener(new View.OnClickListener() {
+        mLoginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
 
                 startActivity(intent);
+            }
+        });
+
+
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -66,7 +78,8 @@ public class LoginActivity extends Activity {
         checkButton=(ImageButton)findViewById(R.id.checkImageButton);
         checkButton.setImageResource(R.drawable.uncheck);
         backIamge= (ImageView) findViewById(R.id.back_image);
-        mLogin= (TextView) findViewById(R.id.sign_up_text);
+        mLoginText= (TextView) findViewById(R.id.sign_up_text);
+        mLoginButton= (Button) findViewById(R.id.loginButton);
     }
 
     @Override

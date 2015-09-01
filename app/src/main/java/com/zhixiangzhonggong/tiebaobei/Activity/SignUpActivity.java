@@ -7,12 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.zhixiangzhonggong.tiebaobei.R;
 
 public class SignUpActivity extends Activity {
-private ImageView mBackImage;
+    private ImageView mBackImage;
+    private EditText mUserName,mEmail,mPassword,mConfirmPassword;
+    private Button mSignUpButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -30,6 +34,11 @@ private ImageView mBackImage;
 
     private void initView() {
         mBackImage= (ImageView) findViewById(R.id.sign_up_back_image);
+        mUserName= (EditText) findViewById(R.id.usernameField);
+        mEmail= (EditText) findViewById(R.id.emailField);
+        mPassword=(EditText) findViewById(R.id.passwordField);
+        mConfirmPassword=(EditText) findViewById(R.id.confirmPwText);
+        mSignUpButton= (Button) findViewById(R.id.signupButton);
     }
 
     @Override
