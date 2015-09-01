@@ -44,12 +44,16 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         initView();
         userAccountInFormationDB=new UserAccountInFormationDB(this);
+
+
         backIamge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
+
 
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +71,8 @@ public class LoginActivity extends Activity {
             }
         });
 
+
+
         forgetPassWorldText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +81,8 @@ public class LoginActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+
 
         mLoginText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +142,8 @@ public class LoginActivity extends Activity {
         });
     }
 
+
+
     private void ShowDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setMessage(message)
@@ -141,6 +151,8 @@ public class LoginActivity extends Activity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
 
     private void initView() {
         forgetPassWorldText= (TextView) findViewById(R.id.forgotPasswordText);

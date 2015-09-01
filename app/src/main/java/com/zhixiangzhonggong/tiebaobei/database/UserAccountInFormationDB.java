@@ -104,6 +104,24 @@ public class UserAccountInFormationDB {
         return userAccountInformation;
     }
 
+    public UserAccountInformationModel getUserAccountInformationByEmail(String email) {
+        String where = Constants.USER_ACCOUNT_EMAIL + "= ?";
+        String[] whereArgs = { email };
+
+        // handle exceptions?
+        this.openReadableDB();
+        Cursor cursor = db.query(Constants.USER_ACCOUNT_INFORMATION_TABLE,
+                null, where, whereArgs, null, null, null);
+        cursor.moveToFirst();
+        UserAccountInformationModel userAccountInformation = getUserAccountInFormationFromCursor(cursor);
+        if (cursor != null)
+            cursor.close();
+        this.closeDB();
+
+        return userAccountInformation;
+    }
+
+
     private static UserAccountInformationModel getUserAccountInFormationFromCursor(Cursor cursor) {
         if (cursor == null || cursor.getCount() == 0){
             return null;
@@ -150,6 +168,31 @@ public class UserAccountInFormationDB {
         String[] whereArgs = { userAccountInformationModel.getUserTelephone()};
 
         UserAccountInformationModel userAccountInformationFromOriginalDB = getUserAccountInformationByPhoneNumber(userAccountInformationModel.getUserTelephone());
+        int rowCount = 0;
+        if(userAccountInformationFromOriginalDB == null){
+            insertUserAccountInformation(userAccountInformationFromOriginalDB);
+        }else{
+            this.openWritableDB();
+            rowCount = db.update(Constants.USER_ACCOUNT_INFORMATION_TABLE, cv, where, whereArgs);
+            this.closeDB();
+        }
+
+        return rowCount;
+    }
+
+
+
+    public int updateUserAccountPasswordByEmail(UserAccountInformationModel userAccountInformationModel) {
+        ContentValues cv = new ContentValues();
+        //cv.put(Constants.CAR_ID, carInformation.getCarId());
+        cv.put(Constants.USER_ACCOUNT_TELEPHONE, userAccountInformationModel.getUserTelephone());
+        cv.put(Constants.USER_ACCOUNT_ALIAS_NAME,userAccountInformationModel.getUserAliasName());
+        cv.put(Constants.USER_ACCOUNT_EMAIL, userAccountInformationModel.getEmail());
+        cv.put(Constants.USER_ACCOUNT_PASSWORD, userAccountInformationModel.getPassword());
+        String where = Constants.USER_ACCOUNT_EMAIL + "= ?";
+        String[] whereArgs = { userAccountInformationModel.getEmail()};
+
+        UserAccountInformationModel userAccountInformationFromOriginalDB = getUserAccountInformationByEmail(userAccountInformationModel.getEmail());
         int rowCount = 0;
         if(userAccountInformationFromOriginalDB == null){
             insertUserAccountInformation(userAccountInformationFromOriginalDB);
