@@ -58,6 +58,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.UUID;
 
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
@@ -273,10 +274,13 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                         Bitmap selectedPicture= Bimp.tempSelectBitmap.get(i).getBitmap();
                         //selectedPictures=new ArrayList<Bitmap>();
                         //selectedPictures.add(selectedPicture);
+                        UUID idOne = UUID.randomUUID();
                         j=System.currentTimeMillis();
+                        String m=String.valueOf(j);
+                        Log.i("CURRENTtIMEmIlis",m+idOne);
                         j++;
 
-                        pictureName=mModelText.getText().toString()+j;
+                        pictureName=mModelText.getText().toString()+idOne+j;
                         nameAndPictures.put(pictureName,selectedPicture);
                         mCarInformation.setCarPictureLocalName(pictureName);
                     }
