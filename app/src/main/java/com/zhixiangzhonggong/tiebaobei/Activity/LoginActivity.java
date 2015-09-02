@@ -45,7 +45,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mHideEditor=new HideEditorKeyboard(this);
-        mHideEditor.setupUI(findViewById(R.id.login_edite_field));
+        mHideEditor.setupUI(findViewById(R.id.loginBackground));
         initView();
         userAccountInFormationDB=new UserAccountInFormationDB(this);
 
@@ -136,7 +136,7 @@ public class LoginActivity extends Activity {
                                 ShowDialog("密码不正确");
                             }
                         }
-                        else if (!emailFromDB.equals(email)){
+                        else if ((!emailFromDB.equals(email))&&i==userAccountInformationModelArrayList.size()-1){
                             ShowDialog("用户名不存在");
                         }
                     }
