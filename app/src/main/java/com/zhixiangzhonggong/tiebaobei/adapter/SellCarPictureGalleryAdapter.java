@@ -35,6 +35,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
     private ArrayList<String> mImageUrlList;
     private int selectedPosition = -1;
     private boolean shape;
+    private  ViewHolder holder;
     Bimp bimp;
     ImageItem imageItem;
     private static AppController mAppController= AppController.getInstance();
@@ -91,7 +92,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_published_grida,
                     parent, false);
@@ -103,16 +104,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-    /*    if (position ==Bimp.tempSelectBitmap.size()) {
-            holder.image.setImageBitmap(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.icon_addpic_unfocused));
-            if (position == 9) {
-                holder.image.setVisibility(View.GONE);
-            }
-        } else {
-            holder.image.setImageBitmap(Bimp.tempSelectBitmap.get(position).getBitmap());
-        }*/
-        //+"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"
+        //"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"
         String filePath = new String("file:///"+mImageUrlList.get(position));
         imageLoader.displayImage(filePath, holder.image, imgDisplayOptions, new ImageLoadingListener() {
             @Override
