@@ -49,7 +49,8 @@ public class UserAccountInFormationDB {
                 null, null,
                 null, null, null);
         ArrayList<UserAccountInformationModel> userAccountInformationList = new ArrayList<UserAccountInformationModel>();
-
+        cursor.moveToFirst();
+        userAccountInformationList.add(getUserAccountInFormationFromCursor(cursor));
         while (cursor.moveToNext()) {
             userAccountInformationList.add(getUserAccountInFormationFromCursor(cursor));
         }

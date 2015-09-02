@@ -48,7 +48,8 @@ public class CarPictureUrlDB {
                 null, null,
                 null, null, null);
         ArrayList<UserLoadPictureUrl> userLoadPictureUrlArrayList = new ArrayList<UserLoadPictureUrl>();
-
+        cursor.moveToFirst();
+        userLoadPictureUrlArrayList.add(getUserLoadPictureUrlFromCursor(cursor));
         while (cursor.moveToNext()) {
             userLoadPictureUrlArrayList.add(getUserLoadPictureUrlFromCursor(cursor));
         }

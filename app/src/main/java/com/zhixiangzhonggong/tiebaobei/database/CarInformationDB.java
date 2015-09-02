@@ -48,7 +48,8 @@ public class CarInformationDB {
                 null, null,
                 null, null, null);
         ArrayList<CarInformation> carInformations = new ArrayList<CarInformation>();
-
+        cursor.moveToFirst();
+        carInformations.add(getCarInformationFromCursor(cursor));
         while (cursor.moveToNext()) {
             carInformations.add(getCarInformationFromCursor(cursor));
         }

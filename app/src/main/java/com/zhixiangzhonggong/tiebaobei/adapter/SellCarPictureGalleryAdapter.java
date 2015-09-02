@@ -91,17 +91,17 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
         return selectedPosition;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_published_grida,
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        View v = convertView;
+        if (v == null) {
+            v = inflater.inflate(R.layout.item_published_grida,
                     parent, false);
             holder = new ViewHolder();
-            holder.image = (ImageView) convertView
+            holder.image = (ImageView) v
                     .findViewById(R.id.item_grida_image);
-            convertView.setTag(holder);
+            v.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (ViewHolder) v.getTag();
         }
 
         //"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"
@@ -119,11 +119,14 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
 
             @Override
             public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                bimp=new Bimp();
-                imageItem=new ImageItem();
-                imageItem.setBitmap(bitmap);
-               // bimp.tempSelectBitmap.clear();
-                bimp.tempSelectBitmap.add(imageItem);
+
+                    bimp = new Bimp();
+                    imageItem = new ImageItem();
+                    imageItem.setBitmap(bitmap);
+                    // bimp.tempSelectBitmap.clear();
+                    bimp.tempSelectBitmap.add(imageItem);
+
+
             }
 
             @Override
@@ -131,7 +134,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
 
             }
         });
-        return convertView;
+        return v;
     }
 
     public class ViewHolder {

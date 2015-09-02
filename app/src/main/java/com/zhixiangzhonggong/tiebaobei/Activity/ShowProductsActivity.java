@@ -139,6 +139,7 @@ public class ShowProductsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(ShowProductsActivity.this,ShowSellCarDetailInformationActivity.class);
+
                 intent.putExtra("carId",position);
                 startActivity(intent);
             }
