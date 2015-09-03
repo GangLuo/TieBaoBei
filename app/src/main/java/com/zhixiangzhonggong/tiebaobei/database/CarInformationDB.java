@@ -7,11 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.Constants;
+import com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.util.LYDateString;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarInformationDB {
     private SQLiteDatabase db;
@@ -210,5 +212,38 @@ public class CarInformationDB {
         this.closeDB();
 
         return rowCount;
+    }
+
+
+    public List<CarInformation> readCarInformationFromDB(String searchTerm){
+        List<CarInformation> recordsList = new ArrayList<CarInformation>();
+        // select query
+        String sql = "";
+        sql += "SELECT * FROM " + Constants.CAR_INFORMATION_TABLE;
+        sql += " WHERE " + Constants.CAR_BRAND + " OR " + Constants.CAR_MODEL + " LIKE '%" + searchTerm + "%'";
+        sql += " ORDER BY " + Constants.CAR_ID + " DESC";
+        sql += " LIMIT 0,5";
+        this.openWritableDB();
+        Cursor cursor=db.rawQuery(sql,null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                // int productId = Integer.parseInt(cursor.getString(cursor.getColumnIndex(fieldProductId)));
+                CarInformation carInformation = getCarInformationFromCursor(cursor);
+                //String objectName = cursor.getString(cursor.getColumnIndex(fieldObjectName));
+               // MyObject myObject = new MyObject(objectName);
+
+                // add to list
+                recordsList.add(carInformation);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        // return the list of records
+        return recordsList;
     }
 }

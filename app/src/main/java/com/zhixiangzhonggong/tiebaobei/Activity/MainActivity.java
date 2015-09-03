@@ -12,13 +12,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zhixiangzhonggong.tiebaobei.CustomizedClass.CustomAutoCompleteTextChangedListener;
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.HideEditorKeyboard;
+import com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView;
 import com.zhixiangzhonggong.tiebaobei.CustomizedView.SlidingMenu;
 import com.zhixiangzhonggong.tiebaobei.R;
+import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
+import com.zhixiangzhonggong.tiebaobei.database.CarPictureUrlDB;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
+
+import java.util.List;
 
 public class MainActivity extends Activity {
     private HideEditorKeyboard mHideEditor;
@@ -35,6 +44,11 @@ public class MainActivity extends Activity {
     private int selectedOrder;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
+    public CustomAutoCompleteView myAutoCompleteView;
+    public ArrayAdapter<String> myAdapter;
+    private CarInformationDB carInformationDB;
+    public String[] item = new String[] {"Please search..."};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,6 +59,8 @@ public class MainActivity extends Activity {
         initView();
         mHideEditor=new HideEditorKeyboard(this);
         mHideEditor.setupUI(findViewById(R.id.mainActivityId));
+        carInformationDB=new CarInformationDB(this);
+
         mBySmallPeopleImageLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +157,18 @@ public class MainActivity extends Activity {
             }
         });
 
+
+        myAutoCompleteView.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
+        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
+        myAutoCompleteView.setAdapter(myAdapter);
+        myAutoCompleteView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(MainActivity.this,ShowSearchResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initView() {
@@ -154,6 +182,7 @@ public class MainActivity extends Activity {
         mSellCar= (TextView) findViewById(R.id.sell_car_id);
         mAllMachineModel=(TextView) findViewById(R.id.all_machine_model_id);
         mBySmallPeopleImageLogin= (ImageView) findViewById(R.id.login_small_people_image);
+        myAutoCompleteView= (CustomAutoCompleteView) findViewById(R.id.main_search_field_id);
 
     }
 
@@ -167,6 +196,26 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
         return true;
+    }
+
+
+    // this function is used in CustomAutoCompleteTextChangedListener.java
+    public String[] getItemsFromDb(String searchTerm){
+
+        // add items on the array dynamically
+        List<CarInformation> products = carInformationDB.readCarInformationFromDB(searchTerm);
+        int rowCount = products.size();
+
+        String[] item = new String[rowCount];
+        int x = 0;
+
+        for (CarInformation record : products) {
+
+            item[x] = record.getCarBrand()+record.getCarModel();
+            x++;
+        }
+
+        return item;
     }
 
 

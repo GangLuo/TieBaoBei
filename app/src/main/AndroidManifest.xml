@@ -130,6 +130,10 @@
             android:name=".Activity.FindPasswordActivity"
             android:label="@string/title_activity_find_password" >
         </activity>
+        <activity
+            android:name=".Activity.ShowSearchResultActivity"
+            android:label="@string/title_activity_show_search_result" >
+        </activity>
     </application>
 
 </manifest>

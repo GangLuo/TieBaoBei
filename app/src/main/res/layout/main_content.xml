@@ -77,17 +77,19 @@
                     android:layout_gravity="left|center_vertical"
                     android:layout_margin="5dp"
                     android:src="@drawable/search_icon"/>
-                <EditText
+                <com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/main_search_field_id"
                     android:ems="10"
                     android:gravity="left|center"
                     android:paddingLeft="35dp"
                     android:paddingTop="2dp"
                     android:layout_marginRight="5dp"
+                    android:completionThreshold="1"
                     android:hint="输入设备型号">
                     <requestFocus />
-                   </EditText>
+                   </com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView>
 
             </FrameLayout>
 
