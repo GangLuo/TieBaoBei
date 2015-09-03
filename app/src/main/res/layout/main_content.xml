@@ -143,6 +143,7 @@
                     android:text="搅拌车"
                     />
                 <TextView
+                    android:id="@+id/pumb_truck_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

@@ -20,6 +20,7 @@ import com.zhixiangzhonggong.tiebaobei.CustomizedClass.ProductBrandFragment;
 import com.zhixiangzhonggong.tiebaobei.R;
 import com.zhixiangzhonggong.tiebaobei.adapter.ShowProductsContentsAdapter;
 import com.zhixiangzhonggong.tiebaobei.database.CarInformationDB;
+import com.zhixiangzhonggong.tiebaobei.model.CarInformation;
 import com.zhixiangzhonggong.tiebaobei.model.CarInformationList;
 import com.zhixiangzhonggong.tiebaobei.webrequest.SendMixerTruckRequest;
 
@@ -49,7 +50,8 @@ public class ShowProductsActivity extends Activity {
         productBrandFragment =new ProductBrandFragment();
 
         carInformationList=new CarInformationList();
-        carInformationList.setCarInformationArrayList(carInformationDB.getAllInformatons());
+        //carInformationList.setCarInformationArrayList(carInformationDB.getAllInformatons());
+        carInformationList.setCarInformationArrayList(carInformationDB.getCarInformationByCarType(machineModelName));
         showProductsContentsAdapter=new ShowProductsContentsAdapter(ShowProductsActivity.this, carInformationList);
         productsListView.setAdapter(showProductsContentsAdapter);
 
@@ -141,8 +143,9 @@ public class ShowProductsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(ShowProductsActivity.this,ShowSellCarDetailInformationActivity.class);
-
-                intent.putExtra("carId",position);
+                CarInformation carInformation= (CarInformation) showProductsContentsAdapter.getItem(position);
+                int carId=carInformation.getCarId();
+                intent.putExtra("carId",carId);
                 startActivity(intent);
             }
         });

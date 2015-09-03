@@ -160,7 +160,7 @@ public class CarInformationDB {
         cv.put(Constants.CAR_USER_DESCRIER, carInformation.getCarUserDescriber());
         cv.put(Constants.CAR_USER_NAME, carInformation.getCarUserName());
         cv.put(Constants.CAR_USER_PHONE, carInformation.getCarUserPhone());
-        cv.put(Constants.IS_APPROVED, carInformation.isApproved());
+        cv.put(Constants.IS_APPROVED, carInformation.isApproved()==true?1:0);
         this.openWritableDB();
         long rowID = db.insert(Constants.CAR_INFORMATION_TABLE, null, cv);
         this.closeDB();

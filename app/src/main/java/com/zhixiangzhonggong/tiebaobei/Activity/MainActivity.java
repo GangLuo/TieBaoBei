@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
     private TextView mAboutUs;
     private TextView mAllMachineModel;
     private TextView mSellCar;
+    private TextView mMixerCar,mPumbCar;
     private ImageView mBySmallPeopleImageLogin;
     private Button searchButton;
     private int selectedOrder;
@@ -178,12 +179,32 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ShowSearchResultActivity.class);
-                String input=myAutoCompleteView.getText().toString();
-                intent.putExtra("input",input);
+                String input = myAutoCompleteView.getText().toString();
+                intent.putExtra("input", input);
                 startActivity(intent);
             }
         });
 
+
+        mMixerCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ShowProductsActivity.class);
+                String carTypeName=mMixerCar.getText().toString();
+                intent.putExtra("chooseMachineModel",carTypeName);
+                startActivity(intent);
+            }
+        });
+
+        mPumbCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ShowProductsActivity.class);
+                String carTypeName=mPumbCar.getText().toString();
+                intent.putExtra("chooseMachineModel",carTypeName);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
@@ -199,6 +220,8 @@ public class MainActivity extends Activity {
         mBySmallPeopleImageLogin= (ImageView) findViewById(R.id.login_small_people_image);
         myAutoCompleteView= (CustomAutoCompleteView) findViewById(R.id.main_search_field_id);
         searchButton= (Button) findViewById(R.id.main_search_button);
+        mMixerCar= (TextView) findViewById(R.id.machine_mixer_model_id);
+        mPumbCar= (TextView) findViewById(R.id.pumb_truck_id);
 
     }
 

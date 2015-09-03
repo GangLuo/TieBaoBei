@@ -92,7 +92,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     public SharedPreferences.Editor editor;
     private saveImageAsyncTaskListener eventListener;
     private long carID;
-
+    private String machineModelTypeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +121,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         eventListener=this;
 
         Intent intent=getIntent();
-        String machineModelName=intent.getStringExtra("chooseMachineModel");
-        mCarChooseTitle.setText(machineModelName);
+        machineModelTypeName=intent.getStringExtra("chooseMachineModel");
+        mCarChooseTitle.setText(machineModelTypeName);
 
         //pop up choose site popwindow
         mSiteLayout.setOnClickListener(new View.OnClickListener() {
@@ -273,6 +273,8 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
                     mCarInformation.setCarUserName(mCarUserName.getText().toString());
                     mCarInformation.setCarUserPhone(mCarUserPhone.getText().toString());
                     mCarInformation.setCarPublishDate(df.format(c.getTime()));
+                    mCarInformation.setCarType(machineModelTypeName);
+                    mCarInformation.setIsApproved(true);
                     //ArrayList<Bitmap> selectedPictures;
                     HashMap<String,Bitmap> nameAndPictures=new HashMap<String, Bitmap>();
                     String pictureName;
