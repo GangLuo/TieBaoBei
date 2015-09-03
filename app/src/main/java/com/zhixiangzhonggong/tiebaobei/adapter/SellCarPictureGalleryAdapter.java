@@ -65,7 +65,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
        this.mImageUrlList=mImageUrlList;
         inflater = LayoutInflater.from(context);
     }
-    
+
   @Override
     public int getCount() {
 
