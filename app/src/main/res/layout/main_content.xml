@@ -97,6 +97,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
+                android:id="@+id/main_search_button"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="8dp"
                 android:background="#F5740A"

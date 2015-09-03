@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class MainActivity extends Activity {
     private TextView mAllMachineModel;
     private TextView mSellCar;
     private ImageView mBySmallPeopleImageLogin;
+    private Button searchButton;
     private int selectedOrder;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
@@ -157,14 +159,25 @@ public class MainActivity extends Activity {
             }
         });
 
-
-        myAutoCompleteView.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
+    //below is auto fill textview method if you need
+     /*   myAutoCompleteView.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
         myAutoCompleteView.setAdapter(myAdapter);
         myAutoCompleteView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(MainActivity.this,ShowSearchResultActivity.class);
+//                Intent intent = new Intent(MainActivity.this, ShowSearchResultActivity.class);
+//                startActivity(intent);
+            }
+        });*/
+
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShowSearchResultActivity.class);
+                String input=myAutoCompleteView.getText().toString();
+                intent.putExtra("input",input);
                 startActivity(intent);
             }
         });
@@ -183,6 +196,7 @@ public class MainActivity extends Activity {
         mAllMachineModel=(TextView) findViewById(R.id.all_machine_model_id);
         mBySmallPeopleImageLogin= (ImageView) findViewById(R.id.login_small_people_image);
         myAutoCompleteView= (CustomAutoCompleteView) findViewById(R.id.main_search_field_id);
+        searchButton= (Button) findViewById(R.id.main_search_button);
 
     }
 

@@ -246,4 +246,35 @@ public class CarInformationDB {
         // return the list of records
         return recordsList;
     }
+
+    public ArrayList<CarInformation> readAllCarInformationFromDB(String searchTerm){
+        ArrayList<CarInformation> recordsList = new ArrayList<CarInformation>();
+        // select query
+        String sql = "";
+        sql += "SELECT * FROM " + Constants.CAR_INFORMATION_TABLE;
+        sql += " WHERE " + Constants.CAR_BRAND + " OR " + Constants.CAR_MODEL + " LIKE '%" + searchTerm + "%'";
+        sql += " ORDER BY " + Constants.CAR_ID + " DESC";
+        this.openWritableDB();
+        Cursor cursor=db.rawQuery(sql,null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                // int productId = Integer.parseInt(cursor.getString(cursor.getColumnIndex(fieldProductId)));
+                CarInformation carInformation = getCarInformationFromCursor(cursor);
+                //String objectName = cursor.getString(cursor.getColumnIndex(fieldObjectName));
+                // MyObject myObject = new MyObject(objectName);
+
+                // add to list
+                recordsList.add(carInformation);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        // return the list of records
+        return recordsList;
+    }
 }
