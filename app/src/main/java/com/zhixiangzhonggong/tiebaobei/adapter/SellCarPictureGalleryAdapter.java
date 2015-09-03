@@ -65,10 +65,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
        this.mImageUrlList=mImageUrlList;
         inflater = LayoutInflater.from(context);
     }
-
-  /*  public void update() {
-        loading();
-    }*/
+    
   @Override
     public int getCount() {
 
@@ -83,13 +80,6 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
         return postion;
     }
 
-    public void setSelectedPosition(int position) {
-        selectedPosition = position;
-    }
-
-    public int getSelectedPosition() {
-        return selectedPosition;
-    }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
@@ -106,6 +96,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
 
         //"/data/data/com.zhixiangzhonggong.tiebaobei/app_imageDir"+ "/"
         String filePath = new String("file:///"+mImageUrlList.get(position));
+
         imageLoader.displayImage(filePath, holder.image, imgDisplayOptions, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String s, View view) {
