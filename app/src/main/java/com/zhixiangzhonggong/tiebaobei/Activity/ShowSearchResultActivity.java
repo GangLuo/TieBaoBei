@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,6 +54,17 @@ public class ShowSearchResultActivity extends Activity {
         });
         searchTitleText.setText(input);
 
+
+        searchResultContents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(ShowSearchResultActivity.this,ShowSellCarDetailInformationActivity.class);
+                CarInformation carInformation= (CarInformation) showProductsContentsAdapter.getItem(position);
+                int carId=carInformation.getCarId();
+                intent.putExtra("carId",carId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {

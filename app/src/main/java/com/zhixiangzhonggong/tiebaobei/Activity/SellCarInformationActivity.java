@@ -72,7 +72,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
     private GridAdapter adapter;
     private View parentView,view;
     private TextView mSiteText,mBrandText,mModelText,mCarProduceDateText,mCarStateText,
-            mCarUsingPurposeText;
+            mCarUsingPurposeText,mCarChooseTitle;
     private EditText mCarUsedHours,mCarPrice,mCarDescriber,mCarUserPhone,mCarUserName;
     private ImageView mbackbutton,mLoginImage;
     public static Bitmap bimap ;
@@ -100,12 +100,18 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         super.onCreate(savedInstanceState);
         Res.init(this);
         setContentView(R.layout.activity_sell_car_information);
+
+
+
         bimap = BitmapFactory.decodeResource(
                 getResources(),
                 R.drawable.icon_addpic_unfocused);
         //PublicWay.activityList.add(this);
         parentView = getLayoutInflater().inflate(R.layout.activity_sell_car_information, null);
         setContentView(parentView);
+
+
+
         //hide editext key board when click other place
         mHideEditor=new HideEditorKeyboard(this);
         mHideEditor.setupUI(findViewById(R.id.sellCarInfromationId));
@@ -114,7 +120,9 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
         Init();
         eventListener=this;
 
-
+        Intent intent=getIntent();
+        String machineModelName=intent.getStringExtra("chooseMachineModel");
+        mCarChooseTitle.setText(machineModelName);
 
         //pop up choose site popwindow
         mSiteLayout.setOnClickListener(new View.OnClickListener() {
@@ -488,6 +496,7 @@ public class SellCarInformationActivity extends BaseActivity implements  OnWheel
             mLoginImage= (ImageView) findViewById(R.id.car_informatin_login_small_people_image);
             mSiteText= (TextView) findViewById(R.id.car_site_text);
             mBrandText= (TextView) findViewById(R.id.carBrandTextId);
+            mCarChooseTitle= (TextView) parentView.findViewById(R.id.sell_car_title);
             mSiteLayout= (LinearLayout) parentView.findViewById(R.id.choose_site_id);
             mCarBrandModelLayout= (LinearLayout) parentView.findViewById(R.id.car_brand_model_layout_id);
             mModelText= (TextView) parentView.findViewById(R.id.carModelTextId);

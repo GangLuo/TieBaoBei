@@ -28,7 +28,7 @@ public class ShowProductsActivity extends Activity {
     private SendMixerTruckRequest sendMixerTruckRequest;
     private ListView productsListView;
     private ImageView mBackImage;
-    private TextView mBrands,mPrice,mProvice,mMore,mOrder;
+    private TextView mBrands,mPrice,mProvice,mMore,mOrder,mMachineTitle;
     private FrameLayout mFragmentLayout;
     private int buttonNumber;
     private ProductBrandFragment productBrandFragment;
@@ -43,7 +43,9 @@ public class ShowProductsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_products);
         initView();
-
+        Intent intent=getIntent();
+        String machineModelName=intent.getStringExtra("chooseMachineModel");
+        mMachineTitle.setText(machineModelName);
         productBrandFragment =new ProductBrandFragment();
 
         carInformationList=new CarInformationList();
@@ -181,6 +183,7 @@ public class ShowProductsActivity extends Activity {
         mMore= (TextView) findViewById(R.id.more_id);
         mOrder= (TextView) findViewById(R.id.order_id);
         mFragmentLayout= (FrameLayout) findViewById(R.id.show_fragment_id);
+        mMachineTitle= (TextView) findViewById(R.id.machine_title);
     }
 
     @Override

@@ -46,7 +46,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/login_text"
+                android:id="@+id/sell_car_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"

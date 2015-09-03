@@ -11,15 +11,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhixiangzhonggong.tiebaobei.R;
+import com.zhixiangzhonggong.tiebaobei.adapter.ChooseMachineModelAdapter;
 import com.zhixiangzhonggong.tiebaobei.util.Bimp;
+
+import java.util.ArrayList;
 
 public class ChooseMachineModelActivity extends Activity {
     private ImageView mBackImage;
     private TextView mMixerTruck;
+    private ListView machineModelNameList;
+    private ChooseMachineModelAdapter chooseMachineModelAdapter;
+    private ArrayList<String> machineModelNames;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
     @Override
@@ -28,20 +36,27 @@ public class ChooseMachineModelActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_machine_model);
         initView();
+        machineModelNames=new ArrayList<>();
+        String[] modelNames={"搅拌车","砂浆泵","泵车","小型挖掘机","大型挖掘机","装载机","推土机","配件","其他"};
+        for (String names : modelNames){
+            machineModelNames.add(names);
+        }
+        chooseMachineModelAdapter=new ChooseMachineModelAdapter(this,machineModelNames);
 
         mBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(ChooseMachineModelActivity.this,MainActivity.class);
+                Intent intent = new Intent(ChooseMachineModelActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        mMixerTruck.setOnClickListener(new View.OnClickListener() {
+        machineModelNameList.setAdapter(chooseMachineModelAdapter);
+        machineModelNameList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name= (String) chooseMachineModelAdapter.getItem(position);
                 pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
-
                 editor = pref.edit();
                 int selectedOrder = pref.getInt("selectedOrder", 0);
                 Intent intent= new Intent();
@@ -51,16 +66,16 @@ public class ChooseMachineModelActivity extends Activity {
                 else if(selectedOrder==5){
                     intent = new Intent(getApplicationContext(), SellCarInformationActivity.class);
                 }
-
-
+                intent.putExtra("chooseMachineModel",name);
                 startActivity(intent);
             }
+
         });
     }
 
     private void initView() {
         mBackImage= (ImageView) findViewById(R.id.machine_back_image);
-        mMixerTruck= (TextView) findViewById(R.id.machine_mixer_truck_id);
+        machineModelNameList= (ListView) findViewById(R.id.chooseMachineListViewId);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

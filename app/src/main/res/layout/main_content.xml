@@ -60,7 +60,7 @@
         >
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:gravity="center|center_vertical"
             android:layout_weight="0.01"
             android:orientation="horizontal">
@@ -68,7 +68,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="3">
+                android:layout_weight="2">
                 <ImageView
                     android:id="@+id/seatch_icon"
                     android:layout_width="30dp"
@@ -79,15 +79,15 @@
                     android:src="@drawable/search_icon"/>
                 <com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/main_search_field_id"
                     android:ems="10"
                     android:gravity="left|center"
                     android:paddingLeft="35dp"
-                    android:paddingTop="2dp"
+                    android:paddingTop="3dp"
                     android:layout_marginRight="5dp"
                     android:completionThreshold="1"
-                    android:hint="输入设备型号">
+                    android:hint="请输入设备型号">
                     <requestFocus />
                    </com.zhixiangzhonggong.tiebaobei.CustomizedView.CustomAutoCompleteView>
 
@@ -95,8 +95,9 @@
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:id="@+id/main_search_button"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="8dp"
@@ -112,7 +113,7 @@
             android:layout_height="wrap_content"
             android:background="#57B4D4"
             android:textSize="10dp"
-            android:text="Please select your machine type or serach model directly"/>
+            android:text="请输入设备型号查找或选择设备机型"/>
 
         <LinearLayout
             android:layout_width="match_parent"
