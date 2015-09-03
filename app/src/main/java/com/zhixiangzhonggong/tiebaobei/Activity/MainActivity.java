@@ -128,12 +128,12 @@ public class MainActivity extends Activity {
         mAllMachineModel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedOrder=3;
+                selectedOrder = 3;
                 pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
 
                 pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
                 editor = pref.edit();
-                editor.putInt("selectedOrder",selectedOrder);
+                editor.putInt("selectedOrder", selectedOrder);
 
                 editor.commit();
                 Intent intent = new Intent(getApplicationContext(), ChooseMachineModelActivity.class);
@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
         mSellCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedOrder=5;
+                selectedOrder = 5;
                 pref = getApplicationContext().getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
 
                 pref = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE);
@@ -160,16 +160,18 @@ public class MainActivity extends Activity {
         });
 
     //below is auto fill textview method if you need
-     /*   myAutoCompleteView.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
+       myAutoCompleteView.addTextChangedListener(new CustomAutoCompleteTextChangedListener(this));
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
         myAutoCompleteView.setAdapter(myAdapter);
         myAutoCompleteView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(MainActivity.this, ShowSearchResultActivity.class);
-//                startActivity(intent);
+
+             /*   Intent intent=new Intent(MainActivity.this,ShowSellCarDetailInformationActivity.class);
+                intent.putExtra("carId",position);
+                startActivity(intent);*/
             }
-        });*/
+        });
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +227,7 @@ public class MainActivity extends Activity {
 
         for (CarInformation record : products) {
 
-            item[x] = record.getCarBrand()+record.getCarModel();
+            item[x] = record.getCarModel();
             x++;
         }
 
