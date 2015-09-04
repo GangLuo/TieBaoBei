@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     private TextView mAboutUs;
     private TextView mAllMachineModel;
     private TextView mSellCar;
-    private TextView mMixerCar,mPumbCar;
+    private TextView mMixerCar,mPumbCar,mMotarPumbCar;
     private ImageView mBySmallPeopleImageLogin;
     private Button searchButton;
     private int selectedOrder;
@@ -205,6 +205,17 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+
+        mMotarPumbCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ShowProductsActivity.class);
+                String carTypeName=mPumbCar.getText().toString();
+                intent.putExtra("chooseMachineModel",carTypeName);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
@@ -222,6 +233,7 @@ public class MainActivity extends Activity {
         searchButton= (Button) findViewById(R.id.main_search_button);
         mMixerCar= (TextView) findViewById(R.id.machine_mixer_model_id);
         mPumbCar= (TextView) findViewById(R.id.pumb_truck_id);
+        mMotarPumbCar= (TextView) findViewById(R.id.machine_mortar_pump_id);
 
     }
 

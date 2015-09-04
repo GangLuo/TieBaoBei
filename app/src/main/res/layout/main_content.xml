@@ -179,6 +179,7 @@
                     android:text="全部机型"
                     />
                 <TextView
+                    android:id="@+id/machine_mortar_pump_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="2dp"
