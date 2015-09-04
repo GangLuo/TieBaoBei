@@ -30,10 +30,8 @@ import java.util.ArrayList;
 public class SellCarPictureGalleryAdapter extends BaseAdapter{
     private Context activity;
     private LayoutInflater inflater;
-    private UserLoadPictureUrl userLoadPictureUrl;
-    private CarPictureUrlDB carPictureUrlDB;
     private ArrayList<String> mImageUrlList;
-    private int selectedPosition = -1;
+    private  int i=0;
     private boolean shape;
     private  ViewHolder holder;
     Bimp bimp;
@@ -63,6 +61,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
         imageLoader.init(config);
         this.activity=context;
        this.mImageUrlList=mImageUrlList;
+        bimp.tempSelectBitmap.clear();
         inflater = LayoutInflater.from(context);
     }
 
@@ -82,6 +81,7 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
 
 
     public View getView(final int position, View convertView, ViewGroup parent) {
+
         View v = convertView;
         if (v == null) {
             v = inflater.inflate(R.layout.item_published_grida,
@@ -111,11 +111,14 @@ public class SellCarPictureGalleryAdapter extends BaseAdapter{
             @Override
             public void onLoadingComplete(String s, View view, Bitmap bitmap) {
 
+                if (i==position){
                     bimp = new Bimp();
                     imageItem = new ImageItem();
                     imageItem.setBitmap(bitmap);
-                    // bimp.tempSelectBitmap.clear();
                     bimp.tempSelectBitmap.add(imageItem);
+                    i++;
+                }
+
 
 
             }
