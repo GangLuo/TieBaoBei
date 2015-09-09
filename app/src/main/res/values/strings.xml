@@ -68,4 +68,11 @@
     <string name="yun_character">&#65509;</string>
     <string name="title_activity_find_password">FindPasswordActivity</string>
     <string name="title_activity_show_search_result">ShowSearchResultActivity</string>
+    <string name="title_activity_wei_xin_dialog">WeiXinDialogActivity</string>
+
+
+    <string name="recorder_nomal">按住说话</string>
+    <string name="recorder_recording">松开结束</string>
+    <string name="recorder_want_cancel">松开手指，取消发送</string>
+
 </resources>

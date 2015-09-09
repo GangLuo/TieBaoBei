@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhixiangzhonggong.tiebaobei.CustomizedClass.CustomAutoCompleteTextChangedListener;
@@ -42,6 +43,7 @@ public class MainActivity extends Activity {
     private TextView mAllMachineModel;
     private TextView mSellCar;
     private TextView mMixerCar,mPumbCar,mMotarPumbCar;
+    private LinearLayout mMachineLayout;
     private ImageView mBySmallPeopleImageLogin;
     private Button searchButton;
     private int selectedOrder;
@@ -216,6 +218,17 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+
+
+        mMachineLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //for test dialog
+                Intent intent=new Intent(MainActivity.this,WeiXinDialogActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
@@ -234,6 +247,7 @@ public class MainActivity extends Activity {
         mMixerCar= (TextView) findViewById(R.id.machine_mixer_model_id);
         mPumbCar= (TextView) findViewById(R.id.pumb_truck_id);
         mMotarPumbCar= (TextView) findViewById(R.id.machine_mortar_pump_id);
+        mMachineLayout= (LinearLayout) findViewById(R.id.my_machine_id);
 
     }
 

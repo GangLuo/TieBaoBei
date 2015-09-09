@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zhixiangzhonggong.tiebaobei.Activity.WeiXinDialogActivity">
+
+  <ListView
+      android:layout_width="match_parent"
+      android:id="@+id/id_wei_xin_listview"
+      android:layout_weight="1"
+      android:divider="@null"
+      android:dividerHeight="10dp"
+      android:layout_height="0dp">
+
+  </ListView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhixiangzhonggong.tiebaobei.CustomizedView.AudioRecordButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="7dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:minHeight="0dp"
+            android:background="@drawable/btn_recorder_normal"
+            android:textColor="#727272"
+            android:text="@string/recorder_nomal"
+            android:id="@+id/id_recorder_button">
+        </com.zhixiangzhonggong.tiebaobei.CustomizedView.AudioRecordButton>
+
+        <view
+            android:layout_width="match_parent"
+            android:background="#ccc"
+            android:layout_height="0dp"></view>
+    </FrameLayout>
+</LinearLayout>
