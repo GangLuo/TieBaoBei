@@ -35,9 +35,9 @@
             android:id="@+id/id_recorder_button">
         </com.zhixiangzhonggong.tiebaobei.CustomizedView.AudioRecordButton>
 
-        <view
+        <View
             android:layout_width="match_parent"
             android:background="#ccc"
-            android:layout_height="0dp"></view>
+            android:layout_height="0dp"></View>
     </FrameLayout>
 </LinearLayout>
